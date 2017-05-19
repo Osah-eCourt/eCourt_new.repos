@@ -1,0 +1,65 @@
+<div ng-hide="user_type=='clerk'" class="upcoming-calendars-block">
+	<div class="col-md-12">
+		<div class="upcoming-calendars">
+			<div class="upcoming-calendars-heading">
+				<img src="images/circle-calendar-icon.png" alt="calendar" />
+				<span>Upcoming Calendars</span>
+			</div>
+			
+			<?php  /* @Edited by FaisalK 03-11-2016 @purpose format of case name and judge as per u341*/?>
+					
+			<div class="upcoming-calendars-body" >
+				<div class="upcoming-calendars-list" ng-click="searchbyvalue(result.hearingdate,result.locationname,result.heringtimestored,result.judgevalue,result.assistantvalue)" ng-repeat = "result in data | limitTo: 5">
+					<span class="date">{{result.hearingdateDisplay}}</span>
+					<span class="time">{{result.hearingtime}}</span>
+					<span class="name">{{result.judge}}</span>
+					<span class="event">{{result.casetypegroup}}</span>
+					<span class="navigate"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="user_type=='clerk'" class="docket-new-cases-block">
+	<div class="col-xs-12">
+		<div class="docket-new-cases-wrapper">
+			<div>
+				<a ui-sref="newdocket" class="docket-new-cases-btn">DOCKET NEW CASES</a>
+			</div>
+			<div>
+				<a ui-sref="printlabel" class="print-labels-btn"><i class="fa fa-print" aria-hidden="true"></i> Print labels</a>
+				<a ui-sref="exportbulkdoc" class="export-bulk-docs-btn"><i class="fa fa-share-square-o" aria-hidden="true"></i> Export Bulk Docs</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+ function upcoming_calendars_block(){
+  upcomingCalendarsBlock=$('.upcoming-calendars-block');
+  if(upcomingCalendarsBlock&&upcomingCalendarsBlock.offset())
+  {
+   upcomingCalendarsBlock.css({'height':$('body').height()-upcomingCalendarsBlock.offset().top-$('#footer').height()});
+  }
+ }
+ $(window).resize(upcoming_calendars_block);
+ $(document).ready(
+  function(){
+   setTimeout(upcoming_calendars_block, 0)
+  });
+
+ function docket_new_cases_block(){
+  docketNewCasesBlock=$('.docket-new-cases-block');
+  if(docketNewCasesBlock&&docketNewCasesBlock.offset())
+  {
+   docketNewCasesBlock.css({'height':$('body').height()-docketNewCasesBlock.offset().top-$('#footer').height()});
+  }
+ }
+ $(window).resize(docket_new_cases_block);
+ $(document).ready(
+  function(){
+   setTimeout(docket_new_cases_block, 0)
+  });
+</script>
+        

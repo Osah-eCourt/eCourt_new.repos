@@ -1,0 +1,125 @@
+           
+            <div class="new-docket-title-block">
+                <div class="container">
+                    <div class="new-docket-title-wrapper">
+                        <div class="col-xs-12">
+                            <h2>Upcoming Calendar</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-block">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <a ui-sref="upcalendar" class="active"><i class="fa fa-calendar" aria-hidden="true"></i> Upcoming Calendars</a>
+                        </li>
+                        <li>
+                            <a ui-sref="calendar-management" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Calendar Management</a>
+                        </li>
+						
+                    </ul>
+                </div>
+            </div>
+            <div class="search-for-calendar-block">
+                <div class = "container">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" id="searchfield" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+
+                                        Search for Calendar
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="search-for-calendar-wrapper">
+                                        <div class="col-xs-3">
+                                            <label>Select Judge</label>
+                                            <div class="dropdown">
+
+                                            <select  ng-model="searchjudgename" name="searchjudgename" id="searchjudgename">
+                                    <option value="0">Select</option>   
+                                    <option ng-repeat="judgedata in upcSearchjudgelist | orderBy :'LastName'" value="{{judgedata.user_id}}" >{{judgedata.LastName}}, {{judgedata.FirstName}}</option>
+                                </select>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div>
+                                                <label>Hearing Date (From)</label>
+                                                <div class="datepicker-wrapper">
+                                                    <input  type="text" id="frdate" name="frdate" ng-model="frdate">
+                                                    <i class="fa fa-calendar"  aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Hearing Date (To)</label>
+                                                <div class="datepicker-wrapper">
+                                                    <input  type="text" id="todate" name="todate" ng-model="todate">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <a ng-click="searchupcommingCalander(searchjudgename,frdate,todate)"><i class="fa fa-search" aria-hidden="true"></i> SEARCH</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="calanderFlage==0" class="search-default-view-block">
+                <div class="container">
+                    <p>Select a Judge or Dates and then click <span>"Search"</span></p>
+                </div>
+            </div>
+            <div ng-show="calanderFlage==1" class="upcoming-calendar-table-block">
+                <div ng-repeat="judgedata in upcjudgelist| orderBy:'judge'" class="container">
+                    <h2>{{judgedata.judge}}</h2>
+                    
+                   <!--  <div class="container">
+                    <h2>{{Lasname}} {{Fisname}}</h2> -->
+
+                    <table>
+                        <tr class="heading"> 
+                            <!-- <td class="name"></td> -->
+                            <td class="name"></td>
+                            <td class="hearing-date">Hearing Date</td>
+                            <td class="cutoff-date">Cut Off Date</td>
+                            <td class="time">Time</td>
+                            <td class="location">Location</td>
+                            <td class="cases"># of Cases</td> 
+                     </tr> <!-- ng-if="fullname == upcdata.Judge" -->
+                      
+                     <tr ng-repeat="upcdata in upcommingcalenderliat | orderBy:'hearingdate'" ng-if="judgedata.Judge_condition===upcdata.Judge_condition"  ng-click="searchbyvalue(upcdata.hearingdate,upcdata.locationname,upcdata.heringtimestored,upcdata.judgevalue,upcdata.assistantvalue)">
+
+                           <!-- ng-if="fullname==upcdata.Judge" -->
+                           <!--  <td> {{fullname == upcdata.Judge}}</td> -->
+                          <td>{{upcdata.casetypegroup}}</td>
+                            <td>{{upcdata.hearingdateDisplay}}</td>
+                            <td>{{upcdata.cutoffdateDisplay}}</td>
+                            <td>{{upcdata.hearingtime}}</td>
+                            <td>{{upcdata.locationname}}</td>
+                            <td class="cases">{{upcdata.total}}</td>
+                        </tr>
+                        
+                    </table> 
+                   <!--  <span  ng-init="fullname = judgedata.LastName + ' ' + judgedata.FirstName"  ng-repeat="upcdata in upcommingcalenderliat"  >
+                        <span ng-show="fullname==upcdata.Judge">Hererererererer {{upcdata.Judge}}</span>
+                         
+                    </span> -->
+
+
+                </div>
+                
+                
+            </div>
+        
+       
+        
+        

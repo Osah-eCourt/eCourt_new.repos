@@ -1,0 +1,168 @@
+            <div class="overview-block">
+                <div class="container">
+                    <div class="overview-wrapper">
+                        <div class="col-xs-4">
+                            <span>Docket Number</span>
+                            <h2>{{docket_no}}</h2>
+                        </div>
+                        <div class="col-xs-3">
+							<span>Petitioner</span>
+							<h2 ng-show="petitioner_flg==1">{{Lastname | capitalize}}, {{Firstname | capitalize}}</h2>
+							<h2 ng-show="petitioner_flg==0">{{petitionerName}}</h2>
+						</div>
+						<div class="col-xs-3">
+							<span>Respondent</span>
+							<h2 ng-show="respondent_flg==1">{{ReslastName | capitalize}}, {{RespfirstName | capitalize}}</h2>
+							<h2 ng-show="respondent_flg==0">{{respondentName}}</h2>
+						</div>
+                        <div class="col-xs-2">
+							<span class="createdby-label">Created By: {{docketCreated | capitalize}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-block" ng-class="{confidential:(casefiletype=='Confidential')}">
+                <div class="container">
+					<div class="confidential-warning pull-right" ng-if="(casefiletype=='Confidential')">
+						<i class="fa fa-exclamation-triangle"></i> CONFIDENTIAL CASE
+					</div>
+                    <ul>
+                        <li>
+							<?php /*newdocket docket*/ ?>
+                            <a  ui-sref="docket({reqdt: encoded_docket_number})" ><i class="fa fa-info-circle" aria-hidden="true"></i> General Information</a>
+                        </li>
+                       <!-- <li>
+                            <a ui-sref="dochistory({reqdt: encoded_docket_number})"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+                        </li>-->
+                        <li>
+                            <a class="active" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes</a>
+                        </li>
+						<li>
+                            <a ui-sref="form1205({reqdt: encoded_docket_number})"><i class="fa fa-file-text-o" aria-hidden="true"></i> Form 1205</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="notes-table-block">
+                <div class="container">
+                    <div class="notes-table-wrapper">
+                        <table>
+                            <tr class="header">
+                                <td class="date" ng-click="sort_by('date')">Date <i class="fa fa-angle-up" aria-hidden="true"></i></td>
+                                <td class="summarynotes" ng-click="sort_by('summarynotes')">Notes/Summary <i class="fa fa-angle-down" aria-hidden="true"></i></td>
+                                <td class="updatedby" ng-click="sort_by('updatedby')">Updated By <i class="fa fa-angle-down" aria-hidden="true"></i></td>
+                                <td class="icon"></td>
+                            </tr>
+                            <tr ng-repeat="note in notesList | orderBy:sortingOrder:reverse | filter:searchFilter:strict ">
+                                <td class="date">{{note.date | date : "MM-dd-y"}}</td>
+                                <td class="summarynotes">
+                                    <p>{{note.summarynotes}}</p>
+                                </td>
+                                <td class="updatedby">{{note.updatedby}}</td>
+                                <td class="icon">
+                                    <ul>
+                                       <li class="edit">
+                                            <a><i class="fa fa-pencil" data-toggle="modal" ng-click="getNotes(note.id,note.summarynotes)" aria-hidden="true">
+										</i></a>
+                                        </li>
+                                        <li class="delete">
+											 <a><i data-toggle="modal" data-target="#deleteNotes{{note.id}}" class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+									<div id="deleteNotes{{note.id}}" data-backdrop="static" class="deletepopup modal fade" role="dialog">
+										<div class="modal-dialog">
+											<!-- Modal content-->
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">
+														<img src="images/close.png" alt="close" />
+													</button>
+													<h4 class="modal-title">Delete</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-xs-12">
+															<p>Do you want to delete the notes?</p>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<div class="btn-block">
+														<button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+														<button type="button" ng-click="deleteNotes(note.id)"  class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">OK</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="update-note-summary{{note.id}}" data-backdrop="static"  class="notes modal fade" role="dialog">
+										<div class="modal-dialog">
+											<!-- Modal content-->
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">
+														<img src="images/close.png" alt="close" />
+													</button>
+													<h4 class="modal-title">Edit Notes/Summary</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-xs-12">
+															<label>Notes/Summary</label>
+															<textarea id = "summarynotes{{note.id}}" ng-model="summary" value="{{summary}}"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<div class="btn-block">
+														<button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+														<button type="button" ng-click='updateNotes(notesId)' class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">SAVE</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+                            </tr>
+                        </table>
+						
+                        <div class="add-note-summary-btn-block">
+                            <a class="add-note-summary-btn" data-toggle="modal" data-target="#add-note-summary"><i class="fa fa-plus" aria-hidden="true"></i> Add Note/Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="add-note-summary" class=" notes modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Add Notes/Summary</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Notes/Summary</label>
+                                <textarea ng-model="summarynotes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                            <button type="button" ng-click='addNotes()' class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+

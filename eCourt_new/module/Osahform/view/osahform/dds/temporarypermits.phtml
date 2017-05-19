@@ -1,0 +1,36 @@
+<div class="temporary-permits-block">
+	<div class="container">
+		<div class="temporary-permits-title-wrapper">
+			<div class="col-xs-12">
+				<h2>Print Temporary Permits</h2>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="temporary-permits-inner-block">
+			<div class="col-xs-12">
+				<h3>Select button to print all "unprinted" permits</h3>
+				<!--<a class="temporary-permits-btn"  ng-click="readonly_flag=='1'? '' :printPermits()" class="btn btn-default search-btn" toggle-class="clickevent" ng-disabled="isDisabled"><i class="fa fa-print" aria-hidden="true"></i> Print Permits</a>-->
+					<button type="submit" ng-click="readonly_flag=='1'? '' : printPermits()" class="btn btn-default search-btn temporary-permits-btn" toggle-class="clickevent" ng-disabled="isDisabled"><i class="fa fa-print" aria-hidden="true"></i>Print Permits</button>
+			</div>
+			<div class="col-xs-12">
+				<hr />
+			</div>
+			<div class="col-xs-12">
+				<h3>Enter License Number to print one permit</h3>
+				<div class="label-block">
+					<div class="col-xs-3">
+						<label>License Number</label>
+						<input type="text" ng-model="license_number" class="tem_per" msg="Enter License Number to Print Permit." id="license_number" />
+						
+					</div>
+				</div>
+				<div class="col-xs-12">
+						<button type="submit" ng-click="readonly_flag=='1'? '' : printSinglePermits()" class="btn btn-default search-btn temporary-permits-btn" toggle-class="clickevent" ng-disabled="isDisabled"><i class="fa fa-print" aria-hidden="true"></i>Print Permits</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+            
+ 

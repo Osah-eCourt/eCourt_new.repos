@@ -1,0 +1,188 @@
+<!--   
+      <link rel="stylesheet" href="dojo-release-1.9.1/dojo-release-1.9.1/dijit/themes/claro/claro.css"> 
+    
+	  <link rel="stylesheet" href="css/style.css"> 
+      <link href="required/UploaderFileList.css" rel="stylesheet" />
+      <link href="dojo-release-1.9.1-src/dojo-release-1.9.1-src/dojox/grid/resources/claroGrid.css" rel="stylesheet" />
+     
+@import "dojo-release-1.9.1-src/dojo-release-1.9.1-src/dojox/grid/resources/claroGrid.css";
+@import "dojo-release-1.9.1-src/dojo-release-1.9.1-src/dojo/resources/dojo.css";
+@import "dojo-release-1.9.1-src/dojo-release-1.9.1-src/dojox/grid/enhanced/resources/claro/EnhancedGrid.css";
+@import "dojo-release-1.9.1-src/dojo-release-1.9.1-src/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css";
+	 
+/* @import "{{baseUrl}}dojox/grid/resources/claroGrid.css"; */
+
+/*Grid needs an explicit height by default*/
+ -->
+ <style type="text/css">
+#gridDiv3 {
+    height: 60em;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+	.demoHeaders {		margin-top: 2em;
+}
+.demoHeaders {		margin-top: 2em;
+}
+    </style>
+	
+	<script>
+	
+require(["dojo/parser",["dojo"], "dijit/layout/BorderContainer", "dijit/layout/TabContainer", "dijit/layout/AccordionContainer", "dijit/layout/ContentPane", "dijit/layout/AccordionPane",  "dijit/Menu",        "dijit/MenuItem", "dijit/PopupMenuItem", "dojo/parser", "dojo/ready", "dijit/form/Form", "dijit/form/Button", "dijit/form/ValidationTextBox", "dijit/form/DateTextBox", "dijit/layout/TabContainer", "dijit/form/ComboBox", "dijit/layout/ContentPane", "dijit/form/TimeTextBox", "dijit/form/Textarea", "dijit/form/RadioButton"]);
+	</script>
+	
+	<script src='dojo-release-1.9.1/dojo-release-1.9.1/dojo/dojo.js'></script>
+<!--BEGIN  FILE UPLOAD FUNCTIONALITY TO UPLOAD THE MULTIPLE FILES AND DRAG AND DROP -->
+<script>
+
+dojo.require("dojox.grid.EnhancedGrid");
+dojo.require("dojox.grid.enhanced.plugins.Pagination");
+dojo.require("dojo.data.ItemFileWriteStore");
+
+ 
+dojo.ready(function(){
+    /*test button code starts here */
+	
+
+	
+    var data = {
+      identifier: 'id',
+      items: []
+    };
+    /* var data_list = [
+      { col1: 'Gireesh', col2: 'A', col3: 'Kambala', col4: '6850 peachtree' , col5: 'apt # 1330' , col6: 'Sandy Spings' , col7:'GA', col8:'30328'},
+       { col1: 'Gireeshkambala', col2: 'S', col3: 'Kambala', col4: '6850 peachtree dunwoody rd ne' , col5: 'apt # 1330' , col6: 'Sandy Spings' , col7:'GA', col8:'30328'}     
+    ]; */
+	
+	 var data_list = [  { col1: '1300001', col2: 'DDS', col3: 'ALS', col4: 'Fulton', col5: 'Michael Malihi' ,col6: 'Ruff Valerie', col7:'09/30/2013', col8:"Grey File", col9:"Awaiting Judge Assistant Review"},
+      { col1: "1300002", col2: 'DDS', col3: 'ALS', col4: 'Fulton', col5: 'Michael Malihi' , col6: 'Ruff Valerie', col7:'09/27/2013', col8:"Grey File", col9:"Hearing Scheduled"},
+      { col1: "1300003", col2: 'DDS', col3: 'ALS', col4: 'Fulton', col5: 'Michael Malihi', col6: 'Ruff Valerie', col7:'10/06/2013', col8:"Grey File", col9:"Hearing Scheduled"}];
+	
+    var rows = 30;
+    for(var i=0, l=data_list.length; i<rows
+	; i++){
+      data.items.push(dojo.mixin({ id: i+1 }, data_list[i%l]));
+    }
+	
+
+    var store = new dojo.data.ItemFileWriteStore({data: data});
+
+    /*set up layout*/
+    var layout = [[
+      {name: 'Docket Number', field: 'col1', width: "80px", editable: true},
+      {name: 'Ref Agency', field: 'col2', width: "80px", editable: true},
+      {name: 'Case Type', field: 'col3', width: "80px", editable: true},
+      {name: 'County', field: 'col4', width: "120px", editable: true},
+	  {name: 'Judge', field: 'col5', width: "120px", editable: true},
+	  {name: 'Judge Assistant', field: 'col6', width: "120px", editable: true},
+	  {name: 'Hearing Date', field: 'col7', width: "80px", editable: true},
+	  {name: 'Case File Type', field: 'col8', width: "80px", editable: true}, 
+	  {name: 'Status', field: 'col9', width: "80px", editable: true},     
+    ]];
+
+    /*create a new grid:*/
+    var grid3 = new dojox.grid.EnhancedGrid({
+        id: 'grid3',
+        store: store,
+        structure: layout,
+        rowSelector: '20px',
+        plugins: {
+          pagination: {
+              pageSizes: ["25", "All", "40", "60"],
+              description: true,
+              sizeSwitch: true,
+              pageStepper: true,
+              gotoButton: true,
+                      /*page step to be displayed*/
+              maxPageStep: 4,
+                      /*position of the pagination bar*/
+              position: "bottom"
+          }
+        }
+    }, document.createElement('div'));
+
+    /*append the new grid to the div*/
+    dojo.byId("gridDiv3").appendChild(grid3.domNode);
+
+    /*Call startup() to render the grid*/
+    grid3.startup();
+});
+
+</script>
+		
+
+
+    <script>
+	
+	
+	
+	
+</script>
+
+
+<!--  END  -->
+</head>
+<body class="claro">
+
+
+     <div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%; border-spacing:5px">
+  <?php include 'header.php' ?>     
+
+      
+   <div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region:'leading'"> 
+   <!--  menus: BEGIN -->
+  <?php include 'menus.php' ?>
+  
+  <!-- Menus: END -->
+       <!--  <div data-dojo-type="dijit/layout/AccordionPane" title="pane #3">Calendar</div> -->
+       
+     
+</div>
+
+<div data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region:'center'">
+<div data-dojo-type="dijit/layout/ContentPane" title="Open Cases"><div data-dojo-type="dijit/form/Form" id="myForm1" data-dojo-id="myForm1" encType="multipart/form-data" align="left" action="" method=""> 
+
+
+    <script type="dojo/on" data-dojo-event="reset">
+        return confirm('Press OK to reset widget values');
+    </script>
+
+    <!-- <script type="dojo/on" data-dojo-event="submit">
+	//alert('hi, how are you?');
+	
+	document.getElementById("docketinfo").style.display="block";
+        if(this.validate()){
+						
+            return confirm('Form has been saved, press OK to continue');
+			dojo.byId("refagency").focus();
+			return false;
+        }else{
+			
+			alert('Please provide the required fields to save the form.');
+            return false;
+        }
+		return false;
+       // return true;
+    </script>
+     -->
+   
+    
+    
+      
+                            
+               <!--  Data Grid Database Starts here --> 
+               <table class="pageTable" ><tr><td><div id="gridDiv3"></td></tr></table>
+		     </div>
+                
+    </div>
+</div> 
+
+
+
+
+</body>
+</html>

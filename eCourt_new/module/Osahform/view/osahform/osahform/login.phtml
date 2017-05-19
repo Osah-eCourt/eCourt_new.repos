@@ -1,0 +1,50 @@
+	<!-- Login Html-->
+            <div class="top-strip"></div>
+            <div class="login-block">
+                <div class="login-logo">
+                    <a><img src="images/osah-logo.png" /></a>
+                </div>
+		    <form id="login_page" name="login_page" method="post">
+			<div class="login-wrapper">
+				<p>
+					<label>Username</label>
+					<input type="text" name="username" ng-enter="login(username,password)" id="username" ng-model="username" />
+				</p>
+				<p>
+					<label>Password</label>
+					<input type="password" name="password" ng-enter="login(username,password)" id="password" ng-model="password"/>
+				</p>
+				 <span class="error">
+					<p ng-bind="validation_message"></p>
+				 </span>
+				<p>
+					<!--<a ui-sref ="home" class="login-btn">LOGIN</a>-->
+					<a ng-click="login(username,password)" class="login-btn ripplelink">LOGIN</a>
+				</p>
+			</div>
+		    </form>
+            </div>
+            
+       <script>
+		$(function(){
+			var ink, d, x, y;
+				$(".ripplelink").click(function(e){
+				if($(this).find(".ink").length === 0){
+					$(this).prepend("<span class='ink'></span>");
+				}
+					 
+				ink = $(this).find(".ink");
+				ink.removeClass("animate");
+				 
+				if(!ink.height() && !ink.width()){
+					d = Math.max($(this).outerWidth(), $(this).outerHeight());
+					ink.css({height: d, width: d});
+				}
+				 
+				x = e.pageX - $(this).offset().left - ink.width()/2;
+				y = e.pageY - $(this).offset().top - ink.height()/2;
+				 
+				ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+			});
+		});
+	   </script>

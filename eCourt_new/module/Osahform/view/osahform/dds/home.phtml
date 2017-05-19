@@ -1,0 +1,29 @@
+<div ng-show="user_type=='dds_clerk'" class="docket-new-cases-block">
+	<div class="col-xs-12">
+		<div class="docket-new-cases-wrapper">
+			<div>
+				<a ui-sref="newdocket" class="docket-new-cases-btn">DOCKET NEW CASES</a>
+			</div>
+			<div>
+				<a ui-sref="temporarypermits" class="docket-new-cases-btn">TEMPORARY PERMITS</a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+	function docket_new_cases_block(){
+		docketNewCasesBlock=$('.docket-new-cases-block');
+		if(docketNewCasesBlock&&docketNewCasesBlock.offset())
+		{
+			docketNewCasesBlock.css({'height':$('body').height()-docketNewCasesBlock.offset().top-$('#footer').height()});
+		}
+	}
+	$(window).resize(docket_new_cases_block);
+	$(document).ready(
+		function(){
+			setTimeout(docket_new_cases_block, 0)
+		});
+</script>
+        

@@ -1,0 +1,2 @@
+2013-12-05T15:11:33-05:00 DEBUG (7): Ldap: 1: host=osah.ga.gov,accountDomainName=osah.ga.gov,accountDomainNameShort=osah,accountCanonicalForm=3,username=CN=user1,DC=foo,DC=net,password=*****,baseDn=dc=osah,dc=ga,dc=gov,bindRequiresDn=0
+2013-12-05T15:11:33-05:00 DEBUG (7): Ldap: 2: asdf authentication failed: 0x31 (Invalid credentials; 80090308: LdapErr: DSID-0C0903A9, comment: AcceptSecurityContext error, data 52e, v1db1): osah\asdf

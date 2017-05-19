@@ -1,0 +1,80 @@
+<div class="dds-title-block">
+	<div class="container">
+		<div class="dds-title-wrapper">
+			<div class="col-xs-12">
+				<!--<h2>DDS Import & Reports</h2>-->
+				<h2>DDS Reports</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tab-block">
+	<div class="container">
+		<ul>
+			<!--<li>
+				<a ui-sref="ddsimport"><i class="fa fa-download" aria-hidden="true"></i> Import</a>
+			</li>-->
+			<li>
+				<a ui-sref="ddsreport"  class="active"><i class="fa fa-book" aria-hidden="true"></i> Print DDS Form 1</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="print-form-block">
+	<!--<div class="container">
+		<div class="print-form-title-wrapper">
+			<div class="col-xs-12">
+				<h2>Print Form 1</h2>
+			</div>
+		</div>
+	</div>-->
+	<div class="container">
+		<div class="print-form-docket-block">
+			<div class="col-xs-12">
+				<h3>Search for docket(s)</h3>
+			</div>
+			<div class="col-xs-12">
+				<div class="print-form-fields-block">
+					<div class="print-form-fields">
+						<label>Agency</label>
+						<div class="dropdown">
+                                <select  ng-model="agencyCode" id="new_docket-agencyCode"  name="agencyCode">
+									<option value="DDS">DDS</option>
+									<option value="DPS">DPS</option>
+                                </select>
+                            </div>
+					</div>
+					<div class="print-form-fields">
+						<label>Case Type</label>
+						<div class="dropdown">
+                                <select  ng-model="casetypeselect" id="new_docket-casetypeselect" name="casetypeselect" >
+									<option value="ALS">ALS</option>
+                                </select>
+                            </div>
+					</div>
+					<div class="print-form-fields">
+						<label>Date Received</label>
+						<div class="datepicker-wrapper">
+							<input ng-model="docReceivedDate"  type="text" id="docReceivedDate">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="or-label">
+					<span>OR</span>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="label-number-block">
+					<label>Docket Number</label>
+					<input type="text" ng-model="caseid" id="caseid"/>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<a ng-click="printOsahform1()" class="print-form-btn"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
+			</div>
+		</div>
+	</div>
+</div>

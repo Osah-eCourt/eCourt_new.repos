@@ -1,0 +1,1288 @@
+html,
+body {
+    display: table;
+    height: 100%;
+    width: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin: 0 auto -37px;
+    /* Pad bottom by footer height */
+    padding: 0 0 37px;
+    position: relative;
+    display: table;
+    width: 100%;
+}
+/* Set the fixed height of the footer here */
+#footer {
+    height: 37px;
+    background: #596171;
+    display: table;
+    width: 100%;
+}
+body{font-family: 'Raleway', sans-serif; overflow-y: scroll;}
+
+
+
+a:focus{outline: none;}
+a:hover{text-decoration: none;}
+.row{margin: 0;}
+input:focus{outline: none;}
+select:focus{outline: none;}
+
+/*Start Docket Search CSS*/
+.header-wrapper{background: url(../images/top-bg.jpg) no-repeat; background-size: 100% 100%;}
+.header{background: rgba(255, 255, 255, .8); padding: 0 25px;}
+.header .logo{padding:10px 0; display: table;}
+.navigation ul{margin: 0; padding: 0;}
+.navigation ul li{display: inline-block;}
+.navigation ul li a{padding: 40px 0 34px 0; font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; color: #36444f; border-bottom: 6px solid transparent; margin: 0 40px 0 0; cursor: pointer;}
+.navigation ul li a.active{border-bottom: 6px solid #d7a312;}
+.navigation ul li a:hover{border-bottom: 6px solid #d7a312; transition: all 0.5s ease 0s;}
+.navigation ul li a:focus{text-decoration: none;}
+.logout{font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 500; color: #36444f; float: right; padding: 40px 0; cursor: pointer;}
+.logout:hover{color: #36444f;}
+
+.docket-number-block{border: 1px solid #d5d7db; background: #fff; box-shadow: none; margin: 2px auto 0; border-radius: 5px; height: 50px; width: 500px; display: table;}
+.dashboard {padding: 70px 0; background: rgba(255, 255, 255, .5);}
+.dashboard .additional-search-btn{float: none; margin: 0 auto;}
+.inner-page{padding: 16px 25px 10px 25px; background: rgba(255, 255, 255, .5);}
+.inner-page .visible-hidden{visibility: hidden;}
+.docket-number-block label{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; color: #596171; text-shadow: none; vertical-align: middle; margin: 0; padding: 0; border-right: 1px solid #d5d7db; display: table-cell; width: 155px; text-align: center;}
+.docket-number-block input{margin: 0; display: table-cell; width: 100%; height: 100%; border: none; color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 30px; font-weight: 400; padding: 0 20px; transition: all 0.5s ease 0s; text-align: center;}
+.docket-number-block .search{background: #596171; display: table-cell; vertical-align: middle; text-align: center; width: 54px; cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px;}
+.docket-number-block .search i{font-size: 25px; color: #fff;}
+.additional-search-btn{margin: 0 auto; float: none; width: 320px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #596171; text-align: center; padding: 5px 0 0; cursor: pointer;}
+.additional-search-btn i{color: #596171;}
+
+#footer{padding: 0 40px;}
+#footer p{font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 400; color: #fff; padding: 10px 0 0;}
+#footer p.footer-right{float: right;}
+#footer p a{font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 400; color: #fff;}
+/*End Docket Search CSS*/
+
+/*Start Upcoming Calendar CSS*/
+.upcoming-calendars-block{background: url(../images/bottom-bg.png) no-repeat; display: table; width: 100%; background-size: cover;}
+.upcoming-calendars{width: 500px; margin: 60px auto; border: 1px solid #d5d7db;}
+.upcoming-calendars-heading{font-family: 'PT Serif', serif; font-size: 18px; font-weight: 400; color: #737c8c; text-align: center; background: #f1f1f1; padding: 8px 140px; display: table; width: 100%; }
+.upcoming-calendars-heading img{display: inline-block; float: left;}
+.upcoming-calendars-heading span{display: inline-block; float: left; margin: 8px 0 0 8px;}
+.upcoming-calendars-body{background: #fff; display: table; width: 100%; padding: 5px 23px;}
+.upcoming-calendars-list{background: #fff; display: table; width: 100%; padding: 23px 0; border-bottom: 1px solid #d5d7db; cursor: pointer;}
+.upcoming-calendars-list:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+.upcoming-calendars-list:last-child{border: none;}
+.upcoming-calendars-list span{display: table-cell; font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 400; color: #8d96a8; padding: 0 10px;}
+.upcoming-calendars-list span.date{font-weight: 500; width: 95px;}
+.upcoming-calendars-list span.time{width: 80px;}
+.upcoming-calendars-list span.name{width: 120px;}
+.upcoming-calendars-list span.event{width: 125px;}
+.upcoming-calendars-list span.navigate{font-weight: 500;}
+/*End Upcoming Calendar CSS*/
+
+/*Start Additional Search CSS*/
+.additional-search-block{display: none;}
+.additional-search-block .col-xs-3{padding: 0 10px;}
+.additional-search-wrapper-gray{background: #f1f1f1; padding: 58px 0;}
+.additional-search-wrapper-gray .container{width: 1024px;}
+.additional-search-wrapper-gray label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.additional-search-wrapper-gray input{width: 100%; border: 1px solid #d5d7db; height: 40px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.additional-search-wrapper-gray select{width: 100%; border: 1px solid #d5d7db; height: 40px;}
+.additional-search-wrapper-white{background: #fff; padding: 58px 0 0;}
+.additional-search-wrapper-white .container{width: 1024px; padding-bottom: 58px;}
+.additional-search-wrapper-white label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.additional-search-wrapper-white input{width: 100%; border: 1px solid #d5d7db; height: 40px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.additional-search-wrapper-white select{width: 100%; border: 1px solid #d5d7db; height: 40px;}
+.additional-search-bottom-btn a{background: #d7a312; color: #fff; font-size: 16px; width: 230px; float: right; text-align: center; padding: 14px 0; margin: 0 10px 0 0; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif;}
+.h40{height: 40px;}
+.additional-search-wrapper-gray ul{padding: 0; display: table; margin: 0 auto;}
+.additional-search-wrapper-gray ul li{display: inline-block; margin: 0 10px;}
+.additional-search-wrapper-gray ul li a{padding: 5px 10px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; border: 1px solid transparent; cursor: pointer;}
+.additional-search-wrapper-gray ul li a.active{background: #fff; border: 1px solid #d7a312; color: #d7a312; border-radius: 3px;}
+.additional-search-wrapper-gray ul li a:hover{background: #fff; border: 1px solid #d7a312; color: #d7a312; border-radius: 3px; transition: all 0.5s ease 0s;}
+/*End Additional Search CSS*/
+
+/*Start Dropdown CSS*/
+.dropdown{position: relative;}
+.dropdown select{padding: 5px; width: 100%; -moz-appearance: none; -webkit-appearance: none; background: url(../images/arrow-down.png) no-repeat 95% 15px #fff; border-radius: 0; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+/*End Dropdown CSS*/
+
+/*Start Datepicker CSS*/
+.datepicker-wrapper{position: relative;}
+.datepicker-wrapper i{position: absolute; top: 12px; font-size: 16px; color: #737c8c; left: 10px;}
+.datepicker-wrapper input{padding: 5px 5px 5px 32px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.datepicker {color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.datepicker table tr td.active{background-color: #596171 !important; background-image: none !important;}
+/*End Datepicker CSS*/
+
+/*Start Docket CSS*/
+.overview-block{padding: 0 25px;}
+.overview-block span{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; margin: 16px 0 0 0; display: table; width: 100%;}
+.overview-block h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 26px; font-weight: 500; margin: 0 0 16px 0; display: table; width: 100%; padding: 0 15px 0 0;}
+.overview-block .createdby-label{margin: 46px 0 0 0; text-align: right;}
+
+.tab-block{background: #8d96a8; padding: 0 25px;}
+.tab-block ul{margin: 0; padding: 0; float: left;}
+.tab-block ul li{display: inline-block; margin: 0 60px 0 0;}
+.tab-block ul li a{color: #fff; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; padding: 18px 0; display: inline-block; cursor: pointer;  border-bottom: 6px solid transparent; transition: all 0.5s ease 0s;}
+.tab-block ul li a.active{border-bottom: 6px solid #d7a312;}
+.tab-block ul li a:hover{border-bottom: 6px solid #d7a312;}
+
+.delete-docket-btn-block{float: right; margin: 11px 0 0 0;}
+.delete-docket-btn-block .delete-docket-btn{background: #596171; color: #fff; padding: 10px 20px; display: table; border-radius: 5px; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; cursor: pointer;}
+
+.docket-information-block{display: table; width: 100%;}
+.docket-information-left{display: table-cell; background: #f1f1f1; float: none; vertical-align: top; width: 30%; padding: 0 15px 86px 40px;}
+.docket-information-left h2{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 500; margin: 0;}
+.docket-information-left label{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; margin: 0; width: 100%;}
+.docket-information-left span{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; margin: 0 0 26px 0; width: 100%; display: table;}
+.docket-information-left i{color: #737c8c; font-size: 16px; margin: 0 0 0 0;}
+.docket-information-left .docket-info-block .icon{margin: 0 0 0 12px;}
+
+.docket-information-left .docket-info-block{margin: 30px 0 0 0; display: table; width: 100%;}
+.docket-information-left .docket-info-block h2{margin: 0 0 30px 0;}
+.docket-information-left .docket-info-block .col-xs-3 {padding: 0 10px 0 0;}
+.docket-information-left .docket-info-block label{margin: 0 0 10px 0;}
+.docket-information-left .docket-info-block span{margin: 0 0 10px 0; word-wrap: break-word; display: block;}
+.docket-information-left .hearing-info-block{margin: 10px 0 0 0; display: table; width: 100%;}
+.docket-information-left .hearing-info-block h2{margin: 0 0 30px 0;}
+.docket-information-left .hearing-info-block label{margin: 0 0 12px 0;}
+.docket-information-left .hearing-info-block div{margin: 0 0 0 0;}
+.docket-information-left .additional-info-block{margin: 30px 0 0 0;}
+.docket-information-left .additional-info-block h2{margin: 0 0 30px 0; display: table; width: 100%;}
+.docket-information-left .additional-info-block label{margin: 0 0 10px 0;}
+.docket-information-left input{margin: 0 0 30px 0; height: 40px; padding: 5px; width: 90%; border: 1px solid #d0d2d6; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.docket-information-left .dropdown select{margin: 0 0 30px 0; height: 40px; padding: 5px 30px 5px 5px; width: 90%; border: 1px solid #d0d2d6;}
+.docket-information-left .datepicker-wrapper input{padding: 5px 5px 5px 32px;}
+.docket-information-left .disable{
+	 background-color: rgb(235, 235, 228);
+}
+.party .modal-body select.disable{
+	 background-color: rgb(235, 235, 228);
+}
+.docket-information-right{display: table-cell; float: none; vertical-align: top; width: 70%; padding: 0 40px 40px;}
+.docket-information-right h2{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 500; margin: 0;}
+.docket-info-right-block{margin: 30px 0 0 0; display: table; width: 100%;}
+.docket-info-right-block h2{margin: 0 0 30px 0;}
+.docket-info-right-block .button-block{}
+.docket-info-right-block .button-block a{background: #d7a312; color: #fff;width: 250px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px;  margin: 0 20px 0 0;}
+/* @Edited by FaisalK 2-11-2016 @purpose sticky table header start*/
+.docket-info-table-block{max-height: 412px; /* margin: 30px 0 0; */ overflow-y: auto;}
+.docket-info-table-block-container {margin: 30px 0 0;}
+.docket-info-table-block thead td {height: 0px;padding: 0px !important;font-size: 0px !important;}
+.docket-info-table-block-container table.clone tr.heading,
+.docket-info-table-block-container table.clone {border:0px !important;}
+.docket-info-table-block .no-record{background: #f1f1f1; color: #737c8c; font-size: 14px; font-weight: 700; padding: 15px 0; text-align: center;}
+/* @Edited by FaisalK 2-11-2016 @purpose sticky table header end*/
+.docket-info-right-block table{width: 100%; margin: 0; border: 1px solid #d5d7db;}
+.docket-info-right-block table tr.heading{border: 1px solid #d5d7db; border-left-color: #fff; border-right-color: #fff; border-top-color: #fff;}
+.docket-info-right-block table tr.heading td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; padding: 15px 15px;}
+.docket-info-right-block table tr td.edit{width: 5%;}
+.docket-info-right-block table tr td.document{width: 15%;}
+.docket-info-right-block table tr td.name{width: 23%; word-break: break-all;}
+.docket-info-right-block table tr td.date{width: 19%;}
+.docket-info-right-block table tr td.desc{width: 33%; word-break: break-all;}
+.docket-info-right-block table tr td.delete{width: 5%;}
+.docket-info-right-block table tr.table-row{border: 1px solid #d5d7db;}
+.docket-info-right-block table tr.table-row td{word-break: break-word; padding: 15px 20px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #8d96a8;}
+.docket-info-right-block table tr.table-row td i{font-size: 16px; }
+.docket-info-right-block table tr.table-row td.name-data{color: #d7a312; text-decoration: underline;cursor: pointer;}
+.disposition-block{margin: 30px 0 0 0; display: table; width: 100%;}
+.disposition-block h2{margin: 0 0 30px 0;}
+.disposition-block > div{display: table; width: 100%;}
+.disposition-block label{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; width: 100%; margin: 0 0 10px 0;}
+.disposition-block span{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; width: 100%;}
+.disposition-block > div > div{margin: 0 0 30px 0; display: inline-block; width: 100%;}
+.disposition-block .reopen-case-button{background: #d7a312; color: #fff; padding: 14px 20px; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin-bottom: 30px;}
+.party-info-block{margin: 30px 0 0 0; display: table; width: 100%;}
+.party-info-block h2{margin: 0 0 30px 0;}
+.party-info-block .add-party-btn{background: #e5e5e5; width: 250px; padding: 14px 0; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #b2b2b2; text-align: center; display: inline-block; border-radius: 5px; margin: 0 0 30px 0;}
+.party-info-block .party-block{border: 1px solid #d5d7db; width: 95%; margin: 0 0 20px 0; height: 235px;}
+.party-info-block .party-block .heading{padding: 8px 18px; background: #f1f1f1; border-bottom: 1px solid #d5d7db;}
+.party-info-block .party-block .heading span{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c;}
+.party-info-block .party-block .heading span i{font-size: 14px; margin: 0 0 0 10px; cursor: pointer; color: #737c8c;}
+.party-info-block .party-block .heading span+span{float: right;}
+.party-info-block .party-block .party-body{padding: 18px 18px 58px;}
+.party-info-block .party-block .party-body p{margin: 0 0 10px 0; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c;}
+.party-info-block .party-block .party-body p label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0;}
+.party-info-block .party-block .party-body p i{margin: 0 10px 0 0; font-weight: 500; color: #737c8c;}
+.party-info-block .no-record{background: #f1f1f1; color: #737c8c; font-size: 14px; font-weight: 700; padding: 15px 0; text-align: center;}
+.party-info-block .party-block:hover{box-shadow: 0 0 10px 3px #e5e5e5; transition: all 0.5s ease 0s;}
+/*End Docket CSS*/
+
+/*Start New Docket CSS*/
+.new-docket-title-wrapper {padding: 16px 25px; display: table; width: 100%;}
+.new-docket-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.new-docket-title-wrapper .createdby-label{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; margin: 3px 0 0 0; text-align: right; display: table; width: 100%}
+.docket-information-left .hearing-info-block .col-xs-12 .dropdown select{width: 95%;}
+.docket-information-left .search-btn{background: #d7a312; color: #fff; padding: 14px 20px; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; width: 45%;border:none;outline:none}
+.disposition-block .add-decision-btn{background: #e5e5e5; width: 250px; padding: 14px 0; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #b2b2b2; text-align: center; display: inline-block; border-radius: 5px; margin: 0 0 0 0;}
+.disposition-block .add-decision-btn.active{background: #d7a312;color: #fff; cursor: pointer;}
+.party-info-block .add-party-btn.active{background: #d7a312; width: 250px; padding: 14px 0; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #fff; text-align: center; display: inline-block; border-radius: 5px; margin: 0 0 30px 0; cursor: pointer;}
+.header-wrapper.no-bg{border-bottom: 1px solid #d0d2d6; background: none;}
+/*End New Docket CSS*/
+
+/*Start Login CSS*/
+.top-strip{background: #8d96a8; height: 6px; display: block; width: 100%;}
+.login-block{width: 400px; position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+.login-logo img{margin: 0 auto; display: table;}
+.login-wrapper{border-top: 1px solid #d0d2d6; border-bottom: 1px solid #d0d2d6; margin: 34px 0; padding: 20px 0;}
+.login-wrapper p{margin: 0; display: table; width: 100%;}
+.login-wrapper label{font-family: 'Roboto', sans-serif; font-size: 15px; font-weight: 300; color: #737c8c; text-align: center; width: 100%; display: table; margin: 0 auto 12px;}
+.login-wrapper input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 280px; height: 36px; display: table; background: #e5e5e5; margin: 0 auto 12px; border: none; padding: 5px;}
+.login-wrapper .login-btn{background: #d7a312; width: 280px; padding: 14px 0; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #fff; text-align: center; display: block; border-radius: 5px; margin: 0 0 30px 0; cursor: pointer; margin: 23px auto 25px;}
+/*End Login CSS*/
+
+/*Start Add Party CSS*/
+.party .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+.party .modal-header .close:focus{outline: none;}
+.party .modal-dialog{width: 720px;}
+.party .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+.party .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+.party .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+.party .row{margin-bottom: 20px;}
+.party .modal-body{padding: 30px 25px 0;}
+.party .modal-body .col-xs-4{padding: 0 10px;}
+.party .modal-body .col-xs-6{padding: 0 10px;}
+.party .modal-body .col-xs-8{padding: 0 10px;}
+.party .modal-body .col-xs-12{padding: 0 10px;}
+.party .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+.party .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.party .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.party .modal-body .datepicker-wrapper input{padding: 5px 5px 5px 32px;}
+.party .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+.party .modal-footer{border: none;}
+.party .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+.party .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.party .btn-block button.cancel{background: #737c8c;}
+/*End Add Party CSS*/
+
+/*Start Upcoming calendar table CSS*/
+.upcoming-calendar-table-block{display: table; width: 100%; padding: 40px 25px 0;}
+.upcoming-calendar-table-block h2{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; width: 100%; margin: 0 0 30px 0;}
+.upcoming-calendar-table-block table{width: 100%; margin: 0 0 60px 0;}
+.upcoming-calendar-table-block table tr.heading td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; padding: 0 20px 10px;}
+.upcoming-calendar-table-block table tr.heading td.name{width: 14%;}
+.upcoming-calendar-table-block table tr.heading td.hearing-date{width: 14%;}
+.upcoming-calendar-table-block table tr.heading td.cutoff-date{width: 14%;}
+.upcoming-calendar-table-block table tr.heading td.time{width: 14%;}
+.upcoming-calendar-table-block table tr.heading td.location{width: 30%;}
+.upcoming-calendar-table-block table tr.heading td.cases{width: 14%; text-align: center;}
+.upcoming-calendar-table-block table tr td{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #737c8c; border-bottom: 1px solid #d5d7db; padding: 25px 20px;}
+.upcoming-calendar-table-block table tr td.cases{text-align: center;}
+.upcoming-calendar-table-block table tr.heading:hover{background: inherit; cursor: pointer;}
+.upcoming-calendar-table-block table tr:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+/*End Upcoming calendar table CSS*/
+
+/*Start Radio Button CSS*/
+.radio-block{display: table; width: 100%;}
+.radio-block > span{float: left; margin: 0 50px 0 0;}
+.radio-block:not(#foo) > span > input[type='radio'], 
+.radio-block:not(#foo) > span > input[type='checkbox'] {opacity: 0; display: none;}
+.radio-block:not(#foo) > span > input[type='radio'] + label,
+.radio-block:not(#foo) > span > input[type='checkbox'] + label {clear: none; font-size:  14px; padding: 5px 10px 4px 20px; font-weight: 400; width: auto; height: 25px; cursor: pointer; background: url(../images/off.png) left center no-repeat; margin: 0; transition: all 0.5s ease 0s;}
+.radio-block:not(#foo) > span > input[type='radio'] + label span{margin: -2px 0 0 0; float: left; color: #9ea2a0;}
+.radio-block:not(#foo) > span > input[type='radio']:checked + label {background-image: url(../images/check.png); transition: all 0.5s ease 0s;}
+/*End Radio Button CSS*/
+
+/*Start Check Box CSS*/
+.select-check{width: 100%; float: left; display: table;}
+.select-check > span{display: table; width: 100%;}
+.select-check:not(#foo) > span > input[type='radio'], 
+.select-check:not(#foo) > span > input[type='checkbox'] {opacity: 0; display: none;}
+.select-check:not(#foo) > span > input[type='radio'] + label,
+.select-check:not(#foo) > span > input[type='checkbox'] + label {clear: none; font-size:  14px; padding: 7px 10px 0 20px; font-weight: 400; width: auto; height: 33px; cursor: pointer; background: url(../images/checkbox.png) left center no-repeat; margin: 0; transition: all 0.5s ease 0s; background-size: 13px;}
+.select-check:not(#foo) > span > input[type='checkbox']:checked + label {background-image: url(../images/checkbox-selected.png); transition: all 0.5s ease 0s; background-size: 13px;}
+/*End Check Box CSS*/
+
+/*Start Document Template Modal CSS*/
+#document-templates .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#document-templates .modal-header .close:focus{outline: none;}
+#document-templates .modal-dialog{width: 720px;}
+#document-templates .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+#document-templates .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#document-templates .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+#document-templates .row{margin-bottom: 20px;}
+#document-templates .modal-body{padding: 15px 25px 0;}
+#document-templates .modal-body h4{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; margin: 10px 0 20px 0;}
+#document-templates .modal-body h4 i{font-weight: 300;}
+#document-templates .modal-body .col-xs-4{padding: 0 10px;}
+#document-templates .modal-body .col-xs-8{padding: 0 10px;}
+#document-templates .modal-body .col-xs-12{padding: 0 10px;}
+#document-templates .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+#document-templates .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#document-templates .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 100px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+#document-templates .modal-body .desc-limit{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+#document-templates .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px 40px 5px 5px;}
+#document-templates .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+#document-templates .modal-footer{border: none;}
+#document-templates .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#document-templates .btn-block button{background: #d7a312; color: #fff; width: 170px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#document-templates label.attach-btn{background: #d7a312; color: #fff; width: 170px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px 0 0 5px; cursor: pointer; border: none; margin: 0; position: relative; z-index: 1;}
+#document-templates input.attach-label{display: inline-block; width: auto; margin: 0 0 0 -10px; position: relative; z-index: 0; height: 50px; background-color: #eee; border-radius: 0 5px 5px 0; padding: 5px 5px 5px 15px;}
+#document-templates .btn-block button.cancel{background: #737c8c;}
+/*End Document Template Modal CSS*/
+
+/*Start Add files Modal CSS*/
+.add-files .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+.add-files .modal-header .close:focus{outline: none;}
+.add-files .modal-dialog{width: 720px;}
+.add-files .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+.add-files .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+.add-files .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+.add-files .row{margin-bottom: 20px;}
+.add-files .modal-body{padding: 30px 25px 0;}
+.add-files .modal-body .col-xs-4{padding: 0 10px;}
+.add-files .modal-body .col-xs-12{padding: 0 10px;}
+.add-files .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+.add-files .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.add-files .modal-body .datepicker-wrapper input{padding: 5px 5px 5px 30px;}
+.add-files .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 100px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+.add-files .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.add-files .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+.add-files .modal-footer{border: none;}
+.add-files .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+.add-files .btn-block button{background: #d7a312; color: #fff; width: 170px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.add-files .btn-block button.cancel{background: #737c8c;}
+.add-files .modal-body textarea.add-files-area{height: 190px;}
+.datepicker{z-index: 9999 !important;}
+.add-file-block .dropzone{border: 1px solid #d5d7db;}
+.add-file-block .dropzone .dz-message{margin: 50px 0;}
+.add-file-block .dropzone .dz-message span{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c;}
+.add-file-block .dropzone .dz-preview.dz-image-preview{pointer-events: auto;}
+/*End Add files Modal CSS*/
+
+/*Start Add files Modal CSS*/
+#add-decision .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#add-decision .modal-header .close:focus{outline: none;}
+#add-decision .modal-dialog{width: 720px;}
+#add-decision .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+#add-decision .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#add-decision .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+#add-decision .row{margin-bottom: 20px;}
+#add-decision .modal-body{padding: 58px 25px 0; width: 510px; margin: 0 auto;}
+#add-decision .modal-body .col-xs-6{padding: 0 10px;}
+#add-decision .modal-body .col-xs-12{padding: 0 10px;}
+#add-decision .modal-body h4{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; margin: 25px 0 20px 0;}
+#add-decision .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+#add-decision .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#add-decision .modal-body .datepicker-wrapper input{padding: 5px 5px 5px 30px;}
+#add-decision .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 100px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+#add-decision .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#add-decision .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 63px 0 0 10px;}
+#add-decision .modal-footer{border: none;}
+#add-decision .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#add-decision .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#add-decision .btn-block button.cancel{background: #737c8c;}
+#add-decision .modal-body textarea.add-files-area{height: 190px;}
+/*End Add files Modal CSS*/
+
+/*Start Confidential Case Modal CSS*/
+#confidential-case .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#confidential-case .modal-header .close:focus{outline: none;}
+#confidential-case .modal-dialog{width: 720px;}
+#confidential-case .modal-content{border-radius: 0; border: none;}
+#confidential-case .modal-header{background: #861213; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#confidential-case .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 24px; font-weight: 700; color: #fff;}
+#confidential-case .row{margin-bottom: 20px;}
+#confidential-case .modal-body{padding: 58px 25px 0; width: 530px; margin: 0 auto;}
+#confidential-case .modal-body .col-xs-6{padding: 0 10px;}
+#confidential-case .modal-body .col-xs-12{padding: 0 10px;}
+#confidential-case .modal-body h2{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0; text-align: center;}
+#confidential-case .modal-body ul{margin: 58px 0 0 0;}
+#confidential-case .modal-body ul li{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; color: #737c8c; margin: 0 0 26px 0; list-style-type: decimal;}
+#confidential-case .modal-footer{border: none;}
+#confidential-case .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#confidential-case .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#confidential-case .btn-block button.cancel{background: #737c8c;}
+/*End Confidential Case Modal CSS*/
+
+/*Start Accordion Arrow CSS*/
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'FontAwesome';  /* essential for enabling glyphicon */
+    content: "\f107";    /* adjust as needed, taken from FontAwesome*/
+    float: left;        /* adjust as needed */
+    color: #737c8c;         /* adjust as needed */
+    width: 25px;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f105";    /* adjust as needed, taken from FontAwesome */
+}
+/*End Accordion Arrow CSS*/
+
+/*Start Upcoming Calendar Search For Calendar CSS*/
+.search-for-calendar-block{background: #f1f1f1;}
+.search-for-calendar-block .panel-body{padding: 42px 25px; border: none !important;}
+.search-for-calendar-block .panel-group{margin: 0;}
+.search-for-calendar-block .panel-group .panel{border: none; background-color: transparent;}
+.search-for-calendar-block .panel-group .panel .panel-heading{background-color: transparent; padding: 0;}
+.search-for-calendar-block .panel-group .panel .panel-heading h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;cursor: pointer;}
+.search-for-calendar-block .panel-group .panel .panel-heading h4 a{width: 100%; display: table; text-decoration: none; padding: 20px 25px;}
+.search-for-calendar-block .panel-group .panel .panel-heading h4 a:hover{text-decoration: none;}
+.search-for-calendar-block .panel-group .panel .panel-heading h4 a:foucs{text-decoration: none;}
+.search-default-view-block p{text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; font-style: italic; padding: 12.5% 0;}
+.search-default-view-block p span{font-weight: bold;}
+.search-for-calendar-wrapper{width: 80%; display: table; margin: 0 auto;}
+.search-for-calendar-wrapper .col-xs-6{padding: 0 40px;}
+.search-for-calendar-wrapper .col-xs-6 > div{display: inline-block; width: 50%; float: left;}
+.search-for-calendar-wrapper label {width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.search-for-calendar-wrapper select {width: 100%; border: 1px solid #d5d7db; height: 51px; background: url(../images/arrow-down.png) no-repeat 95% 22px #fff;}
+.search-for-calendar-wrapper .datepicker-wrapper input {width: 100%; border: 1px solid #d5d7db; height: 51px; padding: 5px 5px 5px 32px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; display: inline-block;}
+.search-for-calendar-wrapper .datepicker-wrapper i{top: 18px;}
+.search-for-calendar-wrapper a {background: #d7a312; color: #fff; width: 100%; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin: 28px 0 0 0;}
+/*End Upcoming Calendar Search For Calendar CSS*/
+
+/*Start Calendar Management Search For Calendar CSS*/
+.search-for-calendar-management-block{background: #f1f1f1;}
+.search-for-calendar-management-block .panel-body{padding: 42px 25px; border: none !important;}
+.search-for-calendar-management-block .panel-group{margin: 0;}
+.search-for-calendar-management-block .panel-group .panel{border: none; background-color: transparent;}
+.search-for-calendar-management-block .panel-group .panel .panel-heading{background-color: transparent; padding: 0;}
+/*@FaisalK @11-28-2016 @purpose - for showing cursor on hover because there is problem with href in angular*/
+.search-for-calendar-management-block .panel-group .panel .panel-heading h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;cursor: pointer;}
+.search-for-calendar-management-block .panel-group .panel .panel-heading h4 a{width: 100%; display: table; text-decoration: none; padding: 20px 25px;}
+.search-for-calendar-management-block .panel-group .panel .panel-heading h4 a:hover{text-decoration: none;}
+.search-for-calendar-management-block .panel-group .panel .panel-heading h4 a:foucs{text-decoration: none;}
+.search-default-view-management-block p{text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; font-style: italic; padding: 12.5% 0;}
+.search-default-view-management-block p span{font-weight: bold;}
+.search-for-calendar-management-block .search-for-calendar-wrapper .col-xs-3{padding: 0 40px 0 0;}
+/*End Calendar Management Search For Calendar CSS*/
+
+/*Start Calendar Management New Calendar Block CSS*/
+.new-calendar-block{padding: 40px 48px 40px 48px; display: table; width: 100%;}
+.new-calendar-block .create-new-calendar-btn-block{display: block; float: right; margin: 10px 17px 0 0;}
+.new-calendar-block .create-new-calendar-btn-block a{background: #fff; color: #737c8c; width: 150px; padding: 10px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; float: right; border: 1px solid #d6d7db;}
+.new-calendar-block h2{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #d7a312; margin: 30px 0 0 0; padding: 0 17px; display: inline-block;}
+.new-calendar-block .calendar-tiles-block{display: table; width: 100%;}
+.new-calendar-block .calendar-tiles{border: 2px solid #d6d7db; margin: 15px 17px;}
+.new-calendar-block .calendar-tiles.active{border: 2px solid #d8a412; transition: all 0.5s ease 0s;}
+.new-calendar-block .calendar-tiles:hover{border: 2px solid #d8a412; transition: all 0.5s ease 0s;}
+.new-calendar-block .calendar-tiles .top{display: table; width: 100%; margin-bottom: 28px; padding: 10px 10px 0 10px;}
+.new-calendar-block .calendar-tiles .top span{display: table-cell;}
+.new-calendar-block .calendar-tiles .top span.heading{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 700; color: #737c8c; width: 55%;}
+.new-calendar-block .calendar-tiles .top span.icon-block{width: 45%; text-align: right;}
+.new-calendar-block .calendar-tiles .top span.icon-block a{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: #737c8c; border-left: none; padding: 0; margin: 0; cursor: pointer;}
+.new-calendar-block .calendar-tiles .top span.icon-block a+a{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: #737c8c; border-left: 1px solid #737c8c; padding: 0 0 0 10px; margin: 0 0 0 8px;}
+.new-calendar-block .calendar-tiles .middle p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin-bottom: 25px; padding: 0 0 0 20px;}
+.new-calendar-block .calendar-tiles .middle p i{margin: 0 5px 0 0;}
+.new-calendar-block .calendar-tiles .bottom{background: #f1f1f1; border-top: 1px solid #d6d7db; display: table; width: 100%; padding: 5px 10px;}
+.new-calendar-block .calendar-tiles .bottom span.calendat-dates-label-block{float: left;}
+.new-calendar-block .calendar-tiles .bottom span.icon-block{float: right;}
+.new-calendar-block .calendar-tiles .bottom span.calendat-dates-label-block a{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; cursor: pointer;}
+.new-calendar-block .calendar-tiles .bottom span.icon-block a{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: #737c8c; border-left: none; padding: 0; margin: 0; cursor: pointer;}
+.new-calendar-block .calendar-tiles .bottom span.icon-block a+a{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: #737c8c; border-left: 1px solid #737c8c; padding: 0 0 0 10px; margin: 0 0 0 8px;}
+/*End Calendar Management New Calendar Block CSS*/
+
+/*Start Calendar Management Add/Edit CSS*/
+.calendar-dates-wrapper{display: table; width: 100%; padding: 60px 0;}
+.calendar-dates-block{width: 900px; margin: 0 auto; display: table; border: 1px solid #d6d7db; position: relative;}
+.calendar-dates-block .tip{position: absolute; top: -11px; right: 60px;}
+.calendar-dates-block .tip img{vertical-align: top;}
+.calendar-dates-block .top{background: #f1f1f1; border-bottom: 1px solid #d6d7db; display: table; width: 100%; padding: 5px 10px;}
+.calendar-dates-block .top span{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c;}
+.calendar-dates-block .middle{padding: 30px 30px 20px 30px; display: table; width: 100%;}
+.calendar-dates-block .middle .col-xs-4 > div{display: table; width: 100%; margin-bottom: 20px;}
+.calendar-dates-block .middle p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; font-style: italic; margin: 0 0 30px 0;}
+.calendar-dates-block .middle p span{font-weight: 700;}
+.calendar-dates-block .middle .datepicker-wrapper{float: left;}
+.calendar-dates-block .middle .datepicker-wrapper input{height: 50px;}
+.calendar-dates-block .middle .datepicker-wrapper i{top: 17px;}
+.calendar-dates-block .middle .datepicker-wrapper + i{font-size: 20px;font-weight: 500;color: #737c8c;float: left;margin: 15px 0 0 10px;cursor: pointer;}
+.calendar-dates-block .middle .add-date-btn{background: #fff; color: #737c8c; width: 100px; padding: 10px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; float: right; border: 1px solid #d6d7db; margin: 0 62px 0 0;}
+.calendar-dates-block .bottom{display: table; width: 100%; margin: 0 auto; border-top: 1px solid #d6d7db; padding: 20px 0; text-align: center;}
+.calendar-dates-block .bottom button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.calendar-dates-block .bottom button.cancel{background: #737c8c;}
+/*End Calendar Management Add/Edit CSS*/
+
+/*Start Calendar Management View CSS*/
+.calendar-view-date-wrapper{display: table; width: 100%; padding: 60px 0;}
+.calendar-view-date-block{width: 900px; margin: 0 auto; display: table; border: 1px solid #d6d7db; position: relative;}
+.calendar-view-date-block .top{background: #f1f1f1; border-bottom: 1px solid #d6d7db; display: table; width: 100%; padding: 5px 10px;}
+.calendar-view-date-block .top span{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c;}
+.calendar-view-date-block .top span.icon-block{float: right;}
+.calendar-view-date-block .top span.icon-block a{font-family: 'Roboto', sans-serif;font-size: 14px;font-weight: 500;color: #737c8c;cursor: pointer;}
+.calendar-view-date-block .middle{padding: 28px 10px;}
+.calendar-view-date-block .middle .col-xs-4{padding: 0 35px; position: relative;}
+.calendar-view-date-block .middle .col-xs-4.center{border-left: 1px solid #d6d7db; border-right: 1px solid #d6d7db;}
+.calendar-view-date-block .middle .hearing-date-block{float: left;}
+.calendar-view-date-block .middle .cut-off-date-block{float: left;}
+.calendar-view-date-block .middle .delete{position: absolute; bottom: 0; right: 35px;}
+.calendar-view-date-block .middle .label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c; margin: 0 0 10px 0; display: table;}
+.calendar-view-date-block .middle .date{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0;}
+.calendar-view-date-block .middle a{font-size: 16px; color: #737c8c; cursor: pointer;}
+.calendar-view-date-block hr{margin: 20px 35px; border: 0; border-top: 1px solid #d6d7db; padding: 0 35px;}
+/*End Calendar Management View CSS*/
+
+/*Start Clerk CSS*/
+.docket-new-cases-block{background: url(../images/bottom-bg.png) no-repeat; display: table; width: 100%; background-size: cover; padding: 12% 0;}
+.docket-new-cases-wrapper{display: table; margin: 0 auto; width: 320px;}
+.docket-new-cases-btn{background: #d7a312; color: #fff; width: 320px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin-bottom: 20px;}
+.docket-new-cases-btn:hover{color: #fff;}
+.print-labels-btn{background: #fff; color: #737c8c; width: 150px; padding: 10px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; float: left; border: 1px solid #d6d7db;}
+.export-bulk-docs-btn{background: #fff; color: #737c8c; width: 150px; padding: 10px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; float: right; border: 1px solid #d6d7db;}
+.print-labels-btn:hover{color: #737c8c;}
+.export-bulk-docs-btn:hover{color: #737c8c;}
+/*End Clerk CSS*/
+
+/*Start Back To Search Result CSS*/
+.back-to-search-result-block{padding: 0 25px; border-bottom: 1px solid #d6d7db;}
+.back-to-search-result-wrapper a{background: #596171; color: #fff; width: 245px; padding: 4px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin: 20px 0 0 0;}
+/*End Back To Search Result CSS*/
+
+/*Start History CSS*/
+.history-table-wrapper{width: 100%; padding: 0 25px; display: table; margin: 30px 0 50px 0;}
+.history-table-wrapper table{width: 100%; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c;}
+.history-table-wrapper table .header td{font-weight: 700; padding: 10px 20px;}
+.history-table-wrapper table p{margin: 0; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c; margin: 0; display: table; width: 100%;}
+.history-table-wrapper table .label-block{margin: 0;}
+.history-table-wrapper table label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c; width: 125px;}
+.history-table-wrapper table tr td{vertical-align: top; padding: 25px 20px; border-bottom: 1px solid #d6d7db;}
+.history-table-wrapper table tr td.date{width: 15%;}
+.history-table-wrapper table tr td.description{width: 70%;}
+.history-table-wrapper table tr td.modified-by{width: 15%;}
+.history-table-wrapper table tr.header:hover{background: inherit; cursor: pointer;}
+.history-table-wrapper table tr:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+.history-table-wrapper table p.history-title{margin-bottom: 20px;}
+.history-table-wrapper table p.history-title2{margin-top: 20px; margin-bottom: 20px;}
+
+.history-table-wrapper table p span.history-label{width:170px; float: left;}
+.history-table-wrapper table p span.history-calendar-label{width:280px; float: left;}
+.history-table-wrapper table p span.history-data{width:65%; float: left;}
+
+/*End History CSS*/
+
+/*Start Notes CSS*/
+.notes-table-wrapper{width: 100%; padding: 0 25px; display: table; margin: 30px 0 50px 0;}
+.notes-table-wrapper table{width: 100%; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c;}
+.notes-table-wrapper table .header td{font-weight: 700; padding: 10px 20px;}
+.notes-table-wrapper table p{margin: 0; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; color: #737c8c; margin: 0 0 3px 0; word-break: break-all;}
+.notes-table-wrapper table tr:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+.notes-table-wrapper table tr.header:hover{background: inherit; cursor: pointer;}
+.notes-table-wrapper table tr td{vertical-align: top; padding: 25px 20px; border-bottom: 1px solid #d6d7db;}
+.notes-table-wrapper table tr td.date{width: 15%;}
+.notes-table-wrapper table tr td.summarynotes{width: 65%;}
+.notes-table-wrapper table tr td.updatedby{width: 10%;}
+.notes-table-wrapper table tr td.icon{width: 10%;}
+.notes-table-wrapper table tr td ul{margin: 0; padding: 0; float: right;}
+.notes-table-wrapper table tr td ul li{display: inline-block; float: left; margin: 0 0 0 12px; border-left: 1px solid #d6d7db; padding: 0 0 0 12px;}
+.notes-table-wrapper table tr td ul li.edit{margin: 0; border-left: none; padding: 0;}
+.notes-table-wrapper table tr td ul li a{font-size: 14px; font-weight: 400; color: #737c8c; cursor: pointer;}
+.add-note-summary-btn-block{margin: 30px 0 0 0; display: table; width: 100%;}
+.add-note-summary-btn{background: #fff; color: #737c8c; width: 160px; padding: 10px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: 1px solid #d6d7db; margin: 0 0 0 10px;}
+.add-note-summary-btn:hover{color: #737c8c;}
+/*End Notes CSS*/
+
+/*Start Add/Update Note Summary Modal CSS*/
+.notes .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+.notes .modal-header .close:focus{outline: none;}
+.notes .modal-dialog{width: 720px;}
+.notes .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+.notes .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+.notes .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+.notes .row{margin-bottom: 20px;}
+.notes .modal-body{padding: 40px 25px 0; width: 100%; margin: 0 auto;}
+.notes .modal-body .col-xs-12{padding: 0 10px;}
+.notes .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 5px;}
+.notes .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.notes .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 120px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+.notes .modal-footer{border: none;}
+.notes .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+.notes .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.notes .btn-block button.cancel{background: #737c8c;}
+/*End Add Note Summary Modal CSS*/
+
+/*Start Create New Calendar Modal CSS*/
+#create-new-calendar .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#create-new-calendar .modal-header .close:focus{outline: none;}
+#create-new-calendar .modal-dialog{width: 720px;}
+#create-new-calendar .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+#create-new-calendar .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#create-new-calendar .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+#create-new-calendar .row{margin-bottom: 20px;}
+#create-new-calendar .modal-body{padding: 58px 25px 0; width: 510px; margin: 0 auto;}
+#create-new-calendar .modal-body .col-xs-6{padding: 0 10px;}
+#create-new-calendar .modal-body .col-xs-12{padding: 0 10px;}
+#create-new-calendar .modal-body h4{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; margin: 25px 0 20px 0;}
+#create-new-calendar .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+#create-new-calendar .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#create-new-calendar .modal-body .datepicker-wrapper input{padding: 5px 5px 5px 30px;}
+#create-new-calendar .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 100px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+#create-new-calendar .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#create-new-calendar .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+#create-new-calendar .modal-footer{border: none;}
+#create-new-calendar .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#create-new-calendar .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#create-new-calendar .btn-block button.cancel{background: #737c8c;}
+/*End Create New Calendar Modal CSS*/
+
+/*Start Docket Search Results CSS*/
+.search-results-block{padding: 30px 25px 75px; display: table; width: 100%;}
+.search-results-block .display-records-label h2{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0 0 15px 0; padding: 0 0 0 20px;}
+.search-results-block .page-number-btn-block{margin: 0 0 30px 0; display: table; width: 100%;}
+.search-results-block .page-number-btn-block .dropdown label{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; color: #737c8c; margin: 0; display: inline-block; padding: 0 20px 0 20px;}
+.search-results-block .page-number-btn-block .dropdown select{height: 40px; width: 105px; padding: 5px 10px; background: url(../images/arrow-down.png) no-repeat 88% 15px;}
+.search-results-block .page-number-btn-block .btn-block{text-align: right;}
+.search-results-block .page-number-btn-block .btn-block a{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin: 0 0 0 20px;}
+.search-results-block .search-results-table{display: table; width: 100%;}
+.search-results-block .search-results-table table{width: 100%;}
+.search-results-block .search-results-table table .heading td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; padding: 0 15px 10px; text-align: center !important; word-break: break-all;}
+.search-results-block .search-results-table table .heading td i{font-size: 14px; font-weight: 500; color: #737c8c;}
+.search-results-block .search-results-table table td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; padding: 25px 25px ; border-bottom: 1px solid #d5d7db; text-align: center;}
+.search-results-block .search-results-table table td.docket{width: 9%;}
+.search-results-block .search-results-table table td.case-name{width: 10%; text-align: left;}
+.search-results-block .search-results-table table td.case-type{width: 12%;}
+.search-results-block .search-results-table table td.date-received{width: 12%;}
+.search-results-block .search-results-table table td.hearing-date{width: 12%;}
+.search-results-block .search-results-table table td.hearing-time{width: 12%;}
+.search-results-block .search-results-table table td.hearing-location{width: 14%; text-align: left;}
+.search-results-block .search-results-table table td.status{width: 8%; text-align: left;}
+.search-results-block .search-results-table table td.judge{width: 8%; text-align: left;}
+.search-results-block .table-pagination nav{float: right;}
+.search-results-block .table-pagination nav ul li a{border: 1px solid #d5d7db; margin: 0 0 0 8px; font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 500; color: #737c8c; padding: 8px 12px; border-radius: 0;}
+.search-results-block .table-pagination nav ul li a.active{background: #737c8c; color: #fff;}
+.search-results-block .table-pagination nav ul li a:hover{background: #737c8c; color: #fff; transition: all 0.5s ease 0s;}
+.search-results-block .table-pagination .pagination{margin: 40px 0 0 0;}
+.search-results-block .search-results-table table tr.heading:hover{background: inherit; cursor: pointer;}
+.search-results-block .search-results-table table tr:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+.no-record{background: #f1f1f1; color: #737c8c; font-size: 16px; font-weight: 700; padding: 15px 0; text-align: center;}
+/*End Docket Search Results CSS*/
+
+/*Start Print Labels CSS*/
+.print-labels-title-wrapper{padding: 16px 25px; display: table; width: 100%;}
+.print-labels-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.print-labels-search-for-docket-block h3{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0; display: table; width: 100%; padding: 16px 25px;}
+.print-labels-search-for-docket-block .print-optional-label{color: #737c8c;font-family: 'Roboto', sans-serif; font-size: 14px;font-weight: 300; font-style: italic;margin: 0 0 10px 25px;display: table;}
+.print-labels-search-for-docket-block label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.print-labels-search-for-docket-block select{width: 100%; border: 1px solid #d5d7db; height: 51px; background: url(../images/arrow-down.png) no-repeat 95% 22px #fff;}
+.print-labels-search-for-docket-block input{width: 100%; border: 1px solid #d5d7db; height: 51px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.print-labels-search-for-docket-block .datepicker-wrapper input{padding: 5px 5px 5px 32px;}
+.print-labels-search-for-docket-block .datepicker-wrapper i{top: 17px;}
+.print-labels-search-for-docket-block .print-labels-fields{width: 325px; float: left; margin: 0 40px 0 0;}
+.print-labels-search-for-docket-block .or-label{float: left; margin: 0 40px 0 0; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; padding: 40px 0 0 0;}
+.print-labels-search-for-docket-block .label-number-block {margin: 40px 0 0 0;}
+.print-labels-search-for-docket-block .label-number-block span{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; font-style: italic; margin: 0 0 10px 0; display: table;}
+.print-labels-search-for-docket-block .label-number-block select{width: 325px; border: 1px solid #d5d7db; height: 51px; background: url(../images/arrow-down.png) no-repeat 95% 22px #fff;}
+.print-labels-fields-block{padding: 0 25px;}
+.label-number-block{padding: 0 25px;}
+.print-labels-search-btn{background: #d7a312; color: #fff; font-size: 16px; width: 325px; text-align: center; padding: 14px 0; margin: 40px 0 0 25px; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif; display: table;}
+.print-labels-search-btn:hover{color: #fff;}
+/*End Print Labels CSS*/
+
+/*Start Export Bulk Documents CSS*/
+.export-bulk-doc-field-block {display: table; margin: 0 0 60px 0; width: 100%;}
+.export-bulk-doc-field-wrapper-top{background: #f1f1f1;}
+.export-bulk-doc-field-block .export-bulk-doc-field-wrapper{padding: 40px 25px;}
+.export-bulk-doc-title-wrapper{padding: 16px 25px; display: table; width: 100%;}
+.export-bulk-doc-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.export-bulk-doc-field-wrapper h3{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; margin: 0 0 40px 0; display: table; width: 100%;}
+.export-bulk-doc-field-wrapper h4{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.export-bulk-doc-field-wrapper label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.export-bulk-doc-field-wrapper select{width: 100%; border: 1px solid #d5d7db; height: 51px; background: url(../images/arrow-down.png) no-repeat 95% 22px #fff;}
+.export-bulk-doc-field-wrapper input{width: 100%; border: 1px solid #d5d7db; height: 51px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.export-bulk-doc-field-wrapper .datepicker-wrapper input{padding: 5px 5px 5px 32px;}
+.export-bulk-doc-field-wrapper .datepicker-wrapper i{top: 17px;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field-container-1{padding: 0;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field-container-2{padding: 0 0 0 35px;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field-container-2 .export-bulk-doc-field{width: 50%; padding: 0 10px;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field-container-3{padding: 0 0 0 35px;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field-container-3 .export-bulk-doc-field{width: 50%; padding: 0 10px;}
+.export-bulk-doc-field-wrapper .export-bulk-doc-field{width: 100%; float: left; margin: 0;}
+.export-bulk-doc-field-wrapper{padding: 60px 25px; display: table; width: 100%;}
+.generate-doc-btn{background: #d7a312; color: #fff; font-size: 16px; width: 325px; text-align: center; padding: 14px 0; margin: 40px 0 0 25px; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif; display: table;}
+.generate-doc-btn:hover{color: #fff;}
+.mailer-parties-block .mailer-parties-left-block{float: left;}
+.mailer-parties-block .mailer-parties-left-block .mailer-block{float: left; margin: 0 20px 0 0;}
+.mailer-parties-block .mailer-parties-left-block .parties-block{float: right; width: 350px;}
+.mailer-parties-block .mailer-parties-left-block .mailer-block .select-check:not(#foo) > span > input[type='checkbox'] + label{height: 29px; width: 29px;}
+.mailer-parties-block .mailer-parties-left-block .parties-block .select-check:not(#foo) > span > input[type='checkbox'] + label{}
+.mailer-parties-block .mailer-parties-left-block .mailer-block .select-check{float: none;}
+.mailer-parties-block .mailer-parties-right-block{float: left;}
+.mailer-parties-block .mailer-parties-right-block .mailer-block{float: left;}
+.mailer-parties-block .mailer-parties-right-block .mailer-block{float: left; margin: 0 20px 0 0;}
+.mailer-parties-block .mailer-parties-right-block .parties-block{float: right; width: 350px;}
+.mailer-parties-block .mailer-parties-right-block .mailer-block .select-check:not(#foo) > span > input[type='checkbox'] + label{}
+.mailer-parties-block .mailer-parties-right-block .parties-block .select-check:not(#foo) > span > input[type='checkbox'] + label{}
+.mailer-parties-block .mailer-parties-right-block .mailer-block .select-check{float: none;}
+.mailer-parties-block .select-check:not(#foo) > span > input[type='radio'] + label,
+.mailer-parties-block .select-check:not(#foo) > span > input[type='checkbox'] + label {clear: none; font-size:  14px; padding: 7px 10px 0 20px; font-weight: 400; width: auto; height: 33px; cursor: pointer; background: url(../images/bigcheckbox.png) left center no-repeat; margin: 0; transition: all 0.5s ease 0s; background-size: 29px;}
+.mailer-parties-block .select-check:not(#foo) > span > input[type='checkbox']:checked + label {background-image: url(../images/bigcheckbox-selected.png); transition: all 0.5s ease 0s; background-size: 29px;}
+.mailer-parties-block .select-check > span{display: block; width: 100%; height: 31px; float: left;}
+.mailer-parties-block {display: table; width: 100%; margin: 0 0 60px 0;}
+.mailer-parties-header{border-bottom: 1px solid #d5d7db; padding: 5px 10px;}
+.mailer-parties-header div{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; display: inline-block; margin: 0 20px 0 0;}
+.mailer-parties-row{padding: 20px 10px; border-bottom: 1px solid #d5d7db; display: table; width: 100%;}
+.mailer-parties-row div{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; width: auto;}
+.mailer-parties-row div.mailer-check{margin: 0 32px 0 5px;}
+.mailer-parties-row div.parties-check{margin: 0 32px 0 5px;}
+.mailer-parties-row div.lable-text{padding: 4px 0;}
+.mailer-parties-block .col-xs-4 {padding: 0 30px;}
+.mailer-parties-title{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; margin: 40px 0; padding: 0 25px;}
+/*End Export Bulk Documents CSS*/
+
+/*Start DDS Import CSS*/
+.dds-title-wrapper {padding: 16px 25px; display: table; width: 100%;}
+.dds-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.dds-import-wrapper{padding: 16px 25px; display: table; width: 100%;}
+.dds-import-wrapper h3{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; margin: 20px 0 10px; display: table; width: 100%;}
+.dds-import-wrapper .import-btn{background: #d7a312; color: #fff; width: 250px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin: 20px 0;}
+/*End DDS Import CSS*/
+
+/*Start DDS Report CSS*/
+.dds-report-table-block{padding: 30px 25px 75px; display: table; width: 100%;}
+.dds-report-table-block .display-records-label h2{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0 0 15px 0; padding: 0 0 0 20px;}
+.dds-report-table-block .page-number-btn-block{margin: 0 0 30px 0; display: table; width: 50%;}
+.dds-report-table-block .page-number-btn-block .dropdown label{font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; color: #737c8c; margin: 0; display: inline-block; padding: 0 20px 0 20px;}
+.dds-report-table-block .page-number-btn-block .dropdown select{height: 40px; width: 105px; padding: 5px 10px; background: url(../images/arrow-down.png) no-repeat 88% 15px;}
+.dds-report-table-block .page-number-btn-block .btn-block{text-align: right;}
+.dds-report-table-block .page-number-btn-block .btn-block a{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; margin: 0 0 0 20px;}
+.dds-report-table-block .dds-report-table{display: table; width: 100%;}
+.dds-report-table-block .dds-report-table table{width: 100%;}
+.dds-report-table-block .dds-report-table table tr{border-bottom: 1px solid #d5d7db; cursor: pointer; display: inline-block; width: 100%;}
+.dds-report-table-block .dds-report-table table .heading td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #737c8c; padding: 0 25px 10px; display: inline-block;}
+.dds-report-table-block .dds-report-table table .heading td i{font-size: 14px; font-weight: 500; color: #737c8c;}
+.dds-report-table-block .dds-report-table table td{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; padding: 25px 25px; text-align: center; width: 200px; display: inline-block;}
+.dds-report-table-block .dds-report-table table td.docket{width: 200px;}
+.dds-report-table-block .dds-report-table table td.case-name{width: 200px;}
+.dds-report-table-block .table-pagination nav{float: none; margin: 0 auto; display: table;}
+.dds-report-table-block .table-pagination nav ul li a{border: 1px solid #d5d7db; margin: 0 0 0 8px; font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 500; color: #737c8c; padding: 8px 12px; border-radius: 0;}
+.dds-report-table-block .table-pagination nav ul li a.active{background: #737c8c; color: #fff;}
+.dds-report-table-block .table-pagination nav ul li a:hover{background: #737c8c; color: #fff; transition: all 0.5s ease 0s;}
+.dds-report-table-block .table-pagination .pagination{margin: 40px 0 0 0;}
+.dds-report-table-block .dds-report-table table tr.heading:hover{background: inherit; cursor: pointer;}
+.dds-report-table-block .dds-report-table table tr:hover{background: #f1f1f1; cursor: pointer; transition: all 0.5s ease 0s;}
+.dds-reports-block{background: #f1f1f1; display: table; width: 100%;}
+.dds-reports-wrapper {padding: 40px 25px; display: table; width: 100%;}
+.report-select-date-block label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.report-select-date-block input{width: 100%; border: 1px solid #d5d7db; height: 51px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.report-select-date-block .datepicker-wrapper i{top: 18px;}
+.report-select-date-block .search-btn{background: #d7a312; color: #fff; font-size: 16px; width: 325px; text-align: center; padding: 14px 0; margin: 28px 0 0 40px; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif; display: table; float: left;}
+.report-select-date-block .search-btn:hover{color: #fff;}
+.dds-report-table-block .table-pagination{display: table; width: 100%;}
+/*End DDS Report CSS*/
+
+/*Start Top Common Error CSS*/
+.top-error-msg{position: fixed; width: 100%; z-index: 9999;}
+.top-error-msg .alert{margin: 0; border-radius: 0; color: #fff; font-family: 'Roboto', sans-serif; font-size: 16px;}
+.top-error-msg .alert a{opacity: 1; color: #fff; margin: 3px 0 0;}
+.top-error-msg .alert a:hover{opacity: 1; color: #fff;}
+.top-error-msg .alert-danger{background: rgba(215, 163, 18, 0.82); border: none; text-align: center;}/*@edited FaisalK 02-11-2016 @purpose U341 background-color change*/
+/*End Top Common Error CSS*/
+
+/* login validation msg css */
+.login-block .error{text-align: center; color: #D8000C; font-family: 'Roboto', sans-serif; font-size: 14px;}
+
+/*To show loader when data is loading @created by FaisalK 21-10-2016 start*/
+.page-spinner-loader {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    bottom: 0;
+    height: 100%;
+    padding-top: 200px;
+    left: 0;
+    margin: auto;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    user-select: none;
+    width: 100%;
+    z-index: 2000;
+	visibility: hidden;
+	background: #fff;
+}
+.page-spinner-loader span{
+    font-size: 14px;
+	color: #8d96a8;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.page-spinner-loader i{
+    font-size: 55px;
+    -webkit-animation: ball-zig-deflect 1.5s 0s infinite linear;
+    animation: ball-zig-deflect 1.5s 0s infinite linear;
+    width: 100%;
+	color:#d7a312;
+}
+
+@keyframes ball-zig-deflect {
+    17%,84% {
+        transform: rotate(-47deg);
+    }
+
+    100%,50% {
+        transform: rotate(0deg);
+    }
+}
+.loading .page-spinner-loader 
+{
+	visibility: visible;
+	background: #fff;
+}
+.loading .top-error-msg ,.loading #wrap,.loading #footer
+{
+	opacity: 0;
+}
+.loading
+{
+	overflow:hidden;
+}
+/*To show loader when data is loading @created by FaisalK 21-10-2016 end*/
+/*To show loader when element data is loading @created by FaisalK  2016-02-27 start*/
+.element-val-loader {
+    position:relative;
+}.element-val-loader i.fa-gavel {
+    -webkit-animation: ball-zig-deflect 1.5s 0s infinite linear;
+    animation: ball-zig-deflect 1.5s 0s infinite linear;
+    color: #d7a312;
+    padding-right: 4px;
+    position: relative;
+}
+.element-val-loader  span.hearing-date-message-block,
+.element-val-loader  span.calendar-form-element{
+    color: #737c8c;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 0px 0;
+    width: 100%;
+    display: table;
+    position:absolute;
+    top:-28px
+}
+span.hearing-date-message-block span {
+    display: inline;
+}
+span.hearing-date-message-block .error {
+    color: #F44336;
+}
+span.hearing-date-message-block [data-toggle="tooltip"]{
+    cursor: pointer;
+}
+.element-val-loader  span.calendar-form-element{
+    top:0px
+}
+span.calendar-form-element.error {
+    color: #F44336;
+	margin-top: 20px;
+	position:relative;
+}
+.message-block {
+    background: #596171;
+    color: #fff !important;
+    display: block !important;
+    width: 90% !important;
+    padding: 3px 6px 2px;
+    font-size: 12px !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+}
+
+.more-block {
+    right: 10%;
+    position: absolute;
+    background: #f1f1f1;
+    cursor: pointer;
+}
+
+.more-block span {
+    display: none !important;
+    position: absolute;
+    background: #000;
+    opacity: 0.9;
+    font-size: 12px;
+    font-weight: 100;
+    width: 161px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+.more-block:hover span {
+    display: block !important;
+}
+
+.more-block i {
+    font-size: 26px;
+    color: #d7a312;
+    padding-left: 3px;
+    margin-top: -1px;
+}
+
+.more-block span:before {
+    content:"";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    top: -5px;
+    left: 14px;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #000;
+}
+/*To show loader when element data is loading @created by FaisalK 2016-02-27 end*/
+
+/*Start Delete popup CSS*/
+.deletepopup .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+.deletepopup .modal-header .close:focus{outline: none;}
+.deletepopup .modal-dialog{width: 720px;}
+.deletepopup .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+.deletepopup .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+.deletepopup .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+.deletepopup .row{margin-bottom: 20px;}
+.deletepopup .modal-body{padding: 30px 25px 0;}
+.deletepopup .modal-body .col-xs-12{padding: 0 10px;}
+.deletepopup .modal-body p{font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;     text-align: center;}
+.deletepopup .modal-footer{border: none;}
+.deletepopup .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+.deletepopup .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.deletepopup .btn-block button.cancel{background: #737c8c;}
+/*End Delete popup CSS*/
+
+/*Start Addparty Autopopulate css*/
+.modal-open .ui-autocomplete {z-index: 9999; max-height: 300px !important; overflow-y: auto;}
+/*End Addparty Autopopulate css*/
+
+/*Start Ripple effect*/
+.ripplelink{text-decoration:none; position:relative; overflow:hidden; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease; transition: all 0.2s ease; z-index:0;}
+.ink {display: block; position: absolute; background:rgba(255, 255, 255, 0.3); border-radius: 100%; -webkit-transform:scale(0); -moz-transform:scale(0); -o-transform:scale(0); transform:scale(0);}
+.animate {-webkit-animation:ripple 0.65s linear; -moz-animation:ripple 0.65s linear; -ms-animation:ripple 0.65s linear; -o-animation:ripple 0.65s linear; animation:ripple 0.65s linear;}
+@-webkit-keyframes ripple {100% {opacity: 0; -webkit-transform: scale(2.5);}}
+@-moz-keyframes ripple {100% {opacity: 0; -moz-transform: scale(2.5);}}
+@-o-keyframes ripple {100% {opacity: 0; -o-transform: scale(2.5);}}
+@keyframes ripple {100% {opacity: 0; transform: scale(2.5);}}
+/*End Ripple effect*/
+
+/*Start County Update Modal CSS*/
+#county_modal .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#county_modal .modal-header .close:focus{outline: none;}
+#county_modal .modal-dialog{width: 720px;}
+#county_modal .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+#county_modal .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#county_modal .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+#county_modal .row{margin-bottom: 20px;}
+#county_modal .modal-body{padding: 30px 25px 0;}
+#county_modal .modal-body .col-xs-6{padding: 0 10px; margin: 0 auto; display: table; float: none;}
+#county_modal .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+#county_modal .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#county_modal .modal-footer{border: none;}
+#county_modal .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#county_modal .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#county_modal .btn-block button.cancel{background: #737c8c;}
+/*End County Update Modal CSS*/
+
+/*Start Status Update Modal CSS*/
+#status_modal .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+#status_modal .modal-header .close:focus{outline: none;}
+#status_modal .modal-dialog{width: 720px;}
+#status_modal .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+#status_modal .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+#status_modal .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+#status_modal .row{margin-bottom: 20px;}
+#status_modal .modal-body{padding: 30px 25px 0;}
+#status_modal .modal-body .col-xs-6{padding: 0 10px; margin: 0 auto; display: table; float: none;}
+#status_modal .modal-body .col-xs-8{padding: 0 10px; margin: 0 auto; display: table; float: none;}
+#status_modal .modal-body .col-xs-8 .dropdown{margin: 20px auto 0; width: 70%;}
+#status_modal .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+#status_modal .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+#status_modal .modal-footer{border: none;}
+#status_modal .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+#status_modal .btn-block button{background: #d7a312; color: #fff; width: 210px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+#status_modal .btn-block button.cancel{background: #737c8c;}
+/*End Status Update Modal CSS*/
+
+/*Start Reopen case Modal CSS*/
+.reopen-case .modal-header .close{opacity: 1; margin: 3px 0 0 0;}
+.reopen-case .modal-header .close:focus{outline: none;}
+.reopen-case .modal-dialog{width: 720px;}
+.reopen-case .modal-content{border-radius: 0; border: 1px solid #a6aab2;}
+.reopen-case .modal-header{background: #f1f1f1; text-align: center; border-bottom: 1px solid #a6aab2; padding: 10px 15px;}
+.reopen-case .modal-header h4{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c;}
+.reopen-case .row{margin-bottom: 20px;}
+.reopen-case .modal-body{padding: 30px 25px 0;}
+.reopen-case .modal-body .col-xs-5{padding: 0 10px;}
+.reopen-case .modal-body .col-xs-12{padding: 0 10px;}
+.reopen-case .modal-body label{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0 0 5px 0;}
+.reopen-case .modal-body input{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.reopen-case .modal-body .datepicker-wrapper input{padding: 5px 5px 5px 30px;}
+.reopen-case .modal-body textarea{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 100px; border: 1px solid #d5d7db; padding: 5px; resize: none;}
+.reopen-case .modal-body select{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; height: 40px; border: 1px solid #d5d7db; padding: 5px;}
+.reopen-case .modal-body p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; width: 100%; margin: 0;}
+.reopen-case .modal-footer{border: none;}
+.reopen-case .btn-block{width: auto; display: table; margin: 0 auto 30px;}
+.reopen-case .btn-block button{background: #d7a312; color: #fff; width: 170px; padding: 14px 0; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; border: none; margin: 0 10px;}
+.reopen-case .btn-block button.cancel{background: #737c8c;}
+/*End Reopen case Modal CSS*/
+
+/*start @FaisalK @12-29-2016 @purpose - docket confidential casetype*/
+.tab-block.confidential {background: #861213;}
+.tab-block.confidential .confidential-warning {color: #fff;font-size: 23px;font-weight: 600;font-family: 'Roboto', sans-serif;padding-top: 17px;}
+/*end @FaisalK @12-29-2016 @purpose - docket confidential casetype*/
+
+.load-more-button-block{margin-bottom: 50px;}
+.load-more-button-block button{background: #d7a312; width: 200px; padding: 14px 0; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; color: #fff; text-align: center; display: block; border-radius: 5px; cursor: pointer; margin:0 auto !important; border: none;}
+.load-more-button-block button:hover, .load-more-button-block button:active, .load-more-button-block button:focus{background: #d7a312; outline: none !important; border: none; outline-offset: 0 !important; box-shadow: none;}
+.load-more-button-block button.loadless{display:none;}
+
+/*Start Print form 1 CSS*/
+.print-form-title-wrapper{padding: 16px 25px; display: table; width: 100%;}
+.print-form-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.print-form-docket-block h3{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0; display: table; width: 100%; padding: 16px 25px;}
+.print-form-docket-block label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.print-form-docket-block select{width: 100%; border: 1px solid #d5d7db; height: 51px; background: url(../images/arrow-down.png) no-repeat 95% 22px #fff;}
+.print-form-docket-block input{width: 100%; border: 1px solid #d5d7db; height: 51px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.print-form-docket-block .datepicker-wrapper input{padding: 5px 5px 5px 32px;}
+.print-form-docket-block .datepicker-wrapper i{top: 17px;}
+.print-form-docket-block .print-form-fields{width: 325px; float: left; margin: 0 40px 0 0;}
+.print-form-docket-block .or-label{float: left; margin: 0 0 0 25px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; padding: 40px 0 0 0;}
+.print-form-docket-block .label-number-block {margin: 40px 0 0 0;}
+.print-form-docket-block .label-number-block span{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; font-style: italic; margin: 0 0 10px 0; display: table;}
+.print-form-docket-block .label-number-block input{width: 325px; border: 1px solid #d5d7db; height: 51px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.print-form-fields-block{padding: 0 25px;}
+.label-number-block{padding: 0 25px;}
+.print-form-btn{background: #d7a312; color: #fff; font-size: 16px; width: 325px; text-align: center; padding: 14px 0; margin: 40px 0 0 25px; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif; display: table;}
+.print-form-btn:hover{color: #fff;}
+/*End Print form 1 CSS*/
+
+@media screen and (min-width:1281px) and (max-width:1400px){
+    .new-calendar-block .calendar-tiles .top span.heading{width: 65%;}
+    .new-calendar-block .calendar-tiles .top span.icon-block{width: 35%;}
+    .calendar-dates-block{width: 70%;}
+    .docket-information-left{width: 35%;}
+    .docket-information-right{width: 65%;}
+}
+
+@media screen and (min-width:1144px) and (max-width:1280px){
+    .container{width: 100%;}
+    .new-calendar-block .calendar-tiles .top span.heading{width: 55%;}
+    .new-calendar-block .calendar-tiles .top span.icon-block{width: 45%;}
+    .docket-information-left label{font-size: 13px;}
+}
+
+@media screen and (min-width:1025px) and (max-width:1143px){
+    .container{width: 100%;}
+    .new-calendar-block .calendar-tiles .top span.heading{width: 55%;}
+    .new-calendar-block .calendar-tiles .top span.icon-block{width: 45%;}
+}
+
+@media screen and (min-width:970px) and (max-width:1024px){
+    .container{width: auto;}
+    .header{padding-left: 0; padding-right: 0;}
+    .new-docket-title-wrapper{padding-left: 0; padding-right: 0;}
+    .tab-block{padding-left: 0; padding-right: 0;}
+    .docket-information-left{padding-left: 15px; padding-right: 15px;}
+    .docket-information-right{padding-left: 30px; padding-right: 30px;}
+    #footer{padding-left: 0; padding-right: 0;}
+    .container{width: 100%;}
+    .new-calendar-block .calendar-tiles .top span.heading{width: 55%;}
+    .new-calendar-block .calendar-tiles .top span.icon-block{width: 45%;}
+    .docket-information-left label{font-family: 13px;}
+    .dds-report-table-block .page-number-btn-block{width: 60%;}
+    .dds-report-table-block .table-pagination{display: table; width: 60%;}
+}
+
+@media screen and (min-width:971px) and (max-width:980px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:769px) and (max-width:979px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:737px) and (max-width:768px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:641px) and (max-width:736px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:481px) and (max-width:640px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:470px) and (max-width:480px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:321px) and (max-width:469px){
+    .container{width: 1280px;}
+}
+
+@media screen and (min-width:220px) and (max-width:320px){
+    .container{width: 1280px;}
+}
+.dz-max-files-reached {
+      pointer-events: none;
+}
+/*start@FaisalK @12-14-2016 @purpose - arrow below calendar block*/
+@media (max-width: 3000px) {
+    .arrow:before {content: '';border: 12px solid transparent;position: absolute;top: -22.5px;border-bottom: 13px solid #f1f1f1;}
+	.arrow-border:before {content: '';border: 14px solid transparent;z-index: -1;position: absolute;top: -26.5px;border-bottom: 14px solid #d6d7db;}
+    .arrow.arrow-left:before {left: 32px;}
+    .arrow.arrow-left .arrow-border:before {left: 30px;}
+    .arrow.arrow-right:before {right: 32px;}
+    .arrow.arrow-right .arrow-border:before {right: 30px;}
+    .arrow.arrow-center:before {left: 437.5px;}
+    .arrow.arrow-center .arrow-border:before {left: 435.5px;}
+}
+/*end @FaisalK @12-14-2016 @purpose - arrow below calendar block*/
+
+/* start 1205 form css */
+.from1205-block {padding: 50px 25px;}
+.from1205-block .is-form-complete-block{margin: 0 0 50px 0;}
+.from1205-block .is-form-complete-block h2{margin: 0 0 20px 0;}
+.from1205-block .offense-information-block {margin: 0 0 30px 0;}
+.from1205-block .offense-information-block h2{margin: 0 0 20px 0;}
+.from1205-block .offense-information-block p{margin: 0 0 10px 0; padding: 0;}
+.from1205-block .offense-information-block .radio-block{padding: 0; margin: 0 0 30px 0;}
+.from1205-block .officer-information-block .row{display: table; width: 100%;}
+.from1205-block .driver-requested-block{margin: 0 0 50px 0;}
+.from1205-block .driver-requested-block span{display: block; float: none; margin: 0;}
+.from1205-block .driver-requested-block p{margin: 0 0 10px 0;}
+.from1205-block .officer-information-block{margin: 0 0 50px 0;}
+.from1205-block .officer-information-block h2{margin: 0 0 20px 0;}
+.from1205-block .officer-information-block p{margin: 0 0 10px 0;}
+.from1205-block .officer-information-block .radio-block{margin: 0 0 20px 0;}
+.from1205-block .radio-block{padding: 0 10px;}
+.from1205-block h2{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 500; margin: 0; padding: 0 10px;}
+.from1205-block p{font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; color: #737c8c; margin: 0; padding: 0 10px;}
+.from1205-block span{font-family: 'Roboto', sans-serif;}
+.from1205-block .col-xs-2{width: 20%; padding: 0 10px;}
+.from1205-block .col-xs-12{padding: 0 10px;}
+.from1205-block .col-xs-12 input{width: 100%;}
+.from1205-block label{color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; margin: 0 0 12px 0; width: 100%;}
+.from1205-block select{margin: 0 0 30px 0; height: 40px; padding: 5px 30px 5px 5px; width: 100%; background-color: #fff; border: 1px solid #d0d2d6;
+font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #737c8c;
+}
+.from1205-block .datepicker-wrapper input {padding: 5px 5px 5px 30px;}
+.from1205-block input{margin: 0 0 30px 0; height: 40px; padding: 5px; width: 100%; border: 1px solid #d0d2d6; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.from1205-block .btn-block{padding: 0 10px;}
+.from1205-block .save-btn{background: #d7a312; color: #fff; padding: 14px 20px; text-align: center; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 500; display: inline-block; border-radius: 5px; cursor: pointer; width: 19%; border: 0;}
+.from1205-block .feet-inches-block .feet{width: 50%; float: left;}
+.from1205-block .feet-inches-block .feet .dropdown{width: 70px;}
+.from1205-block .feet-inches-block .feet .dropdown select{margin: 0; float: left;}
+.from1205-block .feet-inches-block .feet .dropdown + span{margin: 10px 0 0 5px; float: left; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.from1205-block .feet-inches-block .inches{width: 50%; float: left;}
+.from1205-block .feet-inches-block .inches .dropdown{width: 70px;}
+.from1205-block .feet-inches-block .inches .dropdown select{margin: 0; float: left;}
+.from1205-block .feet-inches-block .inches .dropdown + span{margin: 10px 0 0 5px; float: left; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+/* end 1205 form css */
+
+/*Start Temporary Permits CSS*/
+.temporary-permits-block{padding: 30px 0 60px 0; display: table; width: 100%;}
+.temporary-permits-title-wrapper{padding: 16px 25px; display: table; width: 100%;}
+.temporary-permits-title-wrapper h2{color: #8d96a8; font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 500; margin: 0; display: table; width: 100%;}
+.temporary-permits-inner-block{display: table; width: 100%;}
+.temporary-permits-inner-block h3{font-family: 'Roboto', sans-serif; font-size: 21px; font-weight: 500; color: #737c8c; margin: 0; display: table; width: 100%; padding: 16px 25px;}
+.temporary-permits-inner-block label{width: 100%; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300;}
+.temporary-permits-inner-block input{width: 100%; border: 1px solid #d5d7db; height: 51px; padding: 5px; color: #737c8c; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300;}
+.temporary-permits-inner-block hr{width: 50%; display: inline-block; margin: 46px 25px 20px;}
+.temporary-permits-inner-block .label-block {padding: 0 25px 20px; display: table; width: 100%;}
+.temporary-permits-inner-block .temporary-permits-btn{background: #d7a312; color: #fff; font-size: 16px; width: 325px; text-align: center; padding: 14px 0; margin: 0 0 0 25px; cursor: pointer; border-radius: 5px; font-family: 'Roboto', sans-serif; display: table; border: none;}
+.temporary-permits-inner-block .temporary-permits-btn:hover{color: #fff;}
+/*End Temporary Permits CSS*/
+/* end 1205 form css */
+.docexpired{
+		color:#737c8c;
+		text-decoration:none;
+		cursor:pointer;
+		
+}
+.docexpired:hover{color:#737c8c;}
+.docket-number-block.dds-search label{
+	width:220px;
+}
+.docket-information-left span.astrisk{
+	display:inline;
+}
+.btn-block {
+    display: table;
+}
+
+.docket-information-right  a.disable {
+    background: #e5e5e5;
+    color: #b2b2b2;
+}
+.yesnoparty{
+	display:none;
+	
+}
+
+.uib-increment{
+	display:none;
+}
+.uib-decrement{
+display:none;	
+}
+
+.uib-timepicker .form-group input {
+    margin: 0!important;
+}
+.uib-timepicker tr:first-child {
+    display: none;
+}
+.uib-timepicker .uib-time button {
+    height: 40px;
+    margin-left: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #737c8c;
+}
+.message-1205notset{
+}
+.message-1205notset .message-child{
+	float:left;
+	font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: justify;
+	padding: 12px 0 0 0;
+}
+.message-1205notset i.fa.fa-exclamation-triangle {
+    margin-top: 11px;
+	font-size: 20px;
+}
+.message-1205notset  span.mesg-span {
+    float: right;
+     padding-left: 15px; 
+}
+
+.message-1205notset .message-child-delete{
+	float:right;
+}
+
+
+/* MPDF Permits CSS*/
+
+.temp-block{width:920px;margin:0 auto;}
+.logo{margin: 20px auto 30px; display: table;}
+.main-heading{text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 14px; font-weight: bold; margin: 0 0 10px 0;}
+.subheading{text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0;}
+.leftright-block{margin: 10px 0 0 0;}
+.leftright-block .left{width: 50%; float: left;}
+.leftright-block .left p{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0; text-align: left;}
+.leftright-block .right{width: 50%; float: right;}
+.leftright-block .right p{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0; text-align: right;}
+.temp-block .title{text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-weight: bold; padding: 20px 0 0 0; margin: 0; display: table; width: 100%;}
+.temp-block .content{text-align: justify; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-weight: normal; padding: 20px 0 0 0;}
+.address-block p{text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 50px 0 0 0; width: 120px;}
+.detail-block{padding: 40px 0 0 0;}
+.detail-block p{text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 10px 0 0 0; margin: 0;}
+.position-block p{text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; padding: 20px 0 0 0; margin: 0; width: 250px; float: right;}
+.link-block{display: table; width: 100%;}
+.link-block p{text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 20px 0 0 0; margin: 0;}
+

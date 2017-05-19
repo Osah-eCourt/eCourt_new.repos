@@ -1,0 +1,20 @@
+
+/* MPDF Permits CSS*/
+
+.temp-block{width:920px;margin:0 auto;}
+.logo{margin: 20px auto 30px; display: table;}
+.main-heading{text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 14px; font-weight: bold; margin: 0 0 10px 0;}
+.subheading{text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0;}
+.leftright-block{margin: 10px 0 0 0;}
+.leftright-block .left{width: 50%; float: left;}
+.leftright-block .left p{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0; text-align: left;}
+.leftright-block .right{width: 50%; float: right;}
+.leftright-block .right p{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 12px; font-weight: normal; padding: 0; margin: 0; text-align: right;}
+.temp-block .title{text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-weight: bold; padding: 20px 0 0 0; margin: 0; display: table; width: 100%;}
+.temp-block .content{text-align: justify; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-weight: normal; padding: 20px 0 0 0;}
+.address-block p{text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 50px 0 0 0; width: 120px;}
+.detail-block{padding: 40px 0 0 0;}
+.detail-block p{text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 10px 0 0 0; margin: 0;}
+.position-block p{text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; padding: 20px 0 0 0; margin: 0; width: 250px; float: right;}
+.link-block{display: table; width: 100%;}
+.link-block p{text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; padding: 20px 0 0 0; margin: 0;}

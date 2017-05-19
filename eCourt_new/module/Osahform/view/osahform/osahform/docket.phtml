@@ -1,0 +1,1145 @@
+<!-- Docket File -->
+	<div class="overview-block">
+		<div class="container">
+			<div class="overview-wrapper">
+				<div class="col-xs-4">
+					<span>Docket Number</span>
+					<h2>{{docket_no}}</h2>
+				</div>
+				<div class="col-xs-3">
+					<span>Petitioner</span>
+					<h2 ng-show="petitioner_flg==1">{{Lastname | capitalize}}, {{Firstname | capitalize}}</h2>
+					<h2 ng-show="petitioner_flg==0">{{petitionerName}}</h2>
+				</div>
+				<div class="col-xs-3">
+					<span>Respondent</span>
+					<h2 ng-show="respondent_flg==1">{{ReslastName | capitalize}}, {{RespfirstName | capitalize}}</h2>
+					<h2 ng-show="respondent_flg==0">{{respondentName}}</h2>
+				</div>
+				<div class="col-xs-2">
+					<span class="createdby-label">Created By: {{docketCreated | capitalize}}</span>
+				</div>
+			</div>
+		</div>
+		<div ng-show="empty_result_flag =='1'">
+			This docket does not exist in eCourt. Please try a different search.
+		</div>
+	</div>
+            <div class="tab-block" ng-class="{confidential:(casefiletype=='Confidential')}">
+                <div class="container">
+					<div class="confidential-warning pull-right" ng-if="(casefiletype=='Confidential')">
+						<i class="fa fa-exclamation-triangle"></i> CONFIDENTIAL CASE
+					</div>
+                    <ul> 
+                        <li>
+                            <a class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> General Information</a>
+                        </li>
+                        <li>
+                            <a ui-sref="dochistory({reqdt: encoded_docket_number})"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+                        </li>
+                        <li>
+                            <a ui-sref="docnotes({reqdt: encoded_docket_number})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes</a>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+            <div class="docket-information-block">
+                <div class="docket-information-left col-xs-5">
+
+                    <div ng-if="loggeduser_type=='clerk' || loggeduser_type=='cma'" class="docket-info-block">
+                        <h2>Docket Information</h2>
+                        <div class="col-xs-6">
+                            <label>Agency Code *</label>
+                           <!--  <span ng-bind="agencyCode"></span> -->   
+                            <div class="dropdown">
+                                <select ng-class="{'req': loggeduser_type=='clerk' || loggeduser_type=='cma' }" mesg="Please select agency code!" ng-disabled="readonly_flag=='1'" ng-model="agencyCode" ng-change="casetype_agencywise(); change_docket_value();"  id="agencyCode" name="agencyCode" >
+                                       
+                                    <option value="0">Select Code</option>
+                                    <option agnid="{{agency.AgencyID}}"  ng-repeat="agency in AgencyList | orderBy :'Agencycode'" value="{{agency.Agencycode}}">{{agency.Agencycode}}</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Case Type *</label>
+                            <!-- <span ng-bind="caseType"></span> -->
+                              <div class="dropdown">
+                                <select ng-change="casetypeCountyChange(); change_docket_value();" ng-disabled="readonly_flag=='1'" ng-class="{'req': loggeduser_type=='clerk' || loggeduser_type=='cma' }" mesg="Please select case type!" ng-model="casetypeselect" id="casetypeselect" name="casetypeselect" >
+                                    <option value="a0">Select Casetype</option>
+                                    <option castyp="{{casetype.Casetypeid}}" ng-repeat="casetype in casetypesList | orderBy :'CaseCode' | unique:'CaseCode'" value="{{casetype.CaseCode}}">{{casetype.CaseCode}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>County *</label>
+                            <!-- <span ng-bind="county" ></span> -->
+                            <div class="dropdown">
+                                <select ng-class="{'req': loggeduser_type=='clerk' || loggeduser_type=='cma' }" ng-disabled="readonly_flag=='1'" mesg="Please select county!" ng-change="casetypeCountyChange(); change_docket_value();" ng-model="countyselect" id="countyselect" name="countyselect" >
+                                    <option value="a0">Select County</option>
+                                    <option conty="{{countylis.CountyID}}" ng-repeat="countylis in countyList_root" value="{{countylis.Countydescription}}">{{countylis.Countydescription}}</option>
+                                </select>
+                            </div>
+                           
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Status</label>
+                            <!-- <span ng-bind="docketStatus" ></span> -->
+							
+							<!--<span ng-bind="docketStatus" ></span>
+							<span ng-if="olddocketStatus!='Stayed'">
+								<i data-toggle="modal" style="cursor:pointer" ng-if="loggeduser_type=='cma' || loggeduser_type=='clerk'" ng-disabled="readonly_flag=='1'" class="fa fa-pencil icon" ng-show="cmachange_lage==0" aria-hidden="true" ng-click="show_cma_dropdown(1)" ></i>
+								<i class="fa fa-undo icon" style="cursor:pointer" ng-click="show_cma_dropdown(2)" ng-show="cmachange_lage==1" aria-hidden="true"></i>
+							</span>-->
+							
+                            <div class="dropdown">
+                                <select ng-class="{'req': loggeduser_type=='clerk' || loggeduser_type=='cma' }" ng-disabled="loggeduser_type=='clerk' || loggeduser_type=='cma'" ng-change="changeDocketstatus(docketStatus); change_docket_value();" mesg="Please select case status!" ng-model="docketStatus" id="docketStatus" name="docketStatus" >
+                                    <option value="0">Select Status</option>
+                                    <option ng-repeat="stus in statusList" value="{{stus.statuslist}}">{{stus.statuslist}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-if="loggeduser_type!='clerk' && loggeduser_type!='cma'" class="docket-info-block">
+                        <h2>Docket Information</h2>
+                        <div class="col-xs-3">
+                            <label>Agency Code</label>
+                            <span ng-bind="agencyCode" id="agencyCodereadonly"></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Case Type</label>
+                            <span ng-bind="casetype" id="casetypereadonly"></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>County</label>
+                            <span ng-bind="county"></span>
+                            <!-- <i data-toggle="modal" style="cursor:pointer" data-target="#county_modal" class="fa fa-pencil" aria-hidden="true"></i> -->
+                           
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Status</label>
+                            <span ng-bind="docketStatus" ></span>
+							<span ng-if="olddocketStatus!='Stayed'">
+								<i data-toggle="modal" style="cursor:pointer" ng-if="loggeduser_type=='cma' || loggeduser_type=='clerk'" ng-disabled="readonly_flag=='1'" class="fa fa-pencil icon" ng-show="cmachange_lage==0" aria-hidden="true" ng-click="show_cma_dropdown(1)" ></i>
+								<i class="fa fa-undo icon" style="cursor:pointer" ng-click="show_cma_dropdown(2)" ng-show="cmachange_lage==1" aria-hidden="true"></i>
+							</span>
+                            <!-- data-target="#status_modal" -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="hearing-info-block">
+                        <h2>Hearing Information</h2>
+                        <div class="col-xs-12">
+                            <label>Location *</label>
+                           <!--  <span ng-bind="caseLocation" ></span> -->
+                             <div class="dropdown">
+                                <select class="req" ng-model="caseLocation" ng-change = "change_docket_value()" mesg="Please select location!" ng-disabled="readonly_flag=='1'" name="caseLocation" id="caseLocation">
+                                    <option value="0">Select</option>
+                                     <option ng-repeat="hesite in courtlocationList | orderBy : 'Locationname'" value="{{hesite.Locationname}}" location_id="{{hesite.courtlocationid}}">{{hesite.Locationname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Date {{skip_hearingDate=='0' ? '*' : ''}}</label>
+                            <!-- <span ng-bind="hearingDate"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+
+                             <div class="datepicker-wrapper">
+                                <input ng-model="hearingDate" class="req datepic" ng-change = "hearingDateManualMode()"  mesg="Please select hearing date!" ng-disabled="readonly_flag=='1'||elementDataLoader.fieldDisabled" type="text" id="hearingDate"  b-datepicker="{{hearingDate}}" datepicker-options="{startDate:'0d',autoclose: true}">
+
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+								<input type = "hidden" ng-model="previous_hearingDate">
+                            </div>
+							<?php /*To show loader when element data is loading @created by FaisalK 2016-02-27 start*/ ?>
+							<div class="element-val-loader" 
+                                ng-if="elementDataLoader.val||elementDataLoader.hearingDateValEnteredByUser">
+								<span ng-if="elementDataLoader.val" compile="elementDataLoader.text" class="hearing-date-message-block"></span>
+								<span ng-click="hearingDateAutomateMode()" 
+                                    ng-if="!elementDataLoader.val&&elementDataLoader.hearingDateValEnteredByUser"
+                                     class="hearing-date-message-block">
+                                     <div class="more-block" ng-click="hearingDateAutomateMode()" >
+                                        <i class="fa fa-plus-circle"></i><span>Click to add calendar date.</span>
+                                     </div>
+                                     <span ng-click="hearingDateAutomateMode()"  class="message-block"> Manual mode</span>
+                                </span>
+							</div>
+							<?php /*To show loader when element data is loading @created by FaisalK 2016-02-27 end*/ ?>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Time {{skip_hearingDate=='0' ? '*' : ''}}</label>
+                           <!--  <span ng-bind="hearingTime" ><i class="fa fa-clock-o" aria-hidden="true"></i></span> -->
+                           <!--   <div class="datepicker-wrapper">
+                                <input ng-bind="hearingTime" class="datepic" type="text" id="hearingTime">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            </div> -->
+                             <div class="dropdown">
+                              <!--  <i class="fa fa-clock-o" aria-hidden="true"></i> -->
+                                <select  class="req" mesg="please select hearing time!" ng-change = "change_docket_value()" ng-model="hearingTime" ng-disabled="readonly_flag=='1'" name="hearingTime" id="hearingTime">
+                                    <option value="0">Select</option>
+                                    <option ng-repeat="hertime in hearingtimeList | orderBy :'heringtimestored'" time-id="{{hertime.timeid}}" value="{{hertime.heringtimestored}}" >{{hertime.hearingtime}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Judge *</label>
+                            <!-- <span ng-bind="judge"></span> -->
+                            <div class="dropdown">
+                                <select class="req" ng-model="judge" mesg="Please select Judge!" ng-change = "change_docket_value()" ng-disabled="readonly_flag=='1'" name="judge" id="docket-judge">
+                                    <option value="0">Select</option>
+                                    <option ng-repeat="jdg in judgeList | orderBy :'LastName'" value="{{jdg.LastName}} {{jdg.FirstName}}"  judge_id="{{jdg.user_id}}">{{jdg.LastName}}, {{jdg.FirstName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Judge Assistant *</label>
+                            <!-- <span ng-bind="judgeAssistant"></span> -->
+                            <div class="dropdown">
+                                <select class="req" ng-model="judgeAssistant" mesg="Please select JudgeAssistant!" ng-change = "change_docket_value()" ng-disabled="readonly_flag=='1'" name="judgeAssistant" id="docket-judgeAssistant">
+                                    <option value="0">Select</option>
+                                    <option ng-repeat="jdast in Judge_AssistantList | orderBy :'LastName'" value="{{jdast.LastName}} {{jdast.FirstName}}" judge_assistant_id="{{jdast.user_id}}">{{jdast.LastName}}, {{jdast.FirstName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="additional-info-block">
+                        <h2>Additional Information</h2>
+                        <div class="col-xs-6">
+                            <label>Date Requested *</label>
+                            <div class="datepicker-wrapper">
+                                
+                                <input ng-model="dateRequested" mesg="Please select requested date!" class="req datepic" ng-disabled="readonly_flag=='1'" b-datepicker="{{dateRequested}}" datepicker-options="{endDate: '+0d',autoclose: true}" type="text" id="dateRequested">
+                                
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Date Received *</label>
+                            <div class="datepicker-wrapper">
+                                 <input ng-model="dateReceivedbyOsah" b-datepicker="{{dateReceivedbyOsah}}" datepicker-options="{startDate: '-7d',endDate: '+0d',autoclose: true}" ng-disabled="readonly_flag=='1'"  mesg="Please select received date!"  class="req datepic" type="text" id="dateReceivedbyOsah">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+            <!-- value="{{dateReceivedbyOsah | date : 'MM-dd-y' }}" -->
+
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Agency Reference Number</label>
+                    <input ng-model="agencyRefnumber" ng-value="agencyRefnumber" ng-change = "change_docket_value()" ng-readonly="readonly_flag=='1'" type="text"/>
+		             </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Type *</label>
+                            <div class="dropdown">
+                                <select ng-model="hearingMode" class="req" mesg="Please select hearing type!" ng-change = "change_docket_value()" ng-disabled="readonly_flag=='1'" name="hearingMode" id="hearingMode">
+                                    <option value="0">Select</option>
+                                    <option value="{{herType.HearingValues}}"  ng-repeat="herType in hearingTypedetails" >{{herType.HearingValues}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="btn-block" ng-disabled="readonly_flag=='1'"> 				
+						<button type="submit" ng-click="readonly_flag=='1'? '' : updateDocket()" class="btn btn-default search-btn" toggle-class="clickevent" ng-disabled="isDisabled||elementDataLoader.val">SAVE</button>
+                    </div>
+                </div>
+                <div class="docket-information-right col-xs-7">
+                    <div class="docket-info-right-block">
+                        <h2>Document & File Management</h2>
+                        <div class="button-block">
+                            <a data-toggle="modal" ng-click="loadDocumentTemplate()" data-target="#document-templates"><i class="fa fa-plus" aria-hidden="true"></i> DOCUMENT TEMPLATES</a>
+                            <a data-target="#add-files" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i> FILES</a>
+                        </div>
+						<?php /*@Added by FaisalK 02-11-2016 @purpose U341 sticky header*/ ?>
+                        <div class="docket-info-table-block-container">
+							<div class="docket-info-table-block">
+								<table>
+									<thead sticky-head>
+										<tr class="heading">
+											<td class="document"><span class="DocumentType" ng-click="sort_by('DocumentType')">Document <i class="fa fa-chevron-down" aria-hidden="true"></i></span></td>
+
+											<td class="name"><span class="DocumentName" ng-click="sort_by('DocumentName')">Name <i class="fa fa-chevron-down" aria-hidden="true"></i></span></td>
+
+											<td class="date"> <span class="DateRequested" ng-click="sort_by('DateRequested')">Date <i class="fa fa-chevron-down" aria-hidden="true"></i></span></td>
+										<td class="edit">&nbsp;</td>
+                                    <td class="desc"><span class="Description" ng-click="sort_by('Description')">Description <i class="fa fa-chevron-down" aria-hidden="true"></i></span></td>
+                                    <td class="delete">&nbsp;</td>
+                                </tr>
+                               
+
+									</thead>
+									<tbody>
+										<tr ng-repeat="document in documentList | orderBy:sortingOrder:reverse | filter:searchFilter:strict" class="table-row">
+											<td class="document" ng-cloak>{{document.DocumentType}}</td>
+											<td ng-click="checkDoc(document.documentid)" ng-cloak class="name-data name">{{document.DocumentName}}</td>
+											<td class="date" ng-cloak>{{document.DateRequested | date : "MM-dd-y"}}</td>
+											<td class="edit" ng-cloak ><i class="fa fa-pencil" aria-hidden="true" ng-click ="openDocumenteditModal(document.documentid,document.doc_file_flage)"></i></td>
+											<td class="desc" ng-cloak>{{document.Description}}</td>
+											<td class="delete" ng-cloak><i class="fa fa-trash-o" data-toggle="modal" data-target="#deleteDocuments{{$index}}" aria-hidden="true"></i></td>
+											<td>
+												<div id="deleteDocuments{{$index}}" class="deletepopup modal fade" data-backdrop="static" role="dialog">
+													<div class="modal-dialog">
+														<!-- Modal content-->
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal">
+																<img src="images/close.png" alt="close" />
+																</button>
+																<h4 class="modal-title">Delete</h4>
+															</div>
+															<div class="modal-body">
+																<div class="row">
+																	<div class="col-xs-12">
+																		<p>Do you want to delete the documents?</p>
+																	</div>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<div class="btn-block">
+																	<button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+																	<button type="button" ng-click="deleteDocuments(document.documentid,$index,document.DocumentName)"  class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">OK</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								 
+								  
+								</table>
+								<div class="no-record" ng-show="listDocumentflag=='0'">
+										No records found.
+								</div>
+
+							</div>
+                        </div>
+                    </div>
+                    <div class="disposition-block">
+						<h2>Disposition</h2>
+						<div ng-show="docketStatus=='Closed' && listDispositionflag=='1'">
+							<div>
+								<div class="col-xs-3">
+									<label>Disposition Type</label>
+									<span>{{dispositions_data.dispositioncode}}</span>
+								</div>
+								<div class="col-xs-3">
+									<label>Hearing? (Yes/No)</label>
+									<span>{{dispositions_data.hearingyesno!='' ? dispositions_data.hearingyesno : '-'}}</span>
+								</div>
+								<div class="col-xs-3">
+									<label>Box Number</label>
+									<span>{{dispositions_data.boxno!='' ? dispositions_data.boxno : '-'}}</span>
+								</div>
+							</div>
+							<div>
+								<div class="col-xs-3">
+									<label>Disposition Date</label>
+									<span>{{dispositions_data.dispositiondate | date:'MM/dd/yyyy'}}</span>
+								</div>
+								<div class="col-xs-3">
+									<label>Date Signed by Judge</label>
+									<span>{{dispositions_data.signedbyjudge | date:'MM/dd/yyyy'}}</span>
+								</div>
+								<div class="col-xs-3">
+									<label>Date Mailed</label>
+									<span>{{dispositions_data.mailedddate | date:'MM/dd/yyyy'}}</span>
+								</div>
+							</div>
+						</div>
+                       <div>
+                            <a ng-show="docketStatus=='Closed'" data-target="#reopen-case" data-toggle= "modal" class="reopen-case-button">Reopen Case</a>
+                        </div>
+						<div>
+							<a ng-show="((docketStatus=='Rescheduled' || docketStatus=='Hearing Scheduled' || docketStatus=='Pending') && (listDispositionflag=='0' && decision_type=='1'))" class="add-decision-btn active" data-toggle= "modal" data-target="#add-decision"><i class="fa fa-plus" aria-hidden="true"></i> ADD DISPOSITION</a>
+                        </div>
+						<div>
+							<a ng-show="((decision_type=='0'))" class="add-decision-btn"><i class="fa fa-plus" aria-hidden="true"></i> ADD DISPOSITION</a>
+                        </div>
+						 
+                    </div>
+                    <div class="party-info-block">
+                        <h2>Party Information</h2>
+                        <div ng-show="readonly_flag=='0'">
+                           <!-- <a class="add-party-btn"><i class="fa fa-plus" aria-hidden="true"></i> ADD PARTY</a>-->
+							
+						<a class="add-party-btn active" data-toggle="modal" ng-click="clearFieldonaddparty()" data-target="#addparty"><i class="fa fa-plus" aria-hidden="true"></i> ADD PARTY</a>
+                        </div>
+                        <div ng-show="listPartyflag=='1'" ng-repeat="data in party_data | orderBy:'-modified_date'">
+                            <div class="col-xs-6">
+                                <div class="party-block">
+                                    <div class="heading">
+                                        <span>{{data.typeofcontact}}</span>
+                                        <span>
+                                            <i class="fa fa-pencil" ng-click="openEditpartyModal(data.contactid,data.Minorid,data.typeofcontact,data.peopleid,data.attorneyid)" aria-hidden="true"></i>
+                                            <i data-toggle="modal" data-target="#deleteParty{{$index}}" class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <div class="party-body">
+                                        <p>{{data.Lastname}}, {{data.Firstname}}</p>
+                                        <p>
+                                            <label><i class="fa fa-phone" aria-hidden="true"></i> Phone:</label>
+                                            <span>{{data.typeofcontact!='Minor/Children' ? data.Phone!='' ? data.Phone : '-' : '-'}}</span>
+                                        </p>
+                                        <p>
+                                            <label><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</label>
+                                            <span>{{data.typeofcontact!='Minor/Children' ? data.Email!='' ? data.Email : '-' : '-'}}</span>
+                                        </p>
+                                        <p>
+                                            <label><i class="fa fa-fax" aria-hidden="true"></i> Fax:</label>
+                                            <span>{{data.typeofcontact!='Minor/Children' ? data.Fax!='' ? data.Fax : '-' : '-'}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+							<div id="deleteParty{{$index}}" class="deletepopup modal fade" data-backdrop="static" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												<img src="images/close.png" alt="close" />
+											</button>
+											<h4 class="modal-title">Delete</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-xs-12">
+													<p>Do you want to delete the party?</p>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<div class="btn-block">
+												<button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+												<button type="button" ng-click="deleteParty(data.contactid,data.Minorid,data.typeofcontact,data.peopleid,data.attorneyid,$index,data.Firstname,data.Lastname)"  class="btn btn-default">OK</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+						<div class="no-record" ng-show="show_party=='1'">
+							No records found.
+						</div>
+                    </div>
+                </div>
+            </div>
+			
+			<!-- Modal -->
+        <div id="addparty" data-backdrop="static" class=" party modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Add Party</h4>
+                    </div>
+                    <div class="modal-body">
+						 <form id="add_party" enctype="multipart/form-data"  action="javascript:void(0)">
+							<div class="row">
+								<div class="col-xs-4">
+									<label>Contact Type*</label>
+									<div class="dropdown">
+										<select name="contactType" class="req_data" msg="Please select contact type." id="contactType" ng-model="contactType" ng-change="TypeofContact(contactType)">
+											<option value="0">Select</option>
+											<option ng-repeat="contact in contactList | orderBy :'partycontact'" value="{{contact.partycontact}}"> {{contact.partycontact}} </option>
+										</select>
+									</div>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<label>Last Name*</label>
+
+									<!-- <input client-auto-complete type="text"class="req_data"  ng-model="last_name"  id="last_name" msg="Please enter last name." placeholder="Last Name" />
+									<input client-auto-complete ng-model="last_name" placeholder="enter name" type="hidden"> ng-blur="getuserInformation()" -->
+									<div ng-if="contactType=='Agency Attorney' || contactType=='Case Worker'">
+										<input party-auto-complete ng-model="last_name" name="last_name" id="last_name" msg="Please enter last name."  placeholder="Last Name" type="text" class="req_data">
+										<input party-auto-complete ng-model="ctrl.last.id" placeholder="enter name" type="hidden">
+									</div>
+									<div ng-hide="contactType=='Agency Attorney' || contactType=='Case Worker'">
+										 <input type="text" class="req_data" ng-model="last_name" id="last_name" msg="Please enter last name." placeholder="Last Name" />
+									</div>
+								</div>
+								<span class="error">
+									<p ng-bind="validation_message"></p>
+								</span>
+								<div class="col-xs-4">
+									<label>First Name*</label>
+									 <input type="text" class="req_data" ng-model="first_name" id="first_name" msg="Please enter first name." placeholder="First Name" />
+								</div>
+								<div class="col-xs-4">
+									<label>Middle Name</label>
+									 <input type="text" ng-model="middle_name" placeholder="Middle Name" />
+								</div>
+								
+							</div>
+							<div class="row" ng-show="flag_type=='1'">
+								<!--<div class="col-xs-4">
+									<label>Dob</label>
+									<div class="datepicker-wrapper">
+									<input ng-model="dob" class="datepic" placeholder="Date Of Bith" id="dob" />
+										<i class="fa fa-calendar" aria-hidden="true"></i>
+									</div>
+									
+								</div>-->
+								
+								<div class="col-xs-4">
+									<label>Year of Birth</label>
+									<div class="dropdown">
+									   <select name="years" id="dobyear" ng-model="dobyear">
+												<option value="" >Select</option>
+												<option ng-repeat="years in yearList | orderBy :'documenttype'" value="{{years.year}}"> {{years.year}} </option>
+											</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row" ng-show="flag_type=='2'">
+								<div class="col-xs-4">
+									<label>Attorney Bar #</label>
+									 <input type="text" ng-model="attorney_no" placeholder="Attorney Bar #" />
+								</div>`
+							</div>
+							
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>Title</label>
+									 <input type="text" ng-model="title" placeholder="Title" />
+								</div>
+								<div class="col-xs-8">
+									<label>Company Name</label>
+									<input type="text" ng-model="company_name" placeholder="Company Name" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-12">
+									<label>Address Line 1*</label>
+									<input type="text" class="req_data" ng-model="address1" msg="Please enter address." id="address1" placeholder="Address Line 1" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-12">
+									<label>Address Line 2</label>
+									<input type="text" ng-model="address2" placeholder="Address Line 2" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>City*</label>
+									<input type="text" class="req_data" ng-model="city" msg="Please enter city." id="city" placeholder="City" />
+								</div>
+								<div class="col-xs-4">
+									<label>State*</label>
+									<div class="dropdown">
+									   <select name="state" class="req_data" id="state" msg="Please select state." ng-model="statename">
+											<option value="" >Select</option>
+											<option ng-repeat="state in stateList" value="{{state.state}}"> {{state.state}} </option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<label>Zip Code*</label>
+									<input type="text" class="req_data" ng-keypress = "zipcodeFormat(zip_code)" ng-model="zip_code" msg="Please enter zipcode." id="zip_code" placeholder="Zip Code" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>Phone</label>
+									<input type="text" ng-model="phone" placeholder="Phone" />
+								</div>
+								<div class="col-xs-4">
+									<label>Email</label>
+									 <input type="text" ng-model="email" placeholder="Email" />
+								</div>
+								<div class="col-xs-4">
+									<label>Fax</label>
+									 <input type="text" ng-model="fax" placeholder="Fax" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>* Required Fields</p>
+								</div>
+							</div>
+						</form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                            <button type="submit" ng-disabled="isDisabled" ng-click="addParty()" class="btn btn-default" toggle-class="clickevent">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!--Party modal ends here-->
+		
+		<!--Disposition modal Start Herer-->
+		 <div id="add-decision" class="modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" ng-click="closeDispositionmodal()" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Disposition</h4>
+                    </div>
+                    <div class="modal-body">
+					<form id="disposition-form">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label>Disposition Type*</label>
+                                <div class="dropdown">
+                                    <select name="dispositionType" class="disposition_data" msg="Please select disposition type." id="dispositionType" ng-model="dispositionType">
+											<option value="">Select</option>
+											<option ng-repeat="dis_code in dispositions_results" value="{{dis_code.dispositioncode}}"> {{dis_code.dispositioncode}} </option>
+										</select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Disposition Date*</label>
+                                <div class="datepicker-wrapper">
+                                    <input ng-model="dispositiondate" type="text" id="dispositiondate" class="disposition_data" msg="Please select disposition date.">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label>Date Signed by Judge*</label>
+                                <div class="datepicker-wrapper">
+                                    <input  type="text" ng-model="signedbyjudge" id="judgedate" class="disposition_data" msg="Please select Date Signed by Judge.">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Date Mailed*</label>
+                                <div class="datepicker-wrapper">
+                                    <input  type="text" ng-model="maileddate" id="maileddate"  class="disposition_data" msg="Please select Date Mailed.">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+						<div class="row">
+							<div class="col-xs-6">
+                                <label>Box Number</label>
+                                <input type="text" ng-model="boxno" placeholder="Box Number" />
+                            </div>
+						</div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h4>Was there a hearing?</h4>
+                                <div class="radio-block">
+                                    <span>
+                                        <input id="hearing1" ng-model="hearing" name="hearing" type="radio" class="field radio" value="Yes" tabindex="1" checked />
+                                        <label class="" for="hearing1" >
+                                            <span class="choice__text">Yes</span>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        <input id="hearing2" name="hearing" ng-model="hearing" type="radio" class="field radio" value="No" tabindex="1" />
+                                        <label class="" for="hearing2" >
+                                            <span class="choice__text">No</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>* Required Fields</p>
+                            </div>
+                        </div>
+						</form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" ng-click="closeDispositionmodal()" data-dismiss="modal">CANCEL</button>
+                            <button type="submit" ng-click="addDisposition()" class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!--Modal ends here-->
+        
+        
+          <!--Docket Status update modal Start Herer-->
+         <div id="status_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Styed Case</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <label>This will change the status to a stayed case. Please select “Update” to change the status or “Cancel” to keep the existing status?</label>
+                                <div class="dropdown">
+                                <select name="updatedocketStatus" class="disposition_data" msg="Please select case status." id="updatedocketStatus" ng-model="updatedocketStatus">
+                                    <option value="0">Select</option>
+                                    <option ng-repeat="stas in statusList" value="{{stas.statuslist}}"> {{stas.statuslist}} </option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+
+						<div class="modal-footer">
+                        	<div class="btn-block">
+                            	<button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                           	 <button type="submit" ng-click="updatecasestatus()" class="btn btn-default">UPDATE</button>
+                        	</div>
+                    	</div>
+                </div>
+            </div>
+        </div>
+		</div>
+<!--  Docket Status Update Modal ends here -->
+
+
+
+<!-- Edit Party Modal -->
+        <div id="editpartymodal" class="party modal fade" data-backdrop="static" role="dialog">
+		   <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+
+        
+                        <h4 class="modal-title">Edit Party</h4>
+                    </div>
+                    <div class="modal-body">
+						 <form id="edit_party" enctype="multipart/form-data"  action="javascript:void(0)">
+							<div class="row">
+								<div class="col-xs-4">
+									<label>Contact Type*</label>
+									<div class="dropdown">
+										<select name="edit_contact_type" class="edit_req_data" msg="Please select contact type." id="edit_contact_type" ng-model="edit_contact_type" ng-change="UpdatetypeOfcontact(edit_contact_type)">
+											<option value="">Select</option>
+											<option ng-repeat="contact in contactList | orderBy :'partycontact'" value="{{contact.partycontact}}"> {{contact.partycontact}} </option>
+										</select>
+									</div>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<label>Last Name*</label>
+									<div ng-if="edit_contact_type=='Agency Attorney' || edit_contact_type=='Case Worker'" >
+										<input msg="Please enter last name." party-auto-complete  class="edit_req_data"  ng-model="edit_last_name" name="edit_last_name" id="edit_last_name" placeholder="" type="text">
+										<input party-auto-complete  ng-model="ctrl.edit_last.id" placeholder="enter name" type="hidden">
+									</div>
+									<div ng-hide="edit_contact_type=='Agency Attorney' || edit_contact_type=='Case Worker'">
+										 <input type="text" class="edit_req_data" ng-model="edit_last_name" id="edit_last_name" msg="Please enter last name." placeholder="Last Name" />
+									</div>
+								</div>
+								<span class="error">
+									<p ng-bind="validation_message"></p>
+								</span>
+								<div class="col-xs-4">
+									<label>First Name*</label>
+									 <input type="text" class="edit_req_data" ng-model="edit_first_name" id="edit_first_name" msg="Please enter first name." placeholder="First Name" />
+								</div>
+								<div class="col-xs-4">
+									<label>Middle Name</label>
+									 <input type="text" ng-model="edit_middle_name" placeholder="Middle Name" />
+								</div>
+								
+							</div>
+							<div class="row" ng-show="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>Year of Birth</label>
+									<div class="dropdown">
+									   <select name="years" id="edit_dobyear" ng-model="edit_dobyear">
+												<option value="" >Select</option>
+												<option ng-repeat="years in yearList | orderBy :'documenttype'" value="{{years.year}}"> {{years.year}} </option>
+											</select>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="row" ng-show="flag_type=='2'">
+								<div class="col-xs-4">
+									<label>Attorney Bar #</label>
+									 <input type="text" ng-model="edit_attorney_no" placeholder="Attorney Bar #" />
+
+								</div>`
+							</div>
+							
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>Title</label>
+									 <input type="text" ng-model="edit_title" placeholder="Title" />
+								</div>
+								<div class="col-xs-8">
+									<label>Company Name</label>
+									<input type="text" ng-model="edit_company_name" placeholder="Company Name" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-12">
+									<label>Address Line 1*</label>
+									<input type="text" class="edit_req_data" ng-model="edit_address1" msg="Please enter address." id="edit_address1" placeholder="Address Line 1" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-12">
+									<label>Address Line 2</label>
+									<input type="text" ng-model="edit_address2" placeholder="Address Line 2" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>City*</label>
+									<input type="text" class="edit_req_data" ng-model="edit_city" msg="Please enter city." id="edit_city" placeholder="City" />
+								</div>
+								<div class="col-xs-4">
+									<label>State*</label>
+									<div class="dropdown">
+									   <select name="edit_state" class="edit_req_data" id="edit_state" msg="Please select state." ng-model="edit_state">
+											<option value="" >Select</option>
+											<option ng-repeat="state in stateList" value="{{state.state}}"> {{state.state}} </option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<label>Zip Code*</label>
+									<input type="text" class="edit_req_data" ng-keypress = "zipcodeFormat(edit_zipcode)" ng-model="edit_zipcode" msg="Please enter zipcode." id="edit_zip_code" placeholder="Zip Code" />
+								</div>
+							</div>
+							<div class="row" ng-hide="flag_type=='1'">
+								<div class="col-xs-4">
+									<label>Phone</label>
+									<input type="text" ng-model="edit_phone" placeholder="Phone" />
+								</div>
+								<div class="col-xs-4">
+									<label>Email</label>
+									 <input type="text" ng-model="edit_email" placeholder="Email" />
+								</div>
+								<div class="col-xs-4">
+									<label>Fax</label>
+									 <input type="text" ng-model="edit_fax" placeholder="Fax" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>* Required Fields</p>
+								</div>
+							</div>
+							<input type="hidden" ng-model="previous_contacttype">
+						</form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+							<button type="submit"  ng-click="editParty(contact_id,minor_id,people_id,attorney_id)" class="btn btn-default"  toggle-class="clickevent" ng-disabled="isDisabled">SAVE</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!--Party modal ends here-->
+		
+		<!---Document templates modal starts here- -->
+			 <div id="document-templates" class="modal fade" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Document Template</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>What type of document?*</h4>
+                                <div class="radio-block">
+                                    <span ng-click="loadDocumentList('non-decision')">
+                                        <input id="doctype1" name="doctype" type="radio" class="field radio" value="First Choice" tabindex="1" checked />
+                                        <label class="" for="doctype1" >
+                                            <span class="choice__text">Non-Decision Document</span>
+                                        </label>
+                                    </span>
+                                    <span ng-click="loadDocumentList('decision')">
+                                        <input id="doctype2" name="doctype" type="radio" class="field radio" value="First Choice" tabindex="1" />
+                                        <label class="" for="doctype2" >
+                                            <span class="choice__text">Decision Document</span>
+                                        </label>
+                                    </span>
+
+                                    <span ng-click="loadDocumentList('all')">
+                                        <input id="doctype3" name="doctype" type="radio" class="field radio" value="First Choice" tabindex="1" />
+                                        <label class="" for="doctype3" >
+                                            <span class="choice__text">All Document</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <label>Documents List*</label>
+                                <div class="dropdown">
+                                    <select name="templatedocumentType" msg="Please select document type." class= "document_data" id="templatedocumentType" ng-model="templatedocumentType">
+											<option value="0">Select</option>
+											<option ng-repeat="doc_type in document_types_list" value="{{doc_type.id}}"> {{doc_type.documentname}} </option>
+									</select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                                <textarea ng-model="templatedescription"></textarea>
+                                 <span class="desc-limit">Description character limit - 500</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>Mailer List <i>(Select users to be on the mailer list)</i></h4>
+                                <div class="select-check">
+                                    <span ng-repeat="party in party_data | unique:'typeofcontact'">
+                                         <input id="{{$index}}" name="{{party.typeofcontact}}" type="checkbox"  ng-click="setMailerlist($index,party.typeofcontact)" class="field radio" value="First Choice" tabindex="{{$index}}" />
+
+                                        <label class="" for="{{$index}}" >
+                                            <span class="choice__text">{{party.typeofcontact}}</span>
+                                        </label>
+                                    </span>
+
+                                    <!-- <span>
+                                        <input id="mailerlist2" name="mailerlist" type="checkbox" class="field radio" value="First Choice" tabindex="1" />
+                                        <label class="" for="mailerlist2" >
+                                            <span class="choice__text">Respondent</span>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        <input id="mailerlist3" name="mailerlist" type="checkbox" class="field radio" value="First Choice" tabindex="1" />
+                                        <label class="" for="mailerlist3" >
+                                            <span class="choice__text">Case Worker</span>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        <input id="mailerlist4" name="mailerlist" type="checkbox" class="field radio" value="First Choice" tabindex="1" />
+                                        <label class="" for="mailerlist4" >
+                                            <span class="choice__text">Hearing Coordinator</span>
+                                        </label>
+                                    </span> -->
+
+
+                                </div>
+                            </div>
+                        </div>
+						<!-- <div class="row">
+							<div class="col-xs-12">
+								<h4>Select file</h4>
+								<label class="btn btn-default attach-btn">
+									ATTACH <input type="file" ng-model="document_name" onchange="angular.element(this).scope().file_changed(this)" style="display: none;">
+								</label>
+								 <input class="attach-label" id="files" ng-model="document_name" type="text" readonly>
+							</div>
+						</div> -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>* Required Fields</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                            <button ng-hide="loggeduser_type=='judge'" type="button" ng-click="attachDocument(0)" class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">ATTACH & OPEN</button>
+                            <button type="button" class="btn btn-default" ng-click="attachDocument(1)" toggle-class="clickevent" ng-disabled="isDisabled">OPEN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!---Document modal Ends here-->
+		
+		<!---Files modal starts here---->
+			
+		<div id="add-files" class="add-files modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button"  ng-click="closeFile()" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Attach Files</h4>
+                    </div>
+                    <div class="modal-body">
+					<form id="file_form">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label>Document Type*</label>
+                                <div class="dropdown">
+                                   <select name="fileType" class="file_data" id="doc_type" msg="Please select document type." ng-model="fileType">
+											<option value="" >Select</option>
+											<option ng-repeat="document in document_types | orderBy :'documenttype'" value="{{document.documenttype}}"> {{document.documenttype}} </option>
+										</select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Date Filed*</label>
+                                <div class="datepicker-wrapper">
+                                    <input  type="text" class="file_data" name="fileDate" id="file_date" msg="Please select date." ng-model="fileDate">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                                <textarea ng-model="desc" name="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 add-file-block">
+                                <label>Add File (You cannot upload more than one file) *</label>
+								<div class="dropzone add-files-area file_data" id = "removeimg" options="dzOptions"  callbacks="dzCallbacks" methods="dzMethods" msg="Please add File." ng-dropzone></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>* Required Fields</p>
+                            </div>
+                        </div>
+					</form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" ng-click="closeFile()" data-dismiss="modal">CANCEL</button>
+                            <button type="button" ng-click="addFile()" class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">ATTACH</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!---Files modal Ends here--->
+		
+		<!---Update Files modal starts here---->
+			<div id="update-files" class=" add-files modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button"  class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Edit Description</h4>
+                    </div>
+                    <div class="modal-body">
+					<form id="file_form">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                                <textarea ng-model="editDescription" name="desc"></textarea>
+                            </div>
+                        </div>
+					</form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" ng-click="closefilemodal()" data-dismiss="modal">CANCEL</button>
+                            <button type="button" ng-click="editFile(documentId)" class="btn btn-default">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!--- Update Files modal Ends here --->
+		
+		<!---Reopen case modal starts here---->
+			<div id="reopen-case" class="reopen-case modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <img src="images/close.png" alt="close" />
+                        </button>
+                        <h4 class="modal-title">Reason for Hearing Date Change</h4>
+                    </div>
+                    <div class="modal-body">
+					<form id="reopen_form">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <label>Reason*</label>
+                                <div class="dropdown">
+                                   <select name="reasons" class="reason" id="reason" msg="Please select reason." ng-model="reasons">
+											<option value="">Select</option>
+											<option ng-repeat="data in reopenCasereasons | orderBy :'name'" value="{{data.name}}"> {{data.name}} </option>
+										</select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                                <textarea ng-model="reopenCasedesc" name="reopenCasedesc"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>* Required Fields</p>
+                            </div>
+                        </div>
+					</form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                            <button type="button" ng-click="reopenCase()" toggle-class="clickevent" ng-disabled="isDisabled" class="btn btn-default">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!--- Reopen case modal Ends here --->
+	<!--Page Leaving Warning Modal Open here-->
+		<div id="page-leave-warning-popup" class="deletepopup  modal fade" role="dialog" data-backdrop="static">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<img src="images/close.png" alt="close" />
+						</button>
+						<h4 class="modal-title">Warning</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-12">
+								<p>Do you want to the save changes before leaving this page?</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-block">
+							<button type="button" ng-click="pageLeaveWarning.proceedAhead()" class="btn btn-default cancel">CANCEL</button>
+							<button type="button" ng-click="updateDocket()" data-dismiss="modal" class="btn btn-default">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--Page Leaving Warning Modal Ends here-->

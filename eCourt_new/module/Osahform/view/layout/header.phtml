@@ -1,0 +1,332 @@
+<?php 
+
+use Zend\Session\Container;
+$session = new Container('base');
+?>
+
+<div ng-controller="commancontroller" ng-class="{'no-bg': $state.current.name == 'newdocket' || $state.current.name == 'printlabel' || $state.current.name == 'exportbulkdoc' || $state.current.name == 'ddsimport' || $state.current.name == 'ddsreport'|| $state.current.name == 'upcalendar'|| $state.current.name == 'calendar-management' || $state.current.name == 'calendarhistory'}" ng-if="$state.current.name!='login'" class="header-wrapper">
+                <div class="header">
+                    <div class="container">
+                        <div class="col-xs-3">
+                            <a ui-sref="home" class="logo"><img src="images/osah-logo.png" alt="OSAH" /></a>
+			             </div>
+                        <div class="col-xs-7">
+                            <div class="navigation">
+                                <ul>
+                                    <li><a ng-class="{'active': $state.current.name == 'home' }" ui-sref="home">HOME</a></li>
+
+                                    <li>
+                                        <a ui-sref="upcalendar" ng-class="{'active': $state.current.name == 'upcalendar'|| $state.current.name == 'calendar-management' || $state.current.name == 'calendarhistory'}">CALENDAR</a>
+                                    </li>
+
+
+                                    <li><a ui-sref="newdocket" ng-class="{'active': $state.current.name == 'docket' || $state.current.name == 'newdocket' || $state.current.name == 'dochistory' || $state.current.name == 'docnotes' }">DOCKET</a></li>
+
+                                    <li ng-if="loggedUserType!='cma' && loggedUserType!='judge'"><a ui-sref="ddsreport" ng-class="{'active': $state.current.name == 'ddsreport'}">DDS</a></li>
+                                    
+                                    <li ng-if="loggedUserType!='cma' && loggedUserType!='judge'"><a ui-sref="printlabel" ng-class="{'active': $state.current.name == 'printlabel'}">PRINT LABELS</a>
+                                    </li>
+                            <li ng-show="loggedUserType=='clerk' || loggedUserType=='it'"><a ui-sref="exportbulkdoc" ng-class="{'active': $state.current.name == 'exportbulkdoc'}">EXPORT BULK DOCS</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <a ng-click="logoutUser()" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
+                        </div>
+                    </div>
+                </div>
+    
+		<!-- Main Pages search by docket section only for Main pages Start Here  -->    
+		 <div ng-if="$state.current.name!='newdocket' && $state.current.name != 'printlabel' && $state.current.name != 'exportbulkdoc' && $state.current.name != 'ddsimport' && $state.current.name != 'ddsreport' && $state.current.name != 'upcalendar' && $state.current.name != 'calendar-management' && $state.current.name != 'calendarhistory'" class="" ng-class="{'dashboard': $state.current.name=='home','inner-page': $state.current.name=='docket' || $state.current.name=='searchresult'|| $state.current.name=='dochistory' || $state.current.name=='docnotes' }"  >
+                    <div class="container">
+                        <div class="col-xs-12">
+                            <div class="docket-number-block">
+                                <label>Docket Number{{docketno}}</label>
+				<input type="text" id="docketno" ng-model="docketSearch.docketno" name="docketno" ng-keypress="($event.which === 13)?searchbydocket(docketSearch.docketno):0" />
+                                <span ng-click="searchbydocket(docketSearch.docketno)" class="search"><i class="fa fa-search" aria-hidden="true"></i></span>
+			    </div>
+                            <div class="additional-search-btn" ng-click="additionalSearchBlockFn()">
+                       
+                            <span>+</span> Additional Search Options
+                            </div>
+                        </div>
+                    </div>
+        </div> 
+		<!-- Main Pages search by docket section only for Main pages End Here  -->
+    
+		<!-- Inner Pages search by docket section only for inner few pages Start Here  -->
+<!--		<div class="inner-page">
+                    <div class="container">
+                        <div class="col-xs-3">
+                            <div class="back-to-search-result-wrapper">
+                                <a><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Search Results</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="docket-number-block">
+                                <label>Docket Number</label>
+                                <input type="text" id="docketno" ng-model="docketno" name="docketno" ng-keypress="($event.which === 13)?searchbydocket(docketno):0" />
+                                <span class="search"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="additional-search-btn">
+                                <span>+</span> Additional Search Options
+                            </div>
+                        </div>
+                        <div class="col-xs-3 visible-hidden"></div>
+                    </div> -->
+		<!-- Inner Pages search by docket section only for inner few pages End Here  -->    
+                </div>
+           
+	  <div ng-if="$state.current.name!='newdocket' && $state.current.name != 'printlabel' && $state.current.name != 'exportbulkdoc' " ng-controller="commancontroller" class="additional-search-block">
+                <div class="additional-search-wrapper-gray">
+					<div class="container">
+						<div class="open-close-btn-block">
+							<ul>
+
+								<li><a ng-class="{'active':case_type=='O'}" ng-click="open_closed('O')">General Search</a></li>
+								<li><a ng-class="{'active':case_type=='C'}" ng-click="open_closed('C')">Closed Cases Search</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="container h40" ng-show="case_type=='O'"></div>
+                    <div class="container" ng-show="case_type=='O'">
+                        <div class="col-xs-3">
+                            <label>Last Name</label>
+                            <input type="text" name="lastName" id="lastName" ng-model="advanceSearch.lastName" class="resetdata" />
+                        </div>
+                        <div class="col-xs-3">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" id="firstName" ng-model="advanceSearch.firstName" class="resetdata"/>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Contact Type</label>
+                            <select class="resetdata" name="contactType" id="contactType" ng-model="advanceSearch.contactType" >
+                                <option value="" >Select</option>
+                                <option ng-repeat="contact in contactList | orderBy :'partycontact'" value="{{contact.partycontact}}"> {{contact.partycontact}} </option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Agency Reference Number</label>
+                                <input type="text" name="agencyreference" id="agencyreference" ng-model="advanceSearch.agencyreference" class="resetdata" />
+                        </div>
+                    </div>
+                </div>
+                <div class="additional-search-wrapper-white" ng-show="case_type=='O'">
+                    <div class="container" >
+                        <div class="col-xs-3 dropdown">
+                            <label>County</label>
+                            <select name="county" id="county" ng-model="advanceSearch.county" class="resetdata"  >
+                                <option value="">Select</option>
+								<option value="{{conty.Countydescription}}" ng-repeat="conty in countyList">{{conty.Countydescription}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Status</label>
+                            <select name="stas" id="stas" ng-model="advanceSearch.stas" class="resetdata">
+                                <option value="" >Select</option>
+                                <option value="All" >All</option>
+                                <option value="{{st.statuslist}}" ng-repeat="st in statusList" >{{st.statuslist}}</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Agency</label>
+                            <select name="agency" id="agency" ng-model="advanceSearch.agency" class="resetdata" ng-change="casetype_agencywise()" >
+                                <option value="" >Select</option>
+                                <option agnid="{{agn.AgencyID}}" ng-repeat="agn in AgencyList | orderBy :'Agencycode'" value="{{agn.Agencycode}}" >{{agn.Agencycode}}</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Case Type</label>
+                            <select name="casetype" id="casetype" ng-model="advanceSearch.casetype" class="resetdata" >
+                                <option value="" >Select</option>
+                                <option ng-repeat="cst in casetypesList | orderBy :'CaseCode'|unique:'CaseCode'" value="{{cst.CaseCode}}">{{cst.CaseCode}}</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="container" ng-show="case_type=='O'">
+                        <div class="col-xs-3 dropdown">
+                            <label>Judge</label>
+                            <select name="judge" id="judge" ng-model="advanceSearch.judge" class="resetdata">
+                                <option value="" >Select</option>
+                                <option ng-repeat="jdg in judgeList | orderBy :'LastName'" value="{{jdg.LastName}} {{jdg.FirstName}}" >{{jdg.LastName}}, {{jdg.FirstName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Judge Assistant</label>
+                            <select name="jdgasst" id="jdgasst" ng-model="advanceSearch.jdgasst" class="resetdata">
+                                <option value="" >Select</option>
+                                <option ng-repeat="jdast in Judge_AssistantList | orderBy :'LastName'" value="{{jdast.LastName}} {{jdast.FirstName}}" >{{jdast.LastName}}, {{jdast.FirstName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Hearing Site</label>
+                            <select name="hearingSite" id="hearingSite" ng-model="advanceSearch.hearingSite" class="resetdata">
+                                <option value="" >Select</option>
+                                <option ng-repeat="hesite in courtlocationList | orderBy :'Locationname'" value="{{hesite.Locationname}}">{{hesite.Locationname}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container" ng-show="case_type=='O'">
+                        <div class="col-xs-3">
+                            <label>Hearing Date From</label>
+                            <div class="datepicker-wrapper">
+                                <input b-datepicker="{{hdf}}" datepicker-options="{autoclose: true}" class="resetdata" type="text" name="hdf" ng-model="advanceSearch.hdf" id="hdf">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Hearing Date To</label>
+                            <div class="datepicker-wrapper">
+                                <input b-datepicker="{{hdto}}" datepicker-options="{autoclose: true}" class="resetdata" type="text" name="hdto" id="hdto" ng-model="advanceSearch.hdto" >
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>Date Received From</label>
+                            <div class="datepicker-wrapper">
+                                <input class="resetdata" b-datepicker="{{drf}}" datepicker-options="{autoclose: true}" type="text" ng-model="advanceSearch.drf" id="drf" name="drf" >
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Date Received To</label>
+                            <div class="datepicker-wrapper">
+                                <input b-datepicker="{{drto}}" datepicker-options="{autoclose: true}" class="resetdata" type="text" name="drto" ng-model="advanceSearch.drto" id="drto">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" ng-show="case_type=='O'">
+                        <div class="col-xs-12">
+                            <div class="btn-block additional-search-bottom-btn">
+                                <a ng-click="advanceSearch(lastName,firstName,contactType,agencyreference,county,stas,agency,casetype,advanceSearch.judge,advanceSearch.jdgasst,advanceSearch.hearingSite,hdf,hdto,drf,drto)"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+
+				<div class="additional-search-wrapper-white" ng-show="case_type=='C'">
+                    <div class="container">
+                        <div class="col-xs-3 dropdown">
+                            <label>Judge</label>
+                            <select name="judge" id="cc_judge" ng-model="fields.cc_judge" class="resetdata">
+                                <option value="" >Select</option>
+                                <option ng-repeat="jdg in judgeList | orderBy :'LastName'" value="{{jdg.LastName}} {{jdg.FirstName}}" >{{jdg.LastName}}, {{jdg.FirstName}}</option>
+                            </select>
+                        </div>
+						
+						<div class="col-xs-3 dropdown">
+                            <label>Agency</label>
+                            <select name="agency" id="cc_agency" ng-model="fields.cc_agency" class="resetdata" ng-change="casetype_agencywise_cc()" >
+                                <option value="" >Select</option>
+                                <option agnid_cc="{{agn.AgencyID}}" ng-repeat="agn in AgencyList | orderBy :'Agencycode'" value="{{agn.Agencycode}}" >{{agn.Agencycode}}</option>  
+                            </select>
+                        </div>
+						
+                        <div class="col-xs-3 dropdown">
+                            <label>Case Type</label>
+                            <select name="casetype" id="cc_casetype" ng-model="fields.cc_casetype" class="resetdata" >
+                                <option value="" >Select</option>
+                                <option ng-repeat="cst in casetypesList | orderBy :'CaseCode'|unique:'CaseCode'" value="{{cst.CaseCode}}">{{cst.CaseCode}}</option>
+                             </select>
+                        </div>
+                        <div class="col-xs-3 dropdown">
+                            <label>County</label>
+                            <select name="county" id="cc_county" ng-model="fields.cc_county" class="resetdata"  >
+                                <option value="">Select</option>
+								<option value="{{conty.Countydescription}}" ng-repeat="conty in countyList">{{conty.Countydescription}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container" ng-show="case_type=='C'">
+                        <div class="col-xs-3">
+                            <label>Date Closed by OSAH (From)</label>
+                            <div class="datepicker-wrapper">
+								<input class="resetdata valid_closedCases" b-datepicker="{{dcfrom}}" datepicker-options="{autoclose: true}" type="text" ng-model="fields.dcfrom" msg="Please select date closed by OSAH(From)!"  id="dcfrom" name="dcfrom" >
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Date Closed by OSAH (to)</label>
+                            <div class="datepicker-wrapper">
+                               <input b-datepicker="{{dcto}}" datepicker-options="{autoclose: true}" class="resetdata valid_closedCases" type="text" name="dcto" msg="Please select date closed by OSAH(To)!" ng-model="fields.dcto" id="dcto">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label>Box No.</label>
+                            <input type="text" name="boxno" id="cc_boxno" ng-model="fields.cc_boxno" class="resetdata"/>
+                        </div>
+                    </div>
+                    <div class="container" ng-show="case_type=='C'">
+                        <div class="col-xs-12">
+                            <div class="btn-block additional-search-bottom-btn">
+                                <a ng-click="closeCasesearch(cc_judge,cc_agency,cc_casetype,cc_county,dcfrom,dcto,cc_boxno)"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+								<!-- <button type="submit" ng-click="closeCasesearch(cc_judge,cc_agency,cc_casetype,cc_county,dcfrom,dcto,cc_boxno)"class="btn btn-default search-btn"> <i class="fa fa-search" aria-hidden="true"></i> Search</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+<!-- Below Header for Add new docket -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
+<!--
+
+<link href="/js/dojo-release-1.9.1/dojo-release-1.9.1/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css">
+
+<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="background-color:#8fb8cc;" >
+
+<table width="703"><tr><td>
+<img src="/images/AdministrativeLawReport_Georgia.png" width="100" height="100" alt="osah" align="left" >
+<h3 style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#484500">OSAH - CASEMANAGEMENT SYSTEM</h1></td></tr></table>
+
+
+
+
+
+ 
+ 
+</div>
+   
+<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="background-color:#036; color:#FFF;"> <table class="claro" style="background-color:#036; color:#FFF;"><tr><td width="150" align="left"><?php if($session->offsetExists('username')) {  ?> <?php
+//$uname=str_replace('\n\', '',$session->offsetGet('username'));
+
+$uname=str_pad($session->offsetGet('username'), 5, "-", STR_PAD_RIGHT);
+
+$msg ='Welcome ';
+echo $msg . $uname; } ?></td>
+<td width="751" align="right">Home | <?php if($session->offsetExists('username')) { ?><a href="logout.php" style="color:#FFF">Log out</a><?php } else { ?><a href="/Osahform/validatein" style="color:#FFF">Log In</a><?php }?></td></tr></table></div>
+ -->

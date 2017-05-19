@@ -1,0 +1,246 @@
+
+            <div class="new-docket-title-block">
+                <div class="container">
+                    <div class="new-docket-title-wrapper">
+                        <div class="col-xs-8">
+                            <h2>Docket New Case</h2>
+                        </div>
+                        <div class="col-xs-4">
+                            <span class="createdby-label">Created By: </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-block" ng-class="{confidential:(casefiletype=='Confidential')}">
+                <div class="container">
+                    <div class="confidential-warning pull-right" ng-if="(casefiletype=='Confidential')">
+						<i class="fa fa-exclamation-triangle"></i> CONFIDENTIAL CASE
+					</div>
+                    <ul>
+                        <li>
+                            <a class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> General Information</a>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-history" aria-hidden="true"></i> History</a>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="docket-information-block">
+                <div class="docket-information-left col-xs-5">
+                    <div class="docket-info-block">
+                        <h2>OSAH Form 1 Information</h2>
+                        <div class="col-xs-6">
+                            <label>Agency Code *</label>
+                           <!--  <span ng-bind="agencyCode"></span> -->   
+                            <div class="dropdown">
+                                <select msg="Please select agency code!" ng-model="agencyCode" id="new_docket-agencyCode" class="add_doc selectpicker" data-live-search="true" name="agencyCode" ng-change="casetype_agencywise()">
+                                       
+                                    <option value="">Select</option>
+                                    <option agnid="{{agency.AgencyID}}"  ng-repeat="agency in AgencyList | orderBy :'Agencycode'" value="{{agency.Agencycode}}">{{agency.Agencycode}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Case Type *</label>
+                            <!--<div class="dropdown">
+                                <select data-toggle="modal" data-target="#confidential-case">
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                </select>
+                            </div>-->
+							<div class="dropdown">
+                                <select msg="Please select case type!" ng-model="casetypeselect" class="add_doc selectpicker" data-live-search="true" id="new_docket-casetypeselect" ng-change="casetypeCountyChange()" name="casetypeselect" >
+                                    <option value="">Select</option>
+                                    <option castyp="{{casetype.Casetypeid}}" ng-repeat="casetype in casetypesList | orderBy :'CaseCode' |unique:'CaseCode'" value="{{casetype.CaseCode}}">{{casetype.CaseCode}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>County *</label>
+                             <div class="dropdown">
+                                <select msg="Please select county!" ng-change="casetypeCountyChange()" ng-model="countyselect" id="new_docket-countyselect" class="add_doc" name="countyselect" >
+                                    <option value="">Select</option>
+                                    <option conty="{{countylist.CountyID}}" ng-repeat="countylist in countyList_root | orderBy :'Countydescription'" value="{{countylist.Countydescription}}">{{countylist.Countydescription}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Date Requested *</label>
+                            <div class="datepicker-wrapper">
+                                <input type="text" id="new_docket-reqdate" class="add_doc" ng-model="dateRequested" msg="Please select requested date!">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Agency Reference Number</label>
+                            <input type="text" ng-model="agencyrefnumber"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Type *</label>
+                            <div class="dropdown">
+                                <select ng-model="hearingType" class="add_doc" msg="Please select hearing type!" name="hearingType" id="new_docket-hearingType">
+                                   <option value="" selected>Select</option>
+                                    <option value="{{hearType.HearingValues}}"  ng-repeat="hearType in hearingTypedetails" >{{hearType.HearingValues}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Date Received *</label>
+                            <div class="datepicker-wrapper">
+                                <input  type="text" ng-model="receivedDate" class="add_doc" id="new_docket-recvdate" msg="Please select received date!" min="{{receivedDate | date:'yyyy-MM-dd'}}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hearing-info-block">
+                        <h2>Hearing Information</h2>
+                        <div class="col-xs-12">
+                            <label>Location *</label>
+                            <div class="dropdown">
+                                <select class="add_doc" ng-model="caseLocation" msg="Please select location!" name="caseLocation" id="new_docket-caseLocation">
+                                    <option value="">Select</option>
+                                     <option location_id="{{hesite.courtlocationid}}" ng-repeat="hesite in courtlocationList | orderBy :'Locationname'" value="{{hesite.Locationname}}">{{hesite.Locationname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Date {{skip_hearingDate=='0' ? '*' : ''}}</label>
+                            <div class="datepicker-wrapper">
+                                <input type="text" ng-model="hearingDate" class="add_doc" msg="Please select hearing date!" id="new_docket-hearingdate" ng-disabled="elementDataLoader.fieldDisabled" ng-change="hearingDateManualMode()" b-datepicker="{{hearingDate}}" datepicker-options="{startDate:'0d',autoclose: true}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+							<?php /*To show loader when element data is loading @created by FaisalK 2016-02-27 start*/ ?>
+							<div class="element-val-loader" 
+                                ng-if="elementDataLoader.val||elementDataLoader.hearingDateValEnteredByUser">
+								<span ng-if="elementDataLoader.val" compile="elementDataLoader.text" class="hearing-date-message-block"></span>
+								<span ng-click="hearingDateAutomateMode()" 
+                                    ng-if="!elementDataLoader.val&&elementDataLoader.hearingDateValEnteredByUser"
+                                     class="hearing-date-message-block" >
+                                     <div class="more-block" ng-click="hearingDateAutomateMode()" >
+                                        <i class="fa fa-plus-circle"></i><span>Click to add calendar date.</span>
+                                     </div>
+                                     <span ng-click="hearingDateAutomateMode()"  class="message-block"> Manual mode</span>
+                                </span>
+							</div>
+							<?php /*To show loader when element data is loading @created by FaisalK 2016-02-27 end*/ ?>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Hearing Time {{skip_hearingDate=='0' ? '*' : ''}}</label>
+                            <div class="dropdown">
+                                <select class="add_doc" msg="Please select hearing time!" ng-model="hearingTime" name="hearingTime" id="new_docket-hearingTime">
+                                    <option value="">Select</option>
+                                    <option ng-repeat="hertime in hearingtimeList | orderBy :'heringtimestored'"  time-id="{{hertime.timeid}}" value="{{hertime.heringtimestored}}" >{{hertime.hearingtime}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Judge *</label>
+                             <div class="dropdown">
+                                <select class="add_doc" ng-model="judge" msg="Please select Judge!" name="judge" id="new_docket-judge">
+                                    <option value="">Select</option>
+                                    <option ng-repeat="jdg in judgeList | orderBy :'LastName'" value="{{jdg.LastName}} {{jdg.FirstName}}"  judge_id="{{jdg.user_id}}">{{jdg.LastName}}, {{jdg.FirstName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Assistant *</label>
+                            <div class="dropdown">
+                                <select class="add_doc" ng-model="judgeAssistant" msg="Please select JudgeAssistant!" name="judgeAssistant" id="new_docket-judgeAssistant">
+                                    <option value="">Select</option>
+                                    <option ng-repeat="jdast in Judge_AssistantList | orderBy :'LastName'" value="{{jdast.LastName}} {{jdast.FirstName}}"  judge_assistant_id="{{jdast.user_id}}">{{jdast.LastName}}, {{jdast.FirstName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-block">
+                        <button type="submit" ng-click="addDocket()"  class="btn btn-default search-btn" toggle-class="clickevent"  ng-disabled="isDisabled||elementDataLoader.submitDisabled">SAVE</button>
+                    </div>
+                </div>
+                <div class="docket-information-right col-xs-7">
+                    <div class="docket-info-right-block">
+                        <h2>Document & File Management</h2>
+                        <div class="button-block">
+                            <a><i class="fa fa-plus" aria-hidden="true"></i> DOCUMENT TEMPLATES</a>
+                            <a><i class="fa fa-plus" aria-hidden="true"></i> FILES</a>
+                        </div>
+                    </div>
+                    <div class="disposition-block">
+                        <h2>Disposition</h2>
+                        <div>
+                            <a class="add-decision-btn"><i class="fa fa-plus" aria-hidden="true"></i> ADD DECISION</a>
+                        </div>
+                    </div>
+                    <div class="party-info-block">
+                        <h2>Party Information</h2>
+                        <div>
+                            <a class="add-party-btn active" ><i class="fa fa-plus" aria-hidden="true"></i> ADD PARTY</a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div id="confidential-case" class="modal fade" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> WARNING - CONFIDENTIAL CASE</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>Please Note: This Case is CONFIDENTIAL.</h2>
+                                <h2>Please follow the below rules for this case type.</h2>
+                                <ul>
+                                    <li>DO NOT share any information with a public caller.</li>
+                                    <li>DO NOT...</li>
+                                    <li>DO NOT...</li>
+                                    <li>DO NOT...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-default cancel" data-dismiss="modal">CANCEL</button>
+                            <button type="button" class="btn btn-default">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<!--Page Leaving Warning Modal Open here-->
+	<div id="page-leave-warning-popup" class="deletepopup  modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<img src="images/close.png" alt="close" />
+					</button>
+					<h4 class="modal-title">Warning</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<p>Do you want to the save changes before leaving this page?</p>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="btn-block">
+						<button type="button" ng-click="pageLeaveWarning.proceedAhead()" class="btn btn-default cancel">CANCEL</button>
+						<button type="button" ng-click="addDocket()" data-dismiss="modal" class="btn btn-default">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+     <!--Page Leaving Warning Modal Ends here-->   
+        
+    

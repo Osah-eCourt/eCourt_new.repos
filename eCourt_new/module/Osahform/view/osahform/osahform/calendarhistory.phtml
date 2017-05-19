@@ -1,0 +1,57 @@
+<div class="new-docket-title-block">
+	<div class="container">
+		<div class="new-docket-title-wrapper">
+			<div class="col-xs-12">
+				<h2>Calendar History</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tab-block">
+	<div class="container">
+		<ul>
+			<li>
+				<a ui-sref="upcalendar"><i class="fa fa-calendar" aria-hidden="true"></i> Upcoming Calendars</a>
+			</li>
+			<li>
+				<a ui-sref="calendar-management"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Calendar Management</a>
+			</li>
+			<li>
+				<a class="active"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="history-table-block">
+                <div class="container">
+                    <div class="history-table-wrapper">
+                        <table>
+                            <tr class="header">
+                                <td class="date" ng-click="sort_by('date')">Date <i class="fa fa-angle-up" aria-hidden="true"></i></td>
+                                <td class="description"  ng-click="sort_by('Description')">Description <i class="fa fa-angle-down" aria-hidden="true"></i></td>
+                                <td class="modified-by"  ng-click="sort_by('Modifiedby')">Modified By <i class="fa fa-angle-down" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr ng-repeat="history in historyList | orderBy:sortingOrder:reverse | limitTo:historyList.limit">
+                                <td class="date">{{history.Date | date:'MM-dd-yyyy'}}</td>
+                                <td class="description">
+                                    <div class="label-block" compile="history.Description">
+									
+						            </div>
+                                </td>
+                                <td class="modified-by">{{history.Modifiedby}}</td>
+                            </tr>
+                         </table>
+                    </div>
+                </div>
+            </div>
+			<div class="load-more-button-block">
+				<div class="container">
+					<div class="button-block">
+						<button class="more btn btn-primary btn-block" ng-click="loadMore()">Load More!</button>
+						<button class="loadless btn btn-primary btn-block" ng-click="loadless()">Load Less!</button>
+					</div>
+				</div>
+			</div>
+        <div id="hidden-download-form" style="display:none;">
+		</div>

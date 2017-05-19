@@ -1,0 +1,64 @@
+
+           
+            <div class="print-labels-block">
+                <div class="container">
+                    <div class="print-labels-title-wrapper">
+                        <div class="col-xs-12">
+                            <h2>Print Labels</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="print-labels-search-for-docket-block">
+                        <div class="col-xs-12">
+                            <h3>Search for docket(s)</h3>
+                            <span class="print-optional-label">To search, select the docket clerk and date received or enter the docket number.</span>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="print-labels-fields-block">
+                                <div class="print-labels-fields">
+                                    <label>Docket Clerk</label>
+                                    <div class="dropdown">
+                                        <select ng-model='clerk_id' id="clerk_id">
+                                            
+                                            <option value="0">Select</option>    
+                                             <option  ng-repeat="clrk in clerkList" value="{{clrk.user_id}}">{{clrk.LastName}}, {{clrk.FirstName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="print-labels-fields">
+                                    <label>Date Received</label>
+                                    <div class="datepicker-wrapper">
+                                        <input ng-model="docReceivedDate"  type="text" id="docReceivedDate">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="or-label">
+                                    <span>OR</span>
+                                </div>
+                                <div class="print-labels-fields">
+                                    <label>Docket Number</label>
+                                    <input type="text" numeric-only maxlength="7" ng-model="caseid" id="caseid"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="label-number-block">
+                                <label>Label Number</label>
+                                <span>(Optional) Select the page's label number from which you'd like to start the label printing.</span>
+                                <div class="dropdown">
+                                     <select  ng-model="labelnumber"  id="labelnumber"  >
+                                       <option value="-1">Select</option>    
+                                             <option  ng-repeat="lbl in labelsNumberList" value="{{lbl}}">{{lbl}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <a ng-click="printlabels()" class="print-labels-search-btn"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+ 

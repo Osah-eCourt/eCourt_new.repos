@@ -1,0 +1,405 @@
+
+<!-- Docket File -->
+	<div class="overview-block">
+		<div class="container">
+			<div class="overview-wrapper">
+				<div class="col-xs-4">
+					<span>Docket Number</span>
+					<h2>{{docket_no}}</h2>
+				</div>
+				<div class="col-xs-3">
+					<span>Petitioner</span>
+					<h2 ng-show="petitioner_flg==1">{{Lastname | capitalize}}, {{Firstname | capitalize}}</h2>
+					<h2 ng-show="petitioner_flg==0">{{petitionerName}}</h2>
+				</div>
+				<div class="col-xs-3">
+					<span>Respondent</span>
+					<h2 ng-show="respondent_flg==1">{{ReslastName | capitalize}}, {{RespfirstName | capitalize}}</h2>
+					<h2 ng-show="respondent_flg==0">{{respondentName}}</h2>
+				</div>
+				<div class="col-xs-2">
+					<span class="createdby-label">Created By: {{docketCreated | capitalize}}</span>
+				</div>
+			</div>
+		</div>
+		<div ng-show="empty_result_flag =='1'">
+			No records found.
+		</div>
+	</div>
+	<div class="tab-block" ng-class="{confidential:(casefiletype=='Confidential')}">
+		<div class="container">
+			<div class="confidential-warning pull-right" ng-if="(casefiletype=='Confidential')">
+				<i class="fa fa-exclamation-triangle"></i> CONFIDENTIAL CASE
+			</div>
+			<ul> 
+				<li>
+					<a ui-sref="docket({reqdt: encoded_docket_number})"><i class="fa fa-history" aria-hidden="true"></i> General Information</a>
+				</li>
+				<!--<li>
+					<a ui-sref="dochistory({reqdt: encoded_docket_number})"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+				</li>-->
+				<li>
+					<a ui-sref="docnotes({reqdt: encoded_docket_number})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes</a>
+				</li>
+				<li>
+					<a class="active" ><i class="fa fa-file-text-o" aria-hidden="true"></i> Form 1205</a>
+				</li>
+			</ul>
+		</div>  
+	</div>
+	
+	<div class="from1205-block">
+		<div class="container">
+			<!-- <div class="is-form-complete-block">
+				<h2>Is the 1205 Form complete?</h2>
+				<div class="radio-block">
+					<span ng-click="loadDocumentList('nondecision')">
+						<input id="doctype1" name="doctype" type="radio" class="field radio" value="First Choice" tabindex="1" checked />
+						<label class="" for="doctype1" >
+							<span class="choice__text">Yes</span>
+						</label>
+					</span>
+					<span ng-click="loadDocumentList('decision')">
+						<input id="doctype2" name="doctype" type="radio" class="field radio" value="First Choice" tabindex="1" />
+						<label class="" for="doctype2" >
+							<span class="choice__text">No</span>
+						</label>
+					</span>
+				</div>
+			</div> -->
+			<div class="offense-information-block">
+				<h2>Incident Information</h2>
+				<div class="row">
+					<div class="col-xs-2">
+						<label>Citation #*</label>							
+						<input type="text" id="citation" class="add_1205 req" ng-model="citation" ng-change = "change_value()" msg="Please Add a Citation Number." />
+					</div>
+					<div class="col-xs-2">
+						<label>County of Occurrence*</label>
+						<div class="dropdown">
+							<select id="county_occur" class="add_1205 req" ng-model="county_occur" ng-change = "change_value()" msg="Please Select County of Occurence.">
+									<option value="">Select County</option>
+                                    <option conty="{{countylist.CountyID}}" ng-repeat="countylist in countyList_root | orderBy :'Countydescription'" value="{{countylist.Countydescription}}">{{countylist.Countydescription}}</option>
+							</select>
+						</div>
+					</div>
+						
+					<div class="col-xs-2">
+						<label>Incident Date*</label>
+						<div class="datepicker-wrapper">
+                                <input  type="text" ng-model="incident_date" ng-change = "change_value()" class="add_1205 req"  msg="Please Enter Incident Date." id="incident_date" min="{{incident_date | date:'yyyy-MM-dd'}}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+					</div>	
+					<div class="col-xs-2">
+						<label>Incident Time*</label>
+						<div class="dropdown" >
+						<div uib-timepicker ng-model="incident_time"  id="incident_time" ng-change = "change_value()"  allow-only-numbers hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<label>Officer Badge Number</label>							
+						<input type="text" id="officer_badge_number " class="req" ng-model="officer_badge_number " ng-change = "change_value()" />
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-xs-2">
+						<p>Commercial Vehicle?</p>
+							<div class="radio-block"  ng-init="commercial_vehicle=false" >
+									<!--<div>
+										<input type="radio" ng-model="oficerYesNo" ng-value="true"><label>Yes</label></div>
+										<div>						 
+										<input type="radio" ng-model="oficerYesNo" ng-value="false" checked><label>No</label></div>	-->
+										
+								<span>
+									<input id="vyes" name="commercial_vehicle" ng-change = "change_value()" ng-model="commercial_vehicle" ng-value="true"  type="radio" class="field radio" value="First Choice" />
+									<label class="" for="vyes" >
+										<span class="choice__text">Yes</span>
+									</label>
+								</span>
+								<span >
+									<input id="vno" name="commercial_vehicle" ng-change = "change_value()"  ng-model="commercial_vehicle" ng-value="false" type="radio" class="field radio" value="First Choice" />
+									<label class="" for="vno" >
+										<span class="choice__text">No</span>
+									</label>
+								</span>
+							</div>
+					</div>
+					
+						<div class="col-xs-2">
+							<p>Hazardous Materials?</p>
+								<div class="radio-block"  ng-init="hazardous_vehicle=false">
+										
+									<span>
+										<input id="hyes" name="hazardous_vehicle" ng-change = "change_value()" ng-model="hazardous_vehicle" ng-value="true"  type="radio" class="field radio" tabindex="1"/>
+										<label class="" for="hyes" >
+											<span class="choice__text">Yes</span>
+										</label>
+									</span>
+									<span >
+										<input id="hno" name="hazardous_vehicle"  ng-change = "change_value()" ng-model="hazardous_vehicle" ng-value="false" type="radio" class="field radio" tabindex="1"/>
+										<label class="" for="hno" >
+											<span class="choice__text">No</span>
+										</label>
+									</span>
+								</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2">
+							<label>State of Issue</label>
+							<div class="dropdown">
+								<select id="stateofissue" class="" ng-model="stateofissue" ng-change = "change_value()">
+										<option value="">Select State of Issue</option>
+										<option ng-repeat="stateissue in stateList | orderBy :'state'" value="{{stateissue.state}}">{{stateissue.state}}</option>
+								
+									
+								</select>
+							</div>
+						</div>
+						<div class="col-xs-2">
+							<label>License Class</label>
+							<div class="dropdown" >
+								<input type="text" id="licenseclass" class="" ng-model="licenseclass" ng-change = "change_value()" />
+							</div>
+						</div>
+					<div class="col-xs-2">
+						<label>Date of Birth*</label>
+						<div class="datepicker-wrapper">
+                                <input  type="text" ng-model="dob" ng-change = "change_value()" class="add_1205" msg="Please Enter Date of Birth." id="form1205dob" min="{{form1205dob | date:'yyyy-MM-dd'}}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+					</div>
+					
+					<div class="col-xs-2">
+						<label>Restrictions</label>
+						<div class="dropdown" >
+							<input type="text" id="restriction" class="" ng-model="restriction" ng-change = "change_value()" />
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<label>Gender</label>
+						<div class="dropdown" >
+							<select ng-model="gender" class=""  id="gender" ng-change = "change_value()">
+								<option value="">Select Gender</option>
+								<option value="0">Male</option>
+								<option value="1">Female</option>
+							</select>
+						</div>
+					</div>
+					
+					
+					<div class="col-xs-2">
+						<div class="feet-inches-block">
+							<label>Height</label>
+							<div class="feet">
+								<div class="dropdown" >
+									<select ng-model="feet" id="feet" class="" ng-change = "change_value()">
+										<option value="">feet</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<span>feet</span>
+							</div>
+							<div class="inches">
+								<div class="dropdown" >
+									<select ng-model="inches" id="inches" class="" ng-change = "change_value()" >
+										<option value="">inches</option>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+								</div>
+								<span>inches</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<label>Weight</label>
+						<input type="text" ng-model="weight" class=""  allow-only-numbers maxlength='4'   id="weight" ng-change = "change_value()" />
+					</div>
+					
+	
+					
+					
+				</div>
+			</div>
+			<div class="driver-requested-block" >
+				<p>Driver was requested to submit to test and:*</p>
+				<div class="radio-block">
+					<span>
+						<input id="doctype1"  name="driver_request" ng-change = "change_value()"  ng-value="1"  class="add_1205 req"  msg="Please select driver request" ng-model="driver_request"  type="radio" class="field radio" value="First Choice" />
+						<label class="" for="doctype1" >
+							<span class="choice__text">Driver refused to submit to chemical testing</span>
+						</label>
+					</span>
+					<span >
+						<input id="doctype2"  name="driver_request" ng-value="2"  ng-change = "change_value()" class="add_1205 req"  msg="Please select driver request" ng-model="driver_request"  type="radio" class="field radio" value="First Choice">
+						<label class="" for="doctype2" >
+							<span class="choice__text">Test results >=0.08 grams</span>
+						</label>
+					</span>
+					<span>
+						<input id="doctype3"  name="driver_request" ng-value="3" ng-change = "change_value()" class="add_1205 req"  msg="Please select driver request" ng-model="driver_request"  type="radio" class="field radio" value="First Choice" />
+						<label class="" for="doctype3" >
+							<span class="choice__text">Under 21 and test results >=0/02</span>
+						</label>
+					</span>
+					<span>
+						<input id="doctype4"  name="driver_request" ng-value="4" ng-change = "change_value()" class="add_1205 req"  msg="Please select driver request" ng-model="driver_request" n type="radio" class="field radio" value="First Choice"/>
+						<label class="" for="doctype4" >
+							<span class="choice__text">Commercial vehicle and test results >=0/04</span>
+						</label>
+					</span>
+				</div>
+			</div>
+			<div class="officer-information-block">
+				<h2>Officer Information</h2>
+				<p>Is this a new party or new address?*</p>
+				<div class="radio-block"  ng-init="officeryesno=false">		
+					
+					<span>
+						<input id="officeryes" name="officeryesno"  ng-model="officeryesno" ng-change = "change_value()"  ng-value="true"  type="radio" class="field radio" value="First Choice" tabindex="1" />
+						<label class="" for="officeryes" >
+							<span class="choice__text">Yes</span>
+						</label>
+					</span>
+					<span>
+						<input id="officerno" name="officeryesno" ng-model="officeryesno" ng-change = "change_value()" ng-value="false" type="radio" class="field radio" value="First Choice" tabindex="1" />
+						<label class="" for="officerno" >
+							<span class="choice__text">No</span>
+						</label>
+					</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-2">
+						<label>Contact Type*</label>
+						<div class="dropdown">
+							<select id="contacttype" class="req" ng-model="contacttype" ng-change = "change_value()" msg="Please select contact type!">
+								<option value="Officer">Officer</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<label>Last Name*</label>
+					
+						<div>
+										<input party-officer-auto-complete ng-model="last_name" name="last_name" ng-change = "change_value()" id="last_name" class="add_1205"  msg="Please Enter Last Name."   type="text" >
+
+										<input party-officer-auto-complete ng-model="ctrl.last.id" placeholder="enter name" type="hidden">
+										<input ng-model="officerrid" placeholder="enter name" type="hidden" id="officerrid">
+						</div>
+						
+					</div>
+					<div class="col-xs-2">
+						<label>First Name*</label>
+						<input type="text" id="first_name" class="add_1205 req" ng-model="first_name" ng-change = "change_value()" msg="Please Enter First Name."  ng-disabled="!officeryesno"  />
+					</div>
+					<div class="col-xs-2">
+						<label>Middle Name</label> 
+						<input type="text"  id="middle_name" class="" ng-model="middle_name" ng-change = "change_value()"  ng-disabled="!officeryesno" />
+					</div>
+					<div class="col-xs-2">
+						<label>Title*</label>
+						<input type="text" id="title" class="add_1205 req" ng-model="title" ng-change = "change_value()" msg="Please Enter Title."  ng-disabled="!officeryesno" />
+					</div>
+					<div class="col-xs-12">
+						<label>Address Line 1*</label>
+						<select ng-disabled="!officeryesno" ng-change = "change_value()" id="address1" ng-class="{add_1205: officeryesno == 0}" class="" ng-model="address1" msg="Please Enter Address1." ng-hide="officeryesno">
+								<option value="">Select Address</option>
+                                <option  ng-repeat="officerdatalist in officerdata" value="{{officerdatalist.Address1}}">{{officerdatalist.Address1}}</option>
+						</select>
+						<input type="text"  ng-class="{add_1205: officeryesno == 1}"id="address1_h" class="req" ng-model="address1" msg="Please Enter Address1." ng-show="officeryesno"/>
+					</div>
+					<div class="col-xs-12">
+						<label>Address Line 2</label>						
+						<input type="text" id="address2" ng-change = "change_value()" ng-model="address2"  ng-disabled="!officeryesno" />
+					</div>
+					<div class="row">
+						<div class="col-xs-2">
+							<label>City*</label>
+							<input type="text" id="city" ng-change = "change_value()" class="add_1205 req" ng-model="city" msg="Please Enter City." ng-disabled="!officeryesno" />
+						</div>
+						
+						<div class="col-xs-4">
+									<label>State*</label>
+									<div class="dropdown">
+									   <select name="state" ng-disabled="!officeryesno" ng-change = "change_value()" ng-class="{add_1205: officeryesno == 0}" class="" id="state" msg="Please select State." ng-model="statename">
+											<option value="" >Select</option>
+											<option ng-repeat="state in stateList" value="{{state.state}}"> {{state.state}} </option>
+										</select>
+									</div>
+								</div>
+						<div class="col-xs-2">
+							<label>Zip Code*</label>
+							<input type="text" id="zip_code" ng-change = "change_value()" class="add_1205 req" ng-keypress = "zipcodeFormat(zip_code)" ng-model="zip_code" msg="Please Enter Zip Code." ng-disabled="!officeryesno" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2">
+							<label>Phone</label>
+							<input type="text" id="phone" ng-change = "change_value()" ng-model="phone"ng-disabled="!officeryesno"/>
+						</div>
+						<div class="col-xs-2">
+							<label>Email</label>
+							<input type="text" id="email" ng-change = "change_value()" ng-model="email" ng-disabled="!officeryesno"/>
+						</div>
+						<div class="col-xs-2">
+							<label>Fax</label>
+							<input type="text"  id="fax" ng-change = "change_value()" ng-model="fax" ng-disabled="!officeryesno"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-block" ng-disabled="readonly_flag=='1'"> 				
+				<button type="submit" ng-click="readonly_flag=='1'? '' : update1205()"  class="save-btn" class="btn btn-default" toggle-class="clickevent" ng-disabled="isDisabled">SAVE</button>
+             </div>
+		</div>
+	</div>
+	
+	 <!--Page Leaving Warning Modal Open here-->
+		<div id="page-leave-warning-popup" class="deletepopup  modal fade" role="dialog" data-backdrop="static">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<img src="images/close.png" alt="close" />
+						</button>
+						<h4 class="modal-title">Warning</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-12">
+								<p>Do you want to the save changes before leaving this page?</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-block">
+							<button type="button" ng-click="pageLeaveWarning.proceedAhead()" class="btn btn-default cancel">CANCEL</button>
+							<button type="submit" ng-click="readonly_flag=='1'? '' : update1205()" data-dismiss="modal" class="btn btn-default">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--Page Leaving Warning Modal Ends here-->

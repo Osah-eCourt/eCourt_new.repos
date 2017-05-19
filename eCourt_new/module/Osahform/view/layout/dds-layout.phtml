@@ -1,0 +1,86 @@
+<html lang="en">
+
+<!-- 
+     DEVELOPER NAME:  Affan
+     CREATED DATE:  SEPT 21 2016
+     PURPOSE: THIS WORKS AS A LAYOUT FOR THE WHOLE APPLICATION.
+     WORK FOR: OSAH, ATLANTA, GA
+-->
+
+    <head>
+        <title>OSAH</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=1280">
+        <link rel="shortcut icon" href="<?= $this->basePath('img/favicon.ico')?>" type="image/x-icon">
+        <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+        <!-- Bootstrap -->
+        <link href="<?= $this->basePath('css/bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?= $this->basePath('css/datepicker.css'); ?>" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=PT+Serif|Raleway:400,500,700|Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 		
+        <link href="<?= $this->basePath('css/style-dds.css'); ?>" rel="stylesheet">
+        <link href="<?= $this->basePath('css/dropzone.css'); ?>" rel="stylesheet">
+		
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+	
+
+    <body ng-app="osah" ng-class="{loading: loading}" class="loading">
+           <div ng-show="errorMessageshow" ng-controller="commancontroller" class="top-error-msg">
+                <div class="alert alert-danger">
+                    <a ng-click="removemodel()" style="cursor:pointer" class="close"  aria-label="close" title="close"><img src="images/close-white.png" alt="Close" /></a>
+                    <span ng-bind="errorMessage" ></span>
+                </div>
+            </div>
+            <div  class="row" id="wrap">
+                <?php require_once "dds-header.phtml"; ?>
+                <div ui-view></div>
+            </div>
+
+   
+        <?php require_once "end.php"; ?>
+		<?php require_once 'loader.phtml'; ?>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://code.jquery.com/jquery.js"></script>
+		
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+		 <script src="<?= $this->basePath('js/angular/angularjs.js'); ?>"></script>		
+         <script src="<?= $this->basePath('js/angular/jquery-ui.min.js'); ?>"></script>
+		 <script src="<?= $this->basePath('js/angular/angular-ui-router.min.js'); ?>"></script>
+         <script src="<?= $this->basePath('/js/angular/ocLazyLoad.min.js'); ?>"></script>
+		
+		 
+		<script src="<?= $this->basePath('js/angular/dds/app.js'); ?>"></script>
+ 
+ 
+     <script src="<?= $this->basePath('js/bootstrap-datepicker.js'); ?>"></script>
+     <script src="<?= $this->basePath('js/bootstrap.min.js'); ?>"></script>
+     <script src = "<?= $this->basePath('js/angular/dds/factory/factory.js'); ?>"></script>
+     <script src = "<?= $this->basePath('js/angular/dds/filter/filter.js'); ?>"></script>
+     <script src = "<?= $this->basePath('js/angular/dds/directive/directive.js'); ?>"></script>
+    
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.0/ui-bootstrap-tpls.js"></script>
+	   <script src = "<?= $this->basePath('js/datetime-picker.js'); ?>"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.js"></script>
+     <script src = "<?= $this->basePath('js/angular/dds/controllers/commancontroller.js'); ?>"></script>
+     <script src = "<?= $this->basePath('js/dropzone.js'); ?>"></script>
+     <script src = "<?= $this->basePath('js/ng-dropzone.min.js'); ?>"></script>
+
+		
+      <script src="<?= $this->basePath('js/script.js'); ?>"></script>
+      <script type="text/javascript">
+        </script>
+ </body>
+    
+</html>

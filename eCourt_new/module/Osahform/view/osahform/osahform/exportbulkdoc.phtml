@@ -1,0 +1,401 @@
+            <div class="export-bulk-doc-block">
+                <div class="container">
+                    <div class="export-bulk-doc-title-wrapper">
+                        <div class="col-xs-12">
+                            <h2>Export Bulk Documents</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container export-bulk-doc-field-wrapper-top">
+                    <div class="export-bulk-doc-field-wrapper">
+                        <div class="col-xs-2">
+                            <div class="export-bulk-doc-field-container-1">
+                                <div class="export-bulk-doc-field">
+                                    <label>Date Received *</label>
+                                    <div class="datepicker-wrapper">
+                                        <input ng-model="docReceivedDate" type="text" id="docReceivedDate">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="export-bulk-doc-field-container-2">
+                                <div class="export-bulk-doc-field">
+                                    <label>Agency Code *</label>
+                                    <div class="dropdown">
+                                        <select ng-change="setAll()" mesg="Please select agency code!"  ng-model="agencyCode"  id="agencyCode"  >
+
+                                            <option value="0">Select</option>
+                                            <option value="7">CSS</option>
+                                            <option value="199">DDS</option>
+                                            <option value="125">DPS</option>
+                                            <option value="237">OIG</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="export-bulk-doc-field">
+                                    <label>Case Type *</label>
+                                    <div class="dropdown">
+                                        <select  ng-model="casetype"  id="casetype"  >
+                                            <option value="0">Select</option>    
+                                             <option  ng-repeat="case in casetypeList" value="{{case.caseid}}">{{case.casename}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="export-bulk-doc-field-container-3">
+                                <div class="export-bulk-doc-field">
+                                    <label>Document List *</label>
+                                    <div class="dropdown">
+                                        <select  ng-change="setAll()" ng-model="documentid" id="documentid">
+                                            <option value="0">Select</option>
+                                           <option  ng-repeat="doc in documentlist" value="{{doc.id}}">{{doc.documentname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="export-bulk-doc-field">
+                                    <label>91 Day Letter</label>
+                                    <div class="dropdown">
+                                        <select disabled='disabled' id="nine_one_day" ng-model="nine_one_day">
+                                           <option value="0">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <h3 class="mailer-parties-title">Mailer & Parties List</h3>
+                    <div class="mailer-parties-block">
+                       <!--   <span ng-repeat="case in contact_type_list">
+                         <span ng-show="$index==0|| $index== row1 ||$index==row2" >herererere{{$index}}</span> 
+                            -->
+                        <div class="col-xs-4">
+                            
+                           <div class="mailer-parties-header">
+                                <div>Mailer List</div>
+                                <div>Parties Copied</div>
+                            </div>
+
+                            <span compile="mailerList1" ></span>
+                             <!--<div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="attorney_agency_mlr" ng-model="attorney_agency_mlr" name="Field" type="checkbox" utype="mlr" class="field radio mailer" value="Agency Attorney" tabindex="1" />
+                                        <label class="" for="attorney_agency_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="attorney_agency_party" ng-model="attorney_agency_party" name="Field" type="checkbox" class="field radio party" value="Agency Attorney" tabindex="1" />
+                                        <label class="" for="attorney_agency_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Attorney - Agency</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="attorney_other_mlr" name="Field" ng-model="attorney_other_mlr" type="checkbox" class="field radio mailer" value="Attorney Other" tabindex="1" />
+                                        <label class="" for="attorney_other_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="attorney_other_party" name="Field" ng-model="attorney_other_party" type="checkbox" class="field radio party" value="Other Attorney" tabindex="1" />
+                                        <label class="" for="attorney_other_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Attorney - Other</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="attorney_petitioner_mlr" name="Field" ng-model="attorney_petitioner_mlr" type="checkbox" class="field radio mailer" value="Petitioner Attorney" tabindex="1" />
+                                        <label class="" for="attorney_petitioner_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="attorney_petitioner_party" name="Field" ng-model="attorney_petitioner_party" type="checkbox" class="field radio party" value="Petitioner Attorney" tabindex="1" />
+                                        <label class="" for="attorney_petitioner_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Attorney - Petitioner</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="attorney_respondent_mlr" name="Field" ng-model="attorney_respondent_mlr" type="checkbox" class="field radio mailer" value="Respondent Attorney" tabindex="1" />
+                                        <label class="" for="attorney_respondent_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="attorney_respondent_party" name="Field" ng-model="attorney_respondent_party" type="checkbox" class="field radio party" value="Respondent Attorney" tabindex="1" />
+                                        <label class="" for="attorney_respondent_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Attorney - Respondent</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="case_worker_mlr" name="Field" ng-model="case_worker_mlr" type="checkbox" class="field radio mailer" value="Case Worker" tabindex="1" />
+                                        <label class="" for="case_worker_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="case_worker_party" name="Field" ng-model="case_worker_party" type="checkbox" class="field radio party" value="Case Worker" tabindex="1" />
+                                        <label class="" for="case_worker_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Case Worker</div>
+                            </div>-->
+                        </div>
+                     <!-- </span> --> 
+
+
+                        
+                        
+                        <div class="col-xs-4">
+                           <div class="mailer-parties-header">
+                                <div>Mailer List</div>
+                                <div>Parties Copied</div>
+                            </div>
+                            <span compile="mailerList2"></span>
+                            <!-- <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="custodial_parent_mlr" name="Field" ng-model="custodial_parent_mlr" type="checkbox" class="field radio mailer" value="Custodial Parent" tabindex="1" />
+                                        <label class="" for="custodial_parent_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="custodial_parent_party" name="Field" ng-model="custodial_parent_party" type="checkbox" class="field radio party" value="Custodial Parent" tabindex="1" />
+                                        <label class="" for="custodial_parent_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Custodial Parent</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="head_of_household_mlr" name="Field" ng-model="head_of_household_mlr" type="checkbox" class="field radio mailer" value="Head of Household" tabindex="1" />
+                                        <label class="" for="head_of_household_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="head_of_household_party" name="Field" ng-model="head_of_household_party" type="checkbox" class="field radio party" value="Head of Household" tabindex="1" />
+                                        <label class="" for="head_of_household_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Head of Household</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="hearing_coordinator_mlr" name="Field" ng-model="hearing_coordinator_mlr" type="checkbox" class="field radio mailer" value="Hearing Coordinator" tabindex="1" />
+                                        <label class="" for="hearing_coordinator_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="hearing_coordinator_party" name="Field" ng-model="hearing_coordinator_party" type="checkbox" class="field radio party" value="Hearing Coordinator" tabindex="1" />
+                                        <label class="" for="hearing_coordinator_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Hearing Coordinator</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="investigator_mlr" name="Field" ng-model="investigator_mlr" type="checkbox" class="field radio mailer" value="Investigator" tabindex="1" />
+                                        <label class="" for="investigator_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="investigator_party" name="Field" ng-model="investigator_party" type="checkbox" class="field radio party" value="Investigator" tabindex="1" />
+                                        <label class="" for="investigator_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Investigator</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="minor_children_mlr" ng-model="minor_children_mlr" name="Field" type="checkbox" class="field radio mailer" value="Minor/children" tabindex="1" />
+                                        <label class="" for="minor_children_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="minor_children_party" name="Field" ng-model="minor_children_party" type="checkbox" class="field radio party" value="Minor/children" tabindex="1" />
+                                        <label class="" for="minor_children_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Minor/Children</div>
+                            </div> -->
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="mailer-parties-header">
+                                <div>Mailer List</div>
+                                <div>Parties Copied</div>
+                            </div>
+                            <span compile="mailerList3"></span>
+                           <!-- <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="officer_mlr" ng-model="officer_mlr" name="Field" type="checkbox" class="field radio mailer" value="Officer" tabindex="1" />
+                                        <label class="" for="officer_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="officer_party" ng-model="officer_party" name="Field" type="checkbox" class="field radio party" value="Officer" tabindex="1" />
+                                        <label class="" for="officer_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Officer</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="petitioner_mlr" ng-model="petitioner_mlr" name="Field" type="checkbox" class="field radio mailer" value="Petitioner" tabindex="1" />
+                                        <label class="" for="petitioner_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="petitioner_party" ng-model="petitioner_party" name="Field" type="checkbox" class="field radio party" value="Petitioner" tabindex="1" />
+                                        <label class="" for="petitioner_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Petitioner</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="representative_mlr" ng-model="representative_mlr" name="Field" type="checkbox" class="field radio mailer" value="Representative" tabindex="1" />
+                                        <label class="" for="representative_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="representative_party" ng-model="representative_party" name="Field" type="checkbox" class="field radio party" value="Representative" tabindex="1" />
+                                        <label class="" for="representative_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Representative</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="respondent_mlr" ng-model="respondent_mlr" name="Field" type="checkbox" class="field radio mailer" value="Respondent" tabindex="1" />
+                                        <label class="" for="respondent_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="respondent_party" ng-model="respondent_party" name="Field" type="checkbox" class="field radio party" value="Respondent" tabindex="1" />
+                                        <label class="" for="respondent_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Respondent</div>
+                            </div>
+                            <div class="mailer-parties-row">
+                                <div class="select-check mailer-check">
+                                    <span>
+                                        <input id="other_mlr" ng-model="other_mlr" name="Field" type="checkbox" class="field radio mailer" value="Others" tabindex="1" />
+                                        <label class="" for="other_mlr" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="select-check parties-check">
+                                    <span>
+                                        <input id="other_party" ng-model="other_party" name="Field" type="checkbox" class="field radio party" value="Others" tabindex="1" />
+                                        <label class="" for="other_party" >
+                                            <span class="choice__text"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="lable-text">Other</div>
+                            </div>-->
+                        </div> 
+                        <div class="col-xs-12">
+                            <a ng-click="generateBulkdoc()" class="generate-doc-btn"><i class="fa fa-search" aria-hidden="true"></i> Generate Documents</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+         

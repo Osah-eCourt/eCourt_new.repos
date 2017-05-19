@@ -1,0 +1,278 @@
+<style>
+.header-shadow12{
+    background-image: url("header.jpg");
+    width:100%;
+    height:200px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script>
+ 
+  $(document).ready(function() {
+     
+		$("#nav-widget-mydelta").click(function(){
+        $("#drpdwn1").slideToggle("slow");
+		
+		$("#drpdwn2").hide();
+		$("#drpdwn5").hide();
+		// $("#drpdwn").slideDown("slow");
+    });
+	
+	$("#nav-widget-booking").click(function(){
+        $("#drpdwn2").slideToggle("slow");
+		
+		$("#drpdwn1").hide();
+		$("#drpdwn5").hide();
+		// $("#drpdwn").slideDown("slow");
+    });
+	
+	$("#test123").click(function(){
+        $("#drpdwn5").slideToggle("slow");
+		
+		$("#drpdwn1").hide();
+				$("#drpdwn2").hide();
+		// $("#drpdwn").slideDown("slow");
+    });
+		//nav-widget-booking
+    });
+	</script>
+<div class="header-shadow12" style="width:100%;height="150px;">
+ <link rel="stylesheet" type="text/css" media="screen" href="widgetnav.css">
+ <link href="css.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="home.css">
+
+
+
+ <nav id="nav-widget" class="">
+	<section id="nav-widget-expander">
+		<span class="minimized">↑</span>
+		<span class="maximized">↓</span>
+	</section>
+    
+
+
+<section id="nav-widget-user"> 
+
+<!-- Not Logged in  -->
+<div id="loginwidget" class="homepage loggedout">
+		<div id="login">
+			<form name="loginForm" id="loginForm" autocomplete="off" method="post" action="">
+				<input value="//www.delta.com" name="loginpath" class="setloginpath" type="hidden">
+				<input value="" name="usernameType" class="usernameType" type="hidden">
+				<input value="" name="passwordType" id="passwordType" type="hidden">
+				<input value="homePg" name="homePg" id="homePg" type="hidden">
+				<input value="" name="refreshURL" class="refreshURL" type="hidden">
+				<input value="" name="username" class="username" type="hidden">
+				<input value="" name="password" class="password" type="hidden">
+				<input value="" name="rememberMe" class="rememberMe" type="hidden">
+				<input value="" name="BAUParams" id="BAUParams1" class="BAUParams" type="hidden">
+				<input value="" name="formNameSubmitted" id="formNameSubmitted" type="hidden">
+				<div class="loginWrapper">
+					<div id="loginnav">
+						<div class="">
+							<div class="showLoginLinks"> <!-- Changes for login - as per styleguide - missed in the last build -->
+								<span class="loginDelta home-txt"><span class="login-ie">Log in To&nbsp;</span> OSAH</span> 
+							<!--	<span class="loginDelta">&nbsp; | </span>
+								<span class="signUp sign-up-now"><a href="https://www.delta.com/profile/enrolllanding.action">Sign Up<span class="login-ie">&nbsp;Now</span></a></span> -->
+							</div>
+							<div class="showNotMe">
+								<span class="notMe"></span>
+								<span class="signUp linknotme">|&nbsp;<a href="#">Not Me</a></span>&nbsp;
+							</div>
+						</div>
+					</div>
+					<div id="loginnav1">
+						<fieldset>
+							<div id="loginFields">
+								<div id="usernm-1" class="overlabel-wrapper">
+									
+										<label style="display: block; cursor: text;" for="usernm" id="lblUser_Nm" class="overlabel overlabel-apply">Username</label>
+									
+									<input id="usernm" name="usernm" mpdistrans="" type="text">
+								</div>
+								<div id="pwd-1" class="overlabel-wrapper">
+									<label style="display: block; cursor: text;" for="pwd" id="lblPwd" class="overlabel fixMe overlabel-apply">Password</label> 
+									<input id="pwd" autocomplete="off" value="" name="pwd" mpdistrans="" type="password">
+
+								</div>
+								<div id="submit-1">
+									<button role="button" type="submit" class="ui-button ui-button-secondary fancybox go-btn ui-widget ui-state-default ui-corner-all ui-button-text-only" name="" value="&gt;" id="submit1"><span class="ui-button-text">GO</span></button>
+								</div>
+							</div>
+							<!--<div id="remDiv">
+								<div id="remberChkBox">
+									<input class="remember_me" name="rememberme" type="checkbox">
+								</div>
+								<div id="remberLbl">
+									<label for="rememberme" class="labelremember" id="lbl-remember-me">Remember Me</label>
+								</div>
+								
+									<a href="https://www.delta.com/custlogin/validateUser.action?loginHelpPageName=forgotPassword" class="loginHelpLink2">Forgot Password</a>
+									<a href="https://www.delta.com/custlogin/validateUser.action" class="loginHelpLink3">Forgot Login |</a> 
+																	
+							</div>-->
+						</fieldset>
+					</div>
+				</div> 
+				
+			</form>
+
+		</div>
+	</div>
+		  
+</section>
+
+
+
+
+	<section style="width: 145px;" class="" id="nav-widget-mydelta">
+	<div id="test1234">	<h3>Create New Case</h3>  </div>       
+    
+    <nav id="utility-nav" class="clr" role="navigation">
+        
+        <ul class="row secondary clr">
+            <li class="menu-item has-dropdown shop">
+                
+                
+     
+                    
+                    <div id="drpdwn1" class="dropdown wide">
+                        <ul>
+                            
+                                <li>
+                                    <a href="">Create New Case
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="">Case By Judge
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                        </ul>
+                    </div>                
+            </li>
+            
+           
+          
+           
+        </ul><!-- .secondary -->
+    </nav><!-- .utilnav -->
+    
+	</section>   
+    
+    <section style="width: 145px;" class="" id="nav-widget-mydelta">
+	<div id="test123">	<h3>Create New Calendar</h3>  </div>       
+    
+    <nav id="utility-nav" class="clr" role="navigation">
+        
+        <ul class="row secondary clr">
+            <li class="menu-item has-dropdown shop">
+                
+                
+     
+                    
+                    <div id="drpdwn5" class="dropdown wide">
+                        <ul>
+                            
+                                <li>
+                                    <a href="">Create New Calendar
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="">Calendar by judge
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                        </ul>
+                    </div>                
+            </li>
+            
+           
+          
+           
+        </ul><!-- .secondary -->
+    </nav><!-- .utilnav -->
+    
+	</section>   
+    
+	<section style="width: 145px;" class="" id="nav-widget-booking">
+		<h3>My Cases</h3>
+        
+        
+        <nav id="utility-nav" class="clr" role="navigation">
+        
+        <ul class="row secondary clr">
+            <li class="menu-item has-dropdown shop">
+                
+                
+     
+                    
+                    <div id="drpdwn2" class="dropdown wide">
+                        <ul>
+                            
+                                <li>
+                                    <a href="">By Judge
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="">By Judge Assistant
+                                    
+                                        <small></small>
+                                    
+                                    </a>
+                                </li>
+                            
+                        </ul>
+                    </div>                
+            </li>
+            
+           
+          
+           
+        </ul><!-- .secondary -->
+    </nav><!-- .utilnav -->
+	</section>
+	<section style="width: 145px;" class="" id="nav-widget-status">
+		<h3>Calendar Review</h3>
+	</section>
+	<section style="width: 145px;" class="" id="nav-widget-checkin">
+		<h3>Manager or Change Existing Case</h3>
+	</section>
+	<section style="width: 145px;" class="" id="nav-widget-escape">
+		<h3>Search</h3>		
+	</section>
+</div>
+
+
+
+
+
+
+
+<!-- .nav-widget --> 
+
+
+</nav>
+
+
+
+</div>
