@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
- //Osah Controller
+ //Osah Controller updated by Neha
 
 namespace Osahform\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -1093,7 +1093,7 @@ public function nohdocsfuncAction()
         $pdf_file=str_replace('docx', 'pdf', $filedocname);
         $pdf_path=$upload_path.str_replace('docx', 'pdf', $filedocname);
         $exe_location=$_SERVER['DOCUMENT_ROOT'].'/../data/filewrite/pdf/OfficeToPDF.exe ';
-        passthru($exe_location . '"' . $filedir1 .'" ' . '"' . $pdf_path .'"');
+        // passthru($exe_location . '"' . $filedir1 .'" ' . '"' . $pdf_path .'"');
         //passthru($_SERVER['DOCUMENT_ROOT'].'/../data/filewrite/pdf/OfficeToPDF.exe' . ' "' . $filedir1 .'" ' . '"' . $pdf_path .'"');
         /*File Write Function*/ 
         $this->filewrite("document_tamplate.txt","File Paths ","Temp File:  " . $temp_file."\n File Dir1: ".$filedir1);
@@ -8600,7 +8600,6 @@ public function CasesExportReportsAction()
     }
     
    public function validateinAction(){
-	  
      //// Code By Neha Start here
         $session = new Container('base');
         $param= json_decode(file_get_contents('php://input'),true); 
@@ -9443,7 +9442,7 @@ switch ($condition_type) {
 		code optimised date - 16-01-2017.
    */
    public function addPartyDetailsAction()
-   {	   
+   {
 	   $db=$this->serviceLocator->get('db1');
 	   $param= json_decode(file_get_contents('php://input'),true);
 	   $OsahDb=New OsahDbFunctions();
@@ -9528,7 +9527,6 @@ switch ($condition_type) {
 					'modified_date'=>$current_datetime
 				);
 			}
-			 
 	   switch ($contact_type){
 		   case 'Minor/children':
 				$condition = "caseid = '".$docketnum."' and Lastname = '".$lastname."' and Firstname = '".$firstname."'";
@@ -9610,8 +9608,11 @@ switch ($condition_type) {
 			break;
 			
 			case 'Officer':
+			
+			
+			
 			$condition = "caseid = '".$docketnum."' and Lastname = '".$lastname."' and Firstname = '".$firstname."' and typeofcontact = '".$contact_type."'";
-			$result = $OsahDb->getData($db,"agencycaseworkerbycase",$condition,0);			
+			$result = $OsahDb->getData($db,"agencycaseworkerbycase",$condition,0);
 			if(!empty($result))
 			{
 				echo "0";exit;
@@ -9698,6 +9699,26 @@ switch ($condition_type) {
 			$document_condition = array('Caseid'=>$param['dockeid'],'DocumentType'=>'Decision');
 			$roc_flag = array('roc_flag'=>1);
             $result = $OsahDb->updateData($db,"docket",$param['docketInfo'],$condition);
+			$refagency = $param['docketInfo']['refagency'];
+			$casetype = $param['docketInfo']['casetype'];
+			if(isset($param['location_id']['location_id']))
+			{
+				$location_id = $param['location_id']['location_id'];
+			}else{
+				$location_id = 'UNASSIGNED';
+			}
+			
+			$judge = $param['docketInfo']['judge'];
+			$split_judgename = explode(" ", $judge);
+			$judge_firstname = $split_judgename[0];
+			
+			$docketnumber = $refagency.'-'.$casetype.'-'.$param['dockeid'].'-'.$location_id.'-'.$judge_firstname;
+				$condition = array('caseid' => $param['dockeid']);
+						$data = array(
+								'docketnumber'=>$docketnumber
+						);
+				$result = $OsahDb->updateData($db,"docket",$data,$condition);
+			
 			 $status = $param['docketInfo']['status'];
 			 if($status=='Rescheduled')
 			 {
@@ -10900,7 +10921,7 @@ switch ($condition_type) {
 			if(isset($condition['agencyrefnumber']) && $condition['agencyrefnumber']!=''){
 					$master_condition .=( $master_condition=='')?"doc.agencyrefnumber='".$condition['agencyrefnumber']."'":"doc.agencyrefnumber='".$condition['agencyrefnumber']."'";
 			}
-			 
+			$master_condition .=( $master_condition=='')?"doc.telv_o_five='1'":"doc.telv_o_five='1'";
 			if(isset($condition['county']) && $condition['county']!=''){
 					$master_condition .=( $master_condition=='')?"doc.county='".$condition['county']."'":" && doc.county='".$condition['county']."'";
 			}        
@@ -11123,7 +11144,9 @@ switch ($condition_type) {
 				array_push($export_arr,$result_arr);
 			}
 		}else{ //fetch closed cases
-			$from_date = $condition['dcfrom'];
+		
+		
+		$from_date = $condition['dcfrom'];
 		$to_date = $condition['dcto'];
 		
 		if(isset($condition['boxno']) && $condition['boxno']!='')
@@ -11229,7 +11252,6 @@ switch ($condition_type) {
 	public function searchResultAction(){
 		$db=$this->serviceLocator->get('db1');
 		$param= json_decode(file_get_contents('php://input'),true);
-		// print_r($param);exit;
     //$passed_data=explode("/",$param['condition']);  
 
     // echo "<pre>"; print_r($param['condition']['status']); exit;
@@ -11659,6 +11681,7 @@ switch ($condition_type) {
     exit;*/
 }
 
+
     /*  Name : Amol S
       Date Created : 07-02-2017
       Description : This is supporting function for  Advance search
@@ -11952,7 +11975,13 @@ switch ($condition_type) {
 			}
 			$agency = $param['docketdetails']['refagency'];
 			$case_type = $param['docketdetails']['casetype'];
-			$location_id = $param['location_id']['location_id'];
+			if(isset($param['location_id']['location_id']))
+			{
+				$location_id = $param['location_id']['location_id'];
+			}else{
+				$location_id = 'UNASSIGNED';
+			}
+			
 			$judge = $param['docketdetails']['judge'];
 			$split_judgename = explode(" ", $judge);
 			$judge_firstname = $split_judgename[0];
@@ -13094,6 +13123,7 @@ data folder   .
 				}else{
 					$effective_date = '-';
 				}
+				// print_r($data['height']);exit;
 				if($data['height']!='')
 				{
 					$height = explode(".",$data['height']); 
@@ -13127,6 +13157,17 @@ data folder   .
 					$eligibility = 'Yes';
 				}else{
 					$eligibility = 'No';
+				}
+				if($data['is_new_officer']=='1')
+				{
+					$is_new_officer='Yes';
+				}else{
+					$is_new_officer='No';
+				}if($data['is_new_attorney']=='1')
+				{
+					$is_new_attorney='Yes';
+				}else{
+					$is_new_attorney='No';
 				}
 				$bodyhtml= "";
 				$bodyhtml .= '
@@ -13430,6 +13471,7 @@ data folder   .
 						<hr/>
 						<div>
 							<h3 style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: bold; margin: 20px 0 5px 0; padding: 0 5px; display: table; width: 100%;">Petitioner Attorney Information</h3>
+							<h4 style="font-family: \'Roboto\', sans-serif; font-size: 12px; font-weight: bold; margin: 10px 0 10px 0; padding: 0 5px; display: table; width: 100%;">Is this a new party or new address? <span style="font-family: \'Roboto\', sans-serif; font-size: 12px; font-weight: normal; margin: 0 0 0 10px;">'.$is_new_attorney.'</span></h4>
 							<div style="display: table; width: 100%; margin: 0;">
 								<div style="display: table; width: 100%; margin: 0;">
 									<div style="float: left; width: 25%; margin: 0 0 10px 0;">
@@ -13516,6 +13558,7 @@ data folder   .
 						<hr/>
 						<div>
 							<h3 style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: bold; margin: 20px 0 5px 0; padding: 0 5px; display: table; width: 100%;">Officer Information</h3>
+							<h4 style="font-family: \'Roboto\', sans-serif; font-size: 12px; font-weight: bold; margin: 10px 0 10px 0; padding: 0 5px; display: table; width: 100%;">Is this a new party or new address? <span style="font-family: \'Roboto\', sans-serif; font-size: 12px; font-weight: normal; margin: 0 0 0 10px;">'.$is_new_officer.'</span></h4>
 							<div style="display: table; width: 100%; margin: 0;">
 								<div style="display: table; width: 100%; margin: 0;">
 									<div style="float: left; width: 25%; margin: 0 0 10px 0;">

@@ -1,5 +1,5 @@
 <?php 
-
+//updated by Neha
 use Zend\Session\Container;
 $session = new Container('base');
 ?>
@@ -8,7 +8,7 @@ $session = new Container('base');
                 <div class="header">
                     <div class="container">
                         <div class="col-xs-3">
-                            <a ui-sref="home" class="logo"><img src="images/osah-logo.png" alt="OSAH" /></a>
+                            <a ui-sref="home" class="logo"><img class="img-responsive" src="images/osah-logo.png" alt="OSAH" /></a>
 			             </div>
                         <div class="col-xs-7">
                             <div class="navigation">
@@ -244,14 +244,14 @@ $session = new Container('base');
                     </div>
                     <div class="container" ng-show="case_type=='C'">
                         <div class="col-xs-3">
-                            <label>Date Closed by OSAH (From)</label>
+                            <label>Date Closed by OSAH (From)*</label>
                             <div class="datepicker-wrapper">
 								<input class="resetdata valid_closedCases" b-datepicker="{{dcfrom}}" datepicker-options="{autoclose: true}" type="text" ng-model="fields.dcfrom" msg="Please select date closed by OSAH(From)!"  id="dcfrom" name="dcfrom" >
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="col-xs-3">
-                            <label>Date Closed by OSAH (to)</label>
+                            <label>Date Closed by OSAH (to)*</label>
                             <div class="datepicker-wrapper">
                                <input b-datepicker="{{dcto}}" datepicker-options="{autoclose: true}" class="resetdata valid_closedCases" type="text" name="dcto" msg="Please select date closed by OSAH(To)!" ng-model="fields.dcto" id="dcto">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>

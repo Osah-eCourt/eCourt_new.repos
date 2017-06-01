@@ -3,7 +3,7 @@
                 <div class="container">
                     <div class="col-xs-12">
                         <div class="display-records-label">
-                            <h2 ng-cloak>Displaying {{searchCondition.start+1}}-{{lastRecordNo()}} records of {{result.total}}</h2>
+                            <h2 ng-cloak>Displaying <span ng-if="result.total">{{searchCondition.start+1}}-{{lastRecordNo()}} records of</span> {{result.total}} <span ng-if="!result.total">record</span></h2>
                         </div>
                     </div>
                     <div class="col-xs-12">

@@ -62,6 +62,5 @@ return array(
   'MyHelper' => 'Helper\MyHelper',
   ),
  )
- 
 
 );
